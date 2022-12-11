@@ -1,0 +1,18 @@
+build/GPIO_program.o: MCAL/GPIO/GPIO_program.c LIB/STD_TYPES.h \
+ LIB/BIT_MATH.h LIB/STM32F103C8.h LIB/STD_TYPES.h \
+ MCAL/GPIO/GPIO_interface.h MCAL/GPIO/GPIO_private.h \
+ MCAL/GPIO/GPIO_config.h
+
+LIB/STD_TYPES.h:
+
+LIB/BIT_MATH.h:
+
+LIB/STM32F103C8.h:
+
+LIB/STD_TYPES.h:
+
+MCAL/GPIO/GPIO_interface.h:
+
+MCAL/GPIO/GPIO_private.h:
+
+MCAL/GPIO/GPIO_config.h:
