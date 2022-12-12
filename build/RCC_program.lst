@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cckvtjXn.s 			page 1
+ARM GAS  /tmp/ccy7pcLg.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -13,961 +13,298 @@ ARM GAS  /tmp/cckvtjXn.s 			page 1
   10              		.eabi_attribute 18, 4
   11              		.file	"RCC_program.c"
   12              		.text
-  13              	.Ltext0:
-  14              		.cfi_sections	.debug_frame
-  15              		.section	.text.RCC_enumPeripheralCLKEnable,"ax",%progbits
-  16              		.align	1
-  17              		.global	RCC_enumPeripheralCLKEnable
-  18              		.arch armv7-m
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu softvfp
-  24              	RCC_enumPeripheralCLKEnable:
-  25              	.LVL0:
-  26              	.LFB1:
-  27              		.file 1 "MCAL/RCC/RCC_program.c"
-   1:MCAL/RCC/RCC_program.c **** #include "STD_TYPES.h"
-   2:MCAL/RCC/RCC_program.c **** #include "BIT_MATH.h"
-   3:MCAL/RCC/RCC_program.c **** #include "STM32F103C8.h"
-   4:MCAL/RCC/RCC_program.c **** 
-   5:MCAL/RCC/RCC_program.c **** 
-   6:MCAL/RCC/RCC_program.c **** #include "RCC_interface.h"
-   7:MCAL/RCC/RCC_program.c **** #include "RCC_private.h"
-   8:MCAL/RCC/RCC_program.c **** #include "RCC_config.h"
-   9:MCAL/RCC/RCC_program.c **** 
-  10:MCAL/RCC/RCC_program.c **** void RCC_voidCLKInit(void){
-  11:MCAL/RCC/RCC_program.c **** 
-  12:MCAL/RCC/RCC_program.c **** #ifdef  CLK_SOURCE
-  13:MCAL/RCC/RCC_program.c **** 
-  14:MCAL/RCC/RCC_program.c ****     #if CLK_SOURCE == HSE
-  15:MCAL/RCC/RCC_program.c **** 
-  16:MCAL/RCC/RCC_program.c ****       RCC_voidHSEBYPASS();
-  17:MCAL/RCC/RCC_program.c ****       RCC_voidSETAHB_Prescaller();
-  18:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB1_Prescaller();
-  19:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB2_Prescaller();
-  20:MCAL/RCC/RCC_program.c ****       SET_BIT( RCC->CFGR , SW_0);
-  21:MCAL/RCC/RCC_program.c ****       CLR_BIT( RCC->CFGR , SW_1);
-  22:MCAL/RCC/RCC_program.c ****       SET_BIT( RCC->CR , HSEON );
-  23:MCAL/RCC/RCC_program.c **** 
-  24:MCAL/RCC/RCC_program.c ****       while( (GET_BIT( RCC->CR , HSERDY )) == 0 );
-  25:MCAL/RCC/RCC_program.c **** 
-  26:MCAL/RCC/RCC_program.c ****     #elif CLK_SOURCE == HSI
-  27:MCAL/RCC/RCC_program.c **** 
-  28:MCAL/RCC/RCC_program.c ****       RCC_voidSETAHB_Prescaller();
-  29:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB1_Prescaller();
-  30:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB2_Prescaller();
-  31:MCAL/RCC/RCC_program.c ****       CLR_BIT( RCC->CFGR , SW_0);
-ARM GAS  /tmp/cckvtjXn.s 			page 2
+  13              		.section	.text.RCC_enumPeripheralCLKEnable,"ax",%progbits
+  14              		.align	1
+  15              		.global	RCC_enumPeripheralCLKEnable
+  16              		.arch armv7-m
+  17              		.syntax unified
+  18              		.thumb
+  19              		.thumb_func
+  20              		.fpu softvfp
+  22              	RCC_enumPeripheralCLKEnable:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 1F29     		cmp	r1, #31
+  27 0002 20D8     		bhi	.L5
+  28 0004 0128     		cmp	r0, #1
+  29 0006 0CD0     		beq	.L3
+  30 0008 0228     		cmp	r0, #2
+  31 000a 14D0     		beq	.L4
+  32 000c 08B1     		cbz	r0, .L10
+  33 000e 0020     		movs	r0, #0
+  34 0010 7047     		bx	lr
+  35              	.L10:
+  36 0012 0E4A     		ldr	r2, .L11
+  37 0014 5369     		ldr	r3, [r2, #20]
+  38 0016 0120     		movs	r0, #1
+  39 0018 00FA01F1 		lsl	r1, r0, r1
+  40 001c 1943     		orrs	r1, r1, r3
+  41 001e 5161     		str	r1, [r2, #20]
+  42 0020 7047     		bx	lr
+  43              	.L3:
+  44 0022 10B4     		push	{r4}
+  45 0024 094C     		ldr	r4, .L11
+  46 0026 A369     		ldr	r3, [r4, #24]
+  47 0028 0122     		movs	r2, #1
+  48 002a 02FA01F1 		lsl	r1, r2, r1
+  49 002e 1943     		orrs	r1, r1, r3
+  50 0030 A161     		str	r1, [r4, #24]
+  51 0032 10BC     		pop	{r4}
+  52 0034 7047     		bx	lr
+  53              	.L4:
+  54 0036 054A     		ldr	r2, .L11
+  55 0038 D369     		ldr	r3, [r2, #28]
+  56 003a 0120     		movs	r0, #1
+  57 003c 00FA01F1 		lsl	r1, r0, r1
+  58 0040 1943     		orrs	r1, r1, r3
+ARM GAS  /tmp/ccy7pcLg.s 			page 2
 
 
-  32:MCAL/RCC/RCC_program.c ****       CLR_BIT( RCC->CFGR , SW_1);
-  33:MCAL/RCC/RCC_program.c ****       SET_BIT( RCC->CR , HSION );
-  34:MCAL/RCC/RCC_program.c ****       while( (GET_BIT( RCC->CR , HSIRDY )) == 0 );
-  35:MCAL/RCC/RCC_program.c **** 
-  36:MCAL/RCC/RCC_program.c ****     #elif CLK_SOURCE == PLL
-  37:MCAL/RCC/RCC_program.c **** 
-  38:MCAL/RCC/RCC_program.c ****       RCC_voidSETAHB_Prescaller();
-  39:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB1_Prescaller();
-  40:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB2_Prescaller();
-  41:MCAL/RCC/RCC_program.c ****       RCC_voidSETPLL_MULTIPLCATION_FACTOR();
-  42:MCAL/RCC/RCC_program.c ****       RCC_voidSETPLL_CLK_SOURCE();
-  43:MCAL/RCC/RCC_program.c ****       CLR_BIT( RCC->CFGR , SW_0);
-  44:MCAL/RCC/RCC_program.c ****       SET_BIT( RCC->CFGR , SW_1);
-  45:MCAL/RCC/RCC_program.c ****       SET_BIT( RCC->CR , PLLON );
-  46:MCAL/RCC/RCC_program.c ****       while( (GET_BIT( RCC->CR , PLLRDY )) == 0 );
-  47:MCAL/RCC/RCC_program.c **** 
-  48:MCAL/RCC/RCC_program.c ****     #endif
-  49:MCAL/RCC/RCC_program.c **** #endif
-  50:MCAL/RCC/RCC_program.c **** 
-  51:MCAL/RCC/RCC_program.c **** }
-  52:MCAL/RCC/RCC_program.c **** ERROR_enumSTATE RCC_enumPeripheralCLKEnable( u8 Copy_u8BUS ,u8 Copy_u8Peripheral ){
-  28              		.loc 1 52 83 view -0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		@ link register save eliminated.
-  53:MCAL/RCC/RCC_program.c **** 
-  54:MCAL/RCC/RCC_program.c **** 	ERROR_enumSTATE   LOC_u8Error_STATE = STD_TYPES_OK;
-  33              		.loc 1 54 2 view .LVU1
-  55:MCAL/RCC/RCC_program.c **** 
-  56:MCAL/RCC/RCC_program.c **** 	  if( Copy_u8Peripheral <32 )
-  34              		.loc 1 56 4 view .LVU2
-  35              		.loc 1 56 6 is_stmt 0 view .LVU3
-  36 0000 1F29     		cmp	r1, #31
-  37 0002 20D8     		bhi	.L5
-  57:MCAL/RCC/RCC_program.c **** 	  {
-  58:MCAL/RCC/RCC_program.c **** 		  switch ( Copy_u8BUS )
-  38              		.loc 1 58 5 is_stmt 1 view .LVU4
-  39 0004 0128     		cmp	r0, #1
-  40 0006 0CD0     		beq	.L3
-  41 0008 0228     		cmp	r0, #2
-  42 000a 14D0     		beq	.L4
-  43 000c 08B1     		cbz	r0, .L10
-  44 000e 0020     		movs	r0, #0
-  45              	.LVL1:
-  59:MCAL/RCC/RCC_program.c **** 		  {
-  60:MCAL/RCC/RCC_program.c **** 			  case AHB_BUS:
-  61:MCAL/RCC/RCC_program.c **** 
-  62:MCAL/RCC/RCC_program.c **** 				SET_BIT( RCC->AHBENR , Copy_u8Peripheral );
-  63:MCAL/RCC/RCC_program.c **** 				break;
-  64:MCAL/RCC/RCC_program.c **** 
-  65:MCAL/RCC/RCC_program.c **** 			  case APB2_BUS:
-  66:MCAL/RCC/RCC_program.c **** 
-  67:MCAL/RCC/RCC_program.c **** 				SET_BIT( RCC->APB2ENR , Copy_u8Peripheral );
-  68:MCAL/RCC/RCC_program.c **** 				break;
-  69:MCAL/RCC/RCC_program.c **** 
-  70:MCAL/RCC/RCC_program.c **** 			  case APB1_BUS:
-ARM GAS  /tmp/cckvtjXn.s 			page 3
+  59 0042 D161     		str	r1, [r2, #28]
+  60 0044 7047     		bx	lr
+  61              	.L5:
+  62 0046 0020     		movs	r0, #0
+  63 0048 7047     		bx	lr
+  64              	.L12:
+  65 004a 00BF     		.align	2
+  66              	.L11:
+  67 004c 00100240 		.word	1073876992
+  69              		.section	.text.RCC_enumPeripheralCLKDisable,"ax",%progbits
+  70              		.align	1
+  71              		.global	RCC_enumPeripheralCLKDisable
+  72              		.syntax unified
+  73              		.thumb
+  74              		.thumb_func
+  75              		.fpu softvfp
+  77              	RCC_enumPeripheralCLKDisable:
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  81 0000 1F29     		cmp	r1, #31
+  82 0002 23D8     		bhi	.L17
+  83 0004 0128     		cmp	r0, #1
+  84 0006 0DD0     		beq	.L15
+  85 0008 0228     		cmp	r0, #2
+  86 000a 16D0     		beq	.L16
+  87 000c 08B1     		cbz	r0, .L22
+  88 000e 0020     		movs	r0, #0
+  89 0010 7047     		bx	lr
+  90              	.L22:
+  91 0012 0F4A     		ldr	r2, .L23
+  92 0014 5369     		ldr	r3, [r2, #20]
+  93 0016 0120     		movs	r0, #1
+  94 0018 00FA01F1 		lsl	r1, r0, r1
+  95 001c 23EA0101 		bic	r1, r3, r1
+  96 0020 5161     		str	r1, [r2, #20]
+  97 0022 7047     		bx	lr
+  98              	.L15:
+  99 0024 10B4     		push	{r4}
+ 100 0026 0A4C     		ldr	r4, .L23
+ 101 0028 A369     		ldr	r3, [r4, #24]
+ 102 002a 0122     		movs	r2, #1
+ 103 002c 02FA01F1 		lsl	r1, r2, r1
+ 104 0030 23EA0101 		bic	r1, r3, r1
+ 105 0034 A161     		str	r1, [r4, #24]
+ 106 0036 10BC     		pop	{r4}
+ 107 0038 7047     		bx	lr
+ 108              	.L16:
+ 109 003a 054A     		ldr	r2, .L23
+ 110 003c D369     		ldr	r3, [r2, #28]
+ 111 003e 0120     		movs	r0, #1
+ 112 0040 00FA01F1 		lsl	r1, r0, r1
+ 113 0044 23EA0101 		bic	r1, r3, r1
+ 114 0048 D161     		str	r1, [r2, #28]
+ 115 004a 7047     		bx	lr
+ 116              	.L17:
+ 117 004c 0020     		movs	r0, #0
+ARM GAS  /tmp/ccy7pcLg.s 			page 3
 
 
-  71:MCAL/RCC/RCC_program.c **** 
-  72:MCAL/RCC/RCC_program.c **** 				SET_BIT( RCC->APB1ENR , Copy_u8Peripheral );
-  73:MCAL/RCC/RCC_program.c **** 				break;
-  74:MCAL/RCC/RCC_program.c **** 
-  75:MCAL/RCC/RCC_program.c **** 			  default:
-  76:MCAL/RCC/RCC_program.c **** 				  LOC_u8Error_STATE = STD_TYPES_NOK;
-  77:MCAL/RCC/RCC_program.c **** 		  }
-  78:MCAL/RCC/RCC_program.c **** 
-  79:MCAL/RCC/RCC_program.c **** 	  }else
-  80:MCAL/RCC/RCC_program.c **** 	  {
-  81:MCAL/RCC/RCC_program.c **** 	      LOC_u8Error_STATE = STD_TYPES_NOK;
-  82:MCAL/RCC/RCC_program.c **** 	  }
-  83:MCAL/RCC/RCC_program.c **** 
-  84:MCAL/RCC/RCC_program.c **** 	  return LOC_u8Error_STATE;
-  46              		.loc 1 84 4 view .LVU5
-  85:MCAL/RCC/RCC_program.c **** }
-  47              		.loc 1 85 1 is_stmt 0 view .LVU6
-  48 0010 7047     		bx	lr
-  49              	.LVL2:
-  50              	.L10:
-  62:MCAL/RCC/RCC_program.c **** 				break;
-  51              		.loc 1 62 5 is_stmt 1 view .LVU7
-  52 0012 0E4A     		ldr	r2, .L11
-  53 0014 5369     		ldr	r3, [r2, #20]
-  54 0016 0120     		movs	r0, #1
-  55              	.LVL3:
-  62:MCAL/RCC/RCC_program.c **** 				break;
-  56              		.loc 1 62 5 is_stmt 0 view .LVU8
-  57 0018 00FA01F1 		lsl	r1, r0, r1
-  58              	.LVL4:
-  62:MCAL/RCC/RCC_program.c **** 				break;
-  59              		.loc 1 62 5 view .LVU9
-  60 001c 1943     		orrs	r1, r1, r3
-  61 001e 5161     		str	r1, [r2, #20]
-  63:MCAL/RCC/RCC_program.c **** 
-  62              		.loc 1 63 5 is_stmt 1 view .LVU10
-  63 0020 7047     		bx	lr
-  64              	.LVL5:
-  65              	.L3:
-  52:MCAL/RCC/RCC_program.c **** 
-  66              		.loc 1 52 83 is_stmt 0 view .LVU11
-  67 0022 10B4     		push	{r4}
-  68              	.LCFI0:
-  69              		.cfi_def_cfa_offset 4
-  70              		.cfi_offset 4, -4
-  67:MCAL/RCC/RCC_program.c **** 				break;
-  71              		.loc 1 67 5 is_stmt 1 view .LVU12
-  72 0024 094C     		ldr	r4, .L11
-  73 0026 A369     		ldr	r3, [r4, #24]
-  74 0028 0122     		movs	r2, #1
-  75 002a 02FA01F1 		lsl	r1, r2, r1
-  76              	.LVL6:
-  67:MCAL/RCC/RCC_program.c **** 				break;
-  77              		.loc 1 67 5 is_stmt 0 view .LVU13
-  78 002e 1943     		orrs	r1, r1, r3
-  79 0030 A161     		str	r1, [r4, #24]
-  68:MCAL/RCC/RCC_program.c **** 
-ARM GAS  /tmp/cckvtjXn.s 			page 4
+ 118 004e 7047     		bx	lr
+ 119              	.L24:
+ 120              		.align	2
+ 121              	.L23:
+ 122 0050 00100240 		.word	1073876992
+ 124              		.section	.text.RCC_voidSETAHB_Prescaller,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	RCC_voidSETAHB_Prescaller
+ 127              		.syntax unified
+ 128              		.thumb
+ 129              		.thumb_func
+ 130              		.fpu softvfp
+ 132              	RCC_voidSETAHB_Prescaller:
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 135              		@ link register save eliminated.
+ 136 0000 024A     		ldr	r2, .L26
+ 137 0002 5368     		ldr	r3, [r2, #4]
+ 138 0004 23F08003 		bic	r3, r3, #128
+ 139 0008 5360     		str	r3, [r2, #4]
+ 140 000a 7047     		bx	lr
+ 141              	.L27:
+ 142              		.align	2
+ 143              	.L26:
+ 144 000c 00100240 		.word	1073876992
+ 146              		.section	.text.RCC_voidSETAPB1_Prescaller,"ax",%progbits
+ 147              		.align	1
+ 148              		.global	RCC_voidSETAPB1_Prescaller
+ 149              		.syntax unified
+ 150              		.thumb
+ 151              		.thumb_func
+ 152              		.fpu softvfp
+ 154              	RCC_voidSETAPB1_Prescaller:
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              		@ link register save eliminated.
+ 158 0000 024A     		ldr	r2, .L29
+ 159 0002 5368     		ldr	r3, [r2, #4]
+ 160 0004 23F48063 		bic	r3, r3, #1024
+ 161 0008 5360     		str	r3, [r2, #4]
+ 162 000a 7047     		bx	lr
+ 163              	.L30:
+ 164              		.align	2
+ 165              	.L29:
+ 166 000c 00100240 		.word	1073876992
+ 168              		.section	.text.RCC_voidSETAPB2_Prescaller,"ax",%progbits
+ 169              		.align	1
+ 170              		.global	RCC_voidSETAPB2_Prescaller
+ 171              		.syntax unified
+ 172              		.thumb
+ 173              		.thumb_func
+ 174              		.fpu softvfp
+ 176              	RCC_voidSETAPB2_Prescaller:
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 0, uses_anonymous_args = 0
+ 179              		@ link register save eliminated.
+ 180 0000 024A     		ldr	r2, .L32
+ARM GAS  /tmp/ccy7pcLg.s 			page 4
 
 
-  80              		.loc 1 68 5 is_stmt 1 view .LVU14
-  81              	.LVL7:
-  84:MCAL/RCC/RCC_program.c **** }
-  82              		.loc 1 84 4 view .LVU15
-  83              		.loc 1 85 1 is_stmt 0 view .LVU16
-  84 0032 10BC     		pop	{r4}
-  85              	.LCFI1:
-  86              		.cfi_restore 4
-  87              		.cfi_def_cfa_offset 0
-  88 0034 7047     		bx	lr
-  89              	.LVL8:
-  90              	.L4:
-  72:MCAL/RCC/RCC_program.c **** 				break;
-  91              		.loc 1 72 5 is_stmt 1 view .LVU17
-  92 0036 054A     		ldr	r2, .L11
-  93 0038 D369     		ldr	r3, [r2, #28]
-  94 003a 0120     		movs	r0, #1
-  95              	.LVL9:
-  72:MCAL/RCC/RCC_program.c **** 				break;
-  96              		.loc 1 72 5 is_stmt 0 view .LVU18
-  97 003c 00FA01F1 		lsl	r1, r0, r1
-  98              	.LVL10:
-  72:MCAL/RCC/RCC_program.c **** 				break;
-  99              		.loc 1 72 5 view .LVU19
- 100 0040 1943     		orrs	r1, r1, r3
- 101 0042 D161     		str	r1, [r2, #28]
-  73:MCAL/RCC/RCC_program.c **** 
- 102              		.loc 1 73 5 is_stmt 1 view .LVU20
- 103 0044 7047     		bx	lr
- 104              	.LVL11:
- 105              	.L5:
-  81:MCAL/RCC/RCC_program.c **** 	  }
- 106              		.loc 1 81 26 is_stmt 0 view .LVU21
- 107 0046 0020     		movs	r0, #0
- 108              	.LVL12:
-  81:MCAL/RCC/RCC_program.c **** 	  }
- 109              		.loc 1 81 26 view .LVU22
- 110 0048 7047     		bx	lr
- 111              	.L12:
- 112 004a 00BF     		.align	2
- 113              	.L11:
- 114 004c 00100240 		.word	1073876992
- 115              		.cfi_endproc
- 116              	.LFE1:
- 118              		.section	.text.RCC_enumPeripheralCLKDisable,"ax",%progbits
- 119              		.align	1
- 120              		.global	RCC_enumPeripheralCLKDisable
- 121              		.syntax unified
- 122              		.thumb
- 123              		.thumb_func
- 124              		.fpu softvfp
- 126              	RCC_enumPeripheralCLKDisable:
- 127              	.LVL13:
- 128              	.LFB2:
-  86:MCAL/RCC/RCC_program.c **** ERROR_enumSTATE RCC_enumPeripheralCLKDisable(  u8 Copy_u8BUS ,u8 Copy_u8Peripheral ){
- 129              		.loc 1 86 85 is_stmt 1 view -0
- 130              		.cfi_startproc
-ARM GAS  /tmp/cckvtjXn.s 			page 5
+ 181 0002 5368     		ldr	r3, [r2, #4]
+ 182 0004 23F40053 		bic	r3, r3, #8192
+ 183 0008 5360     		str	r3, [r2, #4]
+ 184 000a 7047     		bx	lr
+ 185              	.L33:
+ 186              		.align	2
+ 187              	.L32:
+ 188 000c 00100240 		.word	1073876992
+ 190              		.section	.text.RCC_voidCLKInit,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	RCC_voidCLKInit
+ 193              		.syntax unified
+ 194              		.thumb
+ 195              		.thumb_func
+ 196              		.fpu softvfp
+ 198              	RCC_voidCLKInit:
+ 199              		@ args = 0, pretend = 0, frame = 0
+ 200              		@ frame_needed = 0, uses_anonymous_args = 0
+ 201 0000 08B5     		push	{r3, lr}
+ 202 0002 FFF7FEFF 		bl	RCC_voidSETAHB_Prescaller
+ 203 0006 FFF7FEFF 		bl	RCC_voidSETAPB1_Prescaller
+ 204 000a FFF7FEFF 		bl	RCC_voidSETAPB2_Prescaller
+ 205 000e 094B     		ldr	r3, .L37
+ 206 0010 5A68     		ldr	r2, [r3, #4]
+ 207 0012 22F00102 		bic	r2, r2, #1
+ 208 0016 5A60     		str	r2, [r3, #4]
+ 209 0018 5A68     		ldr	r2, [r3, #4]
+ 210 001a 22F00202 		bic	r2, r2, #2
+ 211 001e 5A60     		str	r2, [r3, #4]
+ 212 0020 1A68     		ldr	r2, [r3]
+ 213 0022 42F00102 		orr	r2, r2, #1
+ 214 0026 1A60     		str	r2, [r3]
+ 215              	.L35:
+ 216 0028 024B     		ldr	r3, .L37
+ 217 002a 1B68     		ldr	r3, [r3]
+ 218 002c 13F0020F 		tst	r3, #2
+ 219 0030 FAD0     		beq	.L35
+ 220 0032 08BD     		pop	{r3, pc}
+ 221              	.L38:
+ 222              		.align	2
+ 223              	.L37:
+ 224 0034 00100240 		.word	1073876992
+ 226              		.section	.text.RCC_voidSETPLL_CLK_SOURCE,"ax",%progbits
+ 227              		.align	1
+ 228              		.global	RCC_voidSETPLL_CLK_SOURCE
+ 229              		.syntax unified
+ 230              		.thumb
+ 231              		.thumb_func
+ 232              		.fpu softvfp
+ 234              	RCC_voidSETPLL_CLK_SOURCE:
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237              		@ link register save eliminated.
+ 238 0000 7047     		bx	lr
+ 240              		.section	.text.RCC_voidSETPLLPRESCALLER,"ax",%progbits
+ 241              		.align	1
+ 242              		.global	RCC_voidSETPLLPRESCALLER
+ARM GAS  /tmp/ccy7pcLg.s 			page 5
 
 
- 131              		@ args = 0, pretend = 0, frame = 0
- 132              		@ frame_needed = 0, uses_anonymous_args = 0
- 133              		@ link register save eliminated.
-  87:MCAL/RCC/RCC_program.c **** 
-  88:MCAL/RCC/RCC_program.c ****   ERROR_enumSTATE   LOC_u8Error_STATE = STD_TYPES_OK;
- 134              		.loc 1 88 3 view .LVU24
-  89:MCAL/RCC/RCC_program.c **** 
-  90:MCAL/RCC/RCC_program.c ****   if( Copy_u8Peripheral <32 )
- 135              		.loc 1 90 3 view .LVU25
- 136              		.loc 1 90 5 is_stmt 0 view .LVU26
- 137 0000 1F29     		cmp	r1, #31
- 138 0002 23D8     		bhi	.L17
-  91:MCAL/RCC/RCC_program.c ****   {
-  92:MCAL/RCC/RCC_program.c **** 	  switch ( Copy_u8BUS )
- 139              		.loc 1 92 4 is_stmt 1 view .LVU27
- 140 0004 0128     		cmp	r0, #1
- 141 0006 0DD0     		beq	.L15
- 142 0008 0228     		cmp	r0, #2
- 143 000a 16D0     		beq	.L16
- 144 000c 08B1     		cbz	r0, .L22
- 145 000e 0020     		movs	r0, #0
- 146              	.LVL14:
-  93:MCAL/RCC/RCC_program.c **** 	  {
-  94:MCAL/RCC/RCC_program.c **** 		  case AHB_BUS:
-  95:MCAL/RCC/RCC_program.c **** 
-  96:MCAL/RCC/RCC_program.c **** 			CLR_BIT( RCC->AHBENR , Copy_u8Peripheral );
-  97:MCAL/RCC/RCC_program.c **** 			break;
-  98:MCAL/RCC/RCC_program.c **** 
-  99:MCAL/RCC/RCC_program.c **** 		  case APB2_BUS:
- 100:MCAL/RCC/RCC_program.c **** 
- 101:MCAL/RCC/RCC_program.c **** 			CLR_BIT( RCC->APB2ENR , Copy_u8Peripheral );
- 102:MCAL/RCC/RCC_program.c **** 			break;
- 103:MCAL/RCC/RCC_program.c **** 
- 104:MCAL/RCC/RCC_program.c **** 		  case APB1_BUS:
- 105:MCAL/RCC/RCC_program.c **** 
- 106:MCAL/RCC/RCC_program.c **** 			CLR_BIT( RCC->APB1ENR , Copy_u8Peripheral );
- 107:MCAL/RCC/RCC_program.c **** 			break;
- 108:MCAL/RCC/RCC_program.c **** 
- 109:MCAL/RCC/RCC_program.c **** 		  default:
- 110:MCAL/RCC/RCC_program.c **** 			  LOC_u8Error_STATE = STD_TYPES_NOK;
- 111:MCAL/RCC/RCC_program.c **** 	  }
- 112:MCAL/RCC/RCC_program.c **** 
- 113:MCAL/RCC/RCC_program.c **** 
- 114:MCAL/RCC/RCC_program.c ****   }else
- 115:MCAL/RCC/RCC_program.c ****   {
- 116:MCAL/RCC/RCC_program.c ****       LOC_u8Error_STATE = STD_TYPES_NOK;
- 117:MCAL/RCC/RCC_program.c ****   }
- 118:MCAL/RCC/RCC_program.c **** 
- 119:MCAL/RCC/RCC_program.c ****   return LOC_u8Error_STATE;
- 147              		.loc 1 119 3 view .LVU28
- 120:MCAL/RCC/RCC_program.c **** 
- 121:MCAL/RCC/RCC_program.c **** }
- 148              		.loc 1 121 1 is_stmt 0 view .LVU29
- 149 0010 7047     		bx	lr
- 150              	.LVL15:
- 151              	.L22:
-  96:MCAL/RCC/RCC_program.c **** 			break;
-ARM GAS  /tmp/cckvtjXn.s 			page 6
-
-
- 152              		.loc 1 96 4 is_stmt 1 view .LVU30
- 153 0012 0F4A     		ldr	r2, .L23
- 154 0014 5369     		ldr	r3, [r2, #20]
- 155 0016 0120     		movs	r0, #1
- 156              	.LVL16:
-  96:MCAL/RCC/RCC_program.c **** 			break;
- 157              		.loc 1 96 4 is_stmt 0 view .LVU31
- 158 0018 00FA01F1 		lsl	r1, r0, r1
- 159              	.LVL17:
-  96:MCAL/RCC/RCC_program.c **** 			break;
- 160              		.loc 1 96 4 view .LVU32
- 161 001c 23EA0101 		bic	r1, r3, r1
- 162 0020 5161     		str	r1, [r2, #20]
-  97:MCAL/RCC/RCC_program.c **** 
- 163              		.loc 1 97 4 is_stmt 1 view .LVU33
- 164 0022 7047     		bx	lr
- 165              	.LVL18:
- 166              	.L15:
-  86:MCAL/RCC/RCC_program.c **** 
- 167              		.loc 1 86 85 is_stmt 0 view .LVU34
- 168 0024 10B4     		push	{r4}
- 169              	.LCFI2:
- 170              		.cfi_def_cfa_offset 4
- 171              		.cfi_offset 4, -4
- 101:MCAL/RCC/RCC_program.c **** 			break;
- 172              		.loc 1 101 4 is_stmt 1 view .LVU35
- 173 0026 0A4C     		ldr	r4, .L23
- 174 0028 A369     		ldr	r3, [r4, #24]
- 175 002a 0122     		movs	r2, #1
- 176 002c 02FA01F1 		lsl	r1, r2, r1
- 177              	.LVL19:
- 101:MCAL/RCC/RCC_program.c **** 			break;
- 178              		.loc 1 101 4 is_stmt 0 view .LVU36
- 179 0030 23EA0101 		bic	r1, r3, r1
- 180 0034 A161     		str	r1, [r4, #24]
- 102:MCAL/RCC/RCC_program.c **** 
- 181              		.loc 1 102 4 is_stmt 1 view .LVU37
- 182              	.LVL20:
- 119:MCAL/RCC/RCC_program.c **** 
- 183              		.loc 1 119 3 view .LVU38
- 184              		.loc 1 121 1 is_stmt 0 view .LVU39
- 185 0036 10BC     		pop	{r4}
- 186              	.LCFI3:
- 187              		.cfi_restore 4
- 188              		.cfi_def_cfa_offset 0
- 189 0038 7047     		bx	lr
- 190              	.LVL21:
- 191              	.L16:
- 106:MCAL/RCC/RCC_program.c **** 			break;
- 192              		.loc 1 106 4 is_stmt 1 view .LVU40
- 193 003a 054A     		ldr	r2, .L23
- 194 003c D369     		ldr	r3, [r2, #28]
- 195 003e 0120     		movs	r0, #1
- 196              	.LVL22:
- 106:MCAL/RCC/RCC_program.c **** 			break;
- 197              		.loc 1 106 4 is_stmt 0 view .LVU41
- 198 0040 00FA01F1 		lsl	r1, r0, r1
-ARM GAS  /tmp/cckvtjXn.s 			page 7
-
-
- 199              	.LVL23:
- 106:MCAL/RCC/RCC_program.c **** 			break;
- 200              		.loc 1 106 4 view .LVU42
- 201 0044 23EA0101 		bic	r1, r3, r1
- 202 0048 D161     		str	r1, [r2, #28]
- 107:MCAL/RCC/RCC_program.c **** 
- 203              		.loc 1 107 4 is_stmt 1 view .LVU43
- 204 004a 7047     		bx	lr
- 205              	.LVL24:
- 206              	.L17:
- 116:MCAL/RCC/RCC_program.c ****   }
- 207              		.loc 1 116 25 is_stmt 0 view .LVU44
- 208 004c 0020     		movs	r0, #0
- 209              	.LVL25:
- 116:MCAL/RCC/RCC_program.c ****   }
- 210              		.loc 1 116 25 view .LVU45
- 211 004e 7047     		bx	lr
- 212              	.L24:
- 213              		.align	2
- 214              	.L23:
- 215 0050 00100240 		.word	1073876992
- 216              		.cfi_endproc
- 217              	.LFE2:
- 219              		.section	.text.RCC_voidSETAHB_Prescaller,"ax",%progbits
- 220              		.align	1
- 221              		.global	RCC_voidSETAHB_Prescaller
- 222              		.syntax unified
- 223              		.thumb
- 224              		.thumb_func
- 225              		.fpu softvfp
- 227              	RCC_voidSETAHB_Prescaller:
- 228              	.LFB3:
- 122:MCAL/RCC/RCC_program.c **** 
- 123:MCAL/RCC/RCC_program.c **** void RCC_voidSETAHB_Prescaller(void){
- 229              		.loc 1 123 37 is_stmt 1 view -0
- 230              		.cfi_startproc
- 231              		@ args = 0, pretend = 0, frame = 0
- 232              		@ frame_needed = 0, uses_anonymous_args = 0
- 233              		@ link register save eliminated.
- 124:MCAL/RCC/RCC_program.c **** 
- 125:MCAL/RCC/RCC_program.c ****     #ifdef AHB_PRESCALLER
- 126:MCAL/RCC/RCC_program.c **** 
- 127:MCAL/RCC/RCC_program.c ****       #if AHB_PRESCALLER ==  DIVIDEDBY_1
- 128:MCAL/RCC/RCC_program.c **** 
- 129:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_7 );
- 234              		.loc 1 129 9 view .LVU47
- 235 0000 024A     		ldr	r2, .L26
- 236 0002 5368     		ldr	r3, [r2, #4]
- 237 0004 23F08003 		bic	r3, r3, #128
- 238 0008 5360     		str	r3, [r2, #4]
- 130:MCAL/RCC/RCC_program.c **** 
- 131:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_2
- 132:MCAL/RCC/RCC_program.c **** 
- 133:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_4 );
- 134:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_5 );
- 135:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_6 );
- 136:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
-ARM GAS  /tmp/cckvtjXn.s 			page 8
-
-
- 137:MCAL/RCC/RCC_program.c **** 
- 138:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_4
- 139:MCAL/RCC/RCC_program.c **** 
- 140:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_4 );
- 141:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_5 );
- 142:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_6 );
- 143:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 144:MCAL/RCC/RCC_program.c **** 
- 145:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_8
- 146:MCAL/RCC/RCC_program.c **** 
- 147:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_4 );
- 148:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_5 );
- 149:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_6 );
- 150:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 151:MCAL/RCC/RCC_program.c **** 
- 152:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_16
- 153:MCAL/RCC/RCC_program.c **** 
- 154:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_4 );
- 155:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_5 );
- 156:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_6 );
- 157:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 158:MCAL/RCC/RCC_program.c **** 
- 159:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_64
- 160:MCAL/RCC/RCC_program.c **** 
- 161:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_4 );
- 162:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_5 );
- 163:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_6 );
- 164:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 165:MCAL/RCC/RCC_program.c **** 
- 166:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_128
- 167:MCAL/RCC/RCC_program.c **** 
- 168:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_4 );
- 169:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_5 );
- 170:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_6 );
- 171:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 172:MCAL/RCC/RCC_program.c **** 
- 173:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_256
- 174:MCAL/RCC/RCC_program.c **** 
- 175:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , HPRE_4 );
- 176:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_5 );
- 177:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_6 );
- 178:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 179:MCAL/RCC/RCC_program.c **** 
- 180:MCAL/RCC/RCC_program.c ****       #elif AHB_PRESCALLER ==  DIVIDEDBY_512
- 181:MCAL/RCC/RCC_program.c **** 
- 182:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_4 );
- 183:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_5 );
- 184:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_6 );
- 185:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , HPRE_7 );
- 186:MCAL/RCC/RCC_program.c **** 
- 187:MCAL/RCC/RCC_program.c ****       #endif
- 188:MCAL/RCC/RCC_program.c ****     #endif
- 189:MCAL/RCC/RCC_program.c **** }
- 239              		.loc 1 189 1 is_stmt 0 view .LVU48
- 240 000a 7047     		bx	lr
- 241              	.L27:
- 242              		.align	2
-ARM GAS  /tmp/cckvtjXn.s 			page 9
-
-
- 243              	.L26:
- 244 000c 00100240 		.word	1073876992
- 245              		.cfi_endproc
- 246              	.LFE3:
- 248              		.section	.text.RCC_voidSETAPB1_Prescaller,"ax",%progbits
- 249              		.align	1
- 250              		.global	RCC_voidSETAPB1_Prescaller
- 251              		.syntax unified
- 252              		.thumb
- 253              		.thumb_func
- 254              		.fpu softvfp
- 256              	RCC_voidSETAPB1_Prescaller:
- 257              	.LFB4:
- 190:MCAL/RCC/RCC_program.c **** 
- 191:MCAL/RCC/RCC_program.c **** void RCC_voidSETAPB1_Prescaller(void){
- 258              		.loc 1 191 38 is_stmt 1 view -0
- 259              		.cfi_startproc
- 260              		@ args = 0, pretend = 0, frame = 0
- 261              		@ frame_needed = 0, uses_anonymous_args = 0
- 262              		@ link register save eliminated.
- 192:MCAL/RCC/RCC_program.c **** 
- 193:MCAL/RCC/RCC_program.c ****   #ifdef APB1_PRESCALLER
- 194:MCAL/RCC/RCC_program.c **** 
- 195:MCAL/RCC/RCC_program.c ****     #if APB1_PRESCALLER ==  DIVIDEDBY_1
- 196:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE1_10 );
- 263              		.loc 1 196 9 view .LVU50
- 264 0000 024A     		ldr	r2, .L29
- 265 0002 5368     		ldr	r3, [r2, #4]
- 266 0004 23F48063 		bic	r3, r3, #1024
- 267 0008 5360     		str	r3, [r2, #4]
- 197:MCAL/RCC/RCC_program.c ****     #elif DIVIDEDBY_2
- 198:MCAL/RCC/RCC_program.c **** 
- 199:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE1_8 );
- 200:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE1_9 );
- 201:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_10 );
- 202:MCAL/RCC/RCC_program.c **** 
- 203:MCAL/RCC/RCC_program.c ****     #elif APB1_PRESCALLER ==  DIVIDEDBY_4
- 204:MCAL/RCC/RCC_program.c **** 
- 205:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_8 );
- 206:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE1_9 );
- 207:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_10 );
- 208:MCAL/RCC/RCC_program.c **** 
- 209:MCAL/RCC/RCC_program.c ****     #elif APB1_PRESCALLER == DIVIDEDBY_8
- 210:MCAL/RCC/RCC_program.c **** 
- 211:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE1_8 );
- 212:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_9 );
- 213:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_10 );
- 214:MCAL/RCC/RCC_program.c **** 
- 215:MCAL/RCC/RCC_program.c ****     #elif APB1_PRESCALLER == DIVIDEDBY_16
- 216:MCAL/RCC/RCC_program.c **** 
- 217:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_8 );
- 218:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_9 );
- 219:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE1_10 );
- 220:MCAL/RCC/RCC_program.c **** 
- 221:MCAL/RCC/RCC_program.c ****     #endif
- 222:MCAL/RCC/RCC_program.c ****   #endif
- 223:MCAL/RCC/RCC_program.c **** }
-ARM GAS  /tmp/cckvtjXn.s 			page 10
-
-
- 268              		.loc 1 223 1 is_stmt 0 view .LVU51
- 269 000a 7047     		bx	lr
- 270              	.L30:
- 271              		.align	2
- 272              	.L29:
- 273 000c 00100240 		.word	1073876992
- 274              		.cfi_endproc
- 275              	.LFE4:
- 277              		.section	.text.RCC_voidSETAPB2_Prescaller,"ax",%progbits
- 278              		.align	1
- 279              		.global	RCC_voidSETAPB2_Prescaller
- 280              		.syntax unified
- 281              		.thumb
- 282              		.thumb_func
- 283              		.fpu softvfp
- 285              	RCC_voidSETAPB2_Prescaller:
- 286              	.LFB5:
- 224:MCAL/RCC/RCC_program.c **** 
- 225:MCAL/RCC/RCC_program.c **** 
- 226:MCAL/RCC/RCC_program.c **** void RCC_voidSETAPB2_Prescaller(void){
- 287              		.loc 1 226 38 is_stmt 1 view -0
- 288              		.cfi_startproc
- 289              		@ args = 0, pretend = 0, frame = 0
- 290              		@ frame_needed = 0, uses_anonymous_args = 0
- 291              		@ link register save eliminated.
- 227:MCAL/RCC/RCC_program.c **** 
- 228:MCAL/RCC/RCC_program.c ****   #ifdef APB2_PRESCALLER
- 229:MCAL/RCC/RCC_program.c **** 
- 230:MCAL/RCC/RCC_program.c ****     #if APB2_PRESCALLER ==  DIVIDEDBY_1
- 231:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE2_13 );
- 292              		.loc 1 231 9 view .LVU53
- 293 0000 024A     		ldr	r2, .L32
- 294 0002 5368     		ldr	r3, [r2, #4]
- 295 0004 23F40053 		bic	r3, r3, #8192
- 296 0008 5360     		str	r3, [r2, #4]
- 232:MCAL/RCC/RCC_program.c ****     #elif APB2_PRESCALLER == DIVIDEDBY_2
- 233:MCAL/RCC/RCC_program.c **** 
- 234:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE2_11);
- 235:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE2_12);
- 236:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_13 );
- 237:MCAL/RCC/RCC_program.c **** 
- 238:MCAL/RCC/RCC_program.c ****     #elif APB2_PRESCALLER == DIVIDEDBY_4
- 239:MCAL/RCC/RCC_program.c **** 
- 240:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_11);
- 241:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE2_12);
- 242:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_13 );
- 243:MCAL/RCC/RCC_program.c **** 
- 244:MCAL/RCC/RCC_program.c ****     #elif APB2_PRESCALLER == DIVIDEDBY_8
- 245:MCAL/RCC/RCC_program.c **** 
- 246:MCAL/RCC/RCC_program.c ****         CLR_BIT( RCC->CFGR , PPRE2_11 );
- 247:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_12);
- 248:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_13 );
- 249:MCAL/RCC/RCC_program.c **** 
- 250:MCAL/RCC/RCC_program.c ****     #elif APB2_PRESCALLER == DIVIDEDBY_16
- 251:MCAL/RCC/RCC_program.c **** 
- 252:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_11);
- 253:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_12);
-ARM GAS  /tmp/cckvtjXn.s 			page 11
-
-
- 254:MCAL/RCC/RCC_program.c ****         SET_BIT( RCC->CFGR , PPRE2_13 );
- 255:MCAL/RCC/RCC_program.c **** 
- 256:MCAL/RCC/RCC_program.c ****     #endif
- 257:MCAL/RCC/RCC_program.c ****   #endif
- 258:MCAL/RCC/RCC_program.c **** 
- 259:MCAL/RCC/RCC_program.c **** }
- 297              		.loc 1 259 1 is_stmt 0 view .LVU54
- 298 000a 7047     		bx	lr
- 299              	.L33:
- 300              		.align	2
- 301              	.L32:
- 302 000c 00100240 		.word	1073876992
- 303              		.cfi_endproc
- 304              	.LFE5:
- 306              		.section	.text.RCC_voidCLKInit,"ax",%progbits
- 307              		.align	1
- 308              		.global	RCC_voidCLKInit
- 309              		.syntax unified
- 310              		.thumb
- 311              		.thumb_func
- 312              		.fpu softvfp
- 314              	RCC_voidCLKInit:
- 315              	.LFB0:
-  10:MCAL/RCC/RCC_program.c **** 
- 316              		.loc 1 10 27 is_stmt 1 view -0
- 317              		.cfi_startproc
- 318              		@ args = 0, pretend = 0, frame = 0
- 319              		@ frame_needed = 0, uses_anonymous_args = 0
- 320 0000 08B5     		push	{r3, lr}
- 321              	.LCFI4:
- 322              		.cfi_def_cfa_offset 8
- 323              		.cfi_offset 3, -8
- 324              		.cfi_offset 14, -4
-  28:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB1_Prescaller();
- 325              		.loc 1 28 7 view .LVU56
- 326 0002 FFF7FEFF 		bl	RCC_voidSETAHB_Prescaller
- 327              	.LVL26:
-  29:MCAL/RCC/RCC_program.c ****       RCC_voidSETAPB2_Prescaller();
- 328              		.loc 1 29 7 view .LVU57
- 329 0006 FFF7FEFF 		bl	RCC_voidSETAPB1_Prescaller
- 330              	.LVL27:
-  30:MCAL/RCC/RCC_program.c ****       CLR_BIT( RCC->CFGR , SW_0);
- 331              		.loc 1 30 7 view .LVU58
- 332 000a FFF7FEFF 		bl	RCC_voidSETAPB2_Prescaller
- 333              	.LVL28:
-  31:MCAL/RCC/RCC_program.c ****       CLR_BIT( RCC->CFGR , SW_1);
- 334              		.loc 1 31 7 view .LVU59
- 335 000e 094B     		ldr	r3, .L37
- 336 0010 5A68     		ldr	r2, [r3, #4]
- 337 0012 22F00102 		bic	r2, r2, #1
- 338 0016 5A60     		str	r2, [r3, #4]
-  32:MCAL/RCC/RCC_program.c ****       SET_BIT( RCC->CR , HSION );
- 339              		.loc 1 32 7 view .LVU60
- 340 0018 5A68     		ldr	r2, [r3, #4]
- 341 001a 22F00202 		bic	r2, r2, #2
- 342 001e 5A60     		str	r2, [r3, #4]
-  33:MCAL/RCC/RCC_program.c ****       while( (GET_BIT( RCC->CR , HSIRDY )) == 0 );
-ARM GAS  /tmp/cckvtjXn.s 			page 12
-
-
- 343              		.loc 1 33 7 view .LVU61
- 344 0020 1A68     		ldr	r2, [r3]
- 345 0022 42F00102 		orr	r2, r2, #1
- 346 0026 1A60     		str	r2, [r3]
-  34:MCAL/RCC/RCC_program.c **** 
- 347              		.loc 1 34 7 view .LVU62
- 348              	.L35:
-  34:MCAL/RCC/RCC_program.c **** 
- 349              		.loc 1 34 50 discriminator 1 view .LVU63
-  34:MCAL/RCC/RCC_program.c **** 
- 350              		.loc 1 34 12 discriminator 1 view .LVU64
-  34:MCAL/RCC/RCC_program.c **** 
- 351              		.loc 1 34 15 is_stmt 0 discriminator 1 view .LVU65
- 352 0028 024B     		ldr	r3, .L37
- 353 002a 1B68     		ldr	r3, [r3]
-  34:MCAL/RCC/RCC_program.c **** 
- 354              		.loc 1 34 12 discriminator 1 view .LVU66
- 355 002c 13F0020F 		tst	r3, #2
- 356 0030 FAD0     		beq	.L35
-  51:MCAL/RCC/RCC_program.c **** ERROR_enumSTATE RCC_enumPeripheralCLKEnable( u8 Copy_u8BUS ,u8 Copy_u8Peripheral ){
- 357              		.loc 1 51 1 view .LVU67
- 358 0032 08BD     		pop	{r3, pc}
- 359              	.L38:
- 360              		.align	2
- 361              	.L37:
- 362 0034 00100240 		.word	1073876992
- 363              		.cfi_endproc
- 364              	.LFE0:
- 366              		.section	.text.RCC_voidSETPLL_CLK_SOURCE,"ax",%progbits
- 367              		.align	1
- 368              		.global	RCC_voidSETPLL_CLK_SOURCE
- 369              		.syntax unified
- 370              		.thumb
- 371              		.thumb_func
- 372              		.fpu softvfp
- 374              	RCC_voidSETPLL_CLK_SOURCE:
- 375              	.LFB6:
- 260:MCAL/RCC/RCC_program.c **** 
- 261:MCAL/RCC/RCC_program.c **** void RCC_voidSETPLL_CLK_SOURCE(void){
- 376              		.loc 1 261 37 is_stmt 1 view -0
- 377              		.cfi_startproc
- 378              		@ args = 0, pretend = 0, frame = 0
- 379              		@ frame_needed = 0, uses_anonymous_args = 0
- 380              		@ link register save eliminated.
- 262:MCAL/RCC/RCC_program.c **** 
- 263:MCAL/RCC/RCC_program.c ****       #ifdef PLL_CLK_SOURCE
- 264:MCAL/RCC/RCC_program.c **** 
- 265:MCAL/RCC/RCC_program.c ****         #if   PLL_CLK_SOURCE == HSE
- 266:MCAL/RCC/RCC_program.c **** 
- 267:MCAL/RCC/RCC_program.c ****           RCC_voidHSEBYPASS();
- 268:MCAL/RCC/RCC_program.c ****           RCC_voidSETPLLPRESCALLER();
- 269:MCAL/RCC/RCC_program.c ****           SET_BIT( RCC->CFGR , PLLSRC_16);
- 270:MCAL/RCC/RCC_program.c **** 
- 271:MCAL/RCC/RCC_program.c ****         #elif   PLL_CLK_SOURCE == HSI
- 272:MCAL/RCC/RCC_program.c **** 
- 273:MCAL/RCC/RCC_program.c ****           CLR_BIT( RCC->CFGR , PLLSRC_16);
- 274:MCAL/RCC/RCC_program.c **** 
-ARM GAS  /tmp/cckvtjXn.s 			page 13
-
-
- 275:MCAL/RCC/RCC_program.c ****         #endif
- 276:MCAL/RCC/RCC_program.c ****       #endif
- 277:MCAL/RCC/RCC_program.c **** }
- 381              		.loc 1 277 1 view .LVU69
- 382 0000 7047     		bx	lr
- 383              		.cfi_endproc
- 384              	.LFE6:
- 386              		.section	.text.RCC_voidSETPLLPRESCALLER,"ax",%progbits
- 387              		.align	1
- 388              		.global	RCC_voidSETPLLPRESCALLER
- 389              		.syntax unified
- 390              		.thumb
- 391              		.thumb_func
- 392              		.fpu softvfp
- 394              	RCC_voidSETPLLPRESCALLER:
- 395              	.LFB7:
- 278:MCAL/RCC/RCC_program.c **** 
- 279:MCAL/RCC/RCC_program.c **** void RCC_voidSETPLLPRESCALLER(void){
- 396              		.loc 1 279 36 view -0
- 397              		.cfi_startproc
- 398              		@ args = 0, pretend = 0, frame = 0
- 399              		@ frame_needed = 0, uses_anonymous_args = 0
- 400              		@ link register save eliminated.
- 280:MCAL/RCC/RCC_program.c **** 
- 281:MCAL/RCC/RCC_program.c ****     #ifdef PLL_PRESCALLER
- 282:MCAL/RCC/RCC_program.c **** 
- 283:MCAL/RCC/RCC_program.c ****         #if PLL_PRESCALLER == DIVIDEDBY_1
- 284:MCAL/RCC/RCC_program.c **** 
- 285:MCAL/RCC/RCC_program.c ****           CLR_BIT( RCC->CFGR ,PLLXTPRE_17);
- 286:MCAL/RCC/RCC_program.c **** 
- 287:MCAL/RCC/RCC_program.c ****         #elif PLL_PRESCALLER == DIVIDEDBY_2
- 288:MCAL/RCC/RCC_program.c **** 
- 289:MCAL/RCC/RCC_program.c ****           SET_BIT( RCC->CFGR ,PLLXTPRE_17);
- 290:MCAL/RCC/RCC_program.c **** 
- 291:MCAL/RCC/RCC_program.c ****         #endif
- 292:MCAL/RCC/RCC_program.c ****     #endif
- 293:MCAL/RCC/RCC_program.c **** }
- 401              		.loc 1 293 1 view .LVU71
- 402 0000 7047     		bx	lr
- 403              		.cfi_endproc
- 404              	.LFE7:
- 406              		.section	.text.RCC_voidSETPLL_MULTIPLCATION_FACTOR,"ax",%progbits
- 407              		.align	1
- 408              		.global	RCC_voidSETPLL_MULTIPLCATION_FACTOR
- 409              		.syntax unified
- 410              		.thumb
- 411              		.thumb_func
- 412              		.fpu softvfp
- 414              	RCC_voidSETPLL_MULTIPLCATION_FACTOR:
- 415              	.LFB8:
- 294:MCAL/RCC/RCC_program.c **** 
- 295:MCAL/RCC/RCC_program.c **** void RCC_voidSETPLL_MULTIPLCATION_FACTOR(void){
- 416              		.loc 1 295 47 view -0
- 417              		.cfi_startproc
- 418              		@ args = 0, pretend = 0, frame = 0
- 419              		@ frame_needed = 0, uses_anonymous_args = 0
- 420              		@ link register save eliminated.
-ARM GAS  /tmp/cckvtjXn.s 			page 14
-
-
- 296:MCAL/RCC/RCC_program.c **** 
- 297:MCAL/RCC/RCC_program.c ****   #ifdef  PLL_MULTIPLCATION_FACTOR
- 298:MCAL/RCC/RCC_program.c **** 
- 299:MCAL/RCC/RCC_program.c ****     #if     PLL_MULTIPLCATION_FACTOR == MUL_2
- 300:MCAL/RCC/RCC_program.c **** 
- 301:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 302:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 303:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 304:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 305:MCAL/RCC/RCC_program.c **** 
- 306:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_3
- 307:MCAL/RCC/RCC_program.c **** 
- 308:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 309:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 310:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 311:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 312:MCAL/RCC/RCC_program.c **** 
- 313:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_4
- 314:MCAL/RCC/RCC_program.c **** 
- 315:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 316:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 317:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 318:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 319:MCAL/RCC/RCC_program.c **** 
- 320:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_5
- 321:MCAL/RCC/RCC_program.c **** 
- 322:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 323:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 324:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 325:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 326:MCAL/RCC/RCC_program.c **** 
- 327:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_6
- 328:MCAL/RCC/RCC_program.c **** 
- 329:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 330:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 331:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
- 332:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 333:MCAL/RCC/RCC_program.c **** 
- 334:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_7
- 335:MCAL/RCC/RCC_program.c **** 
- 336:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 337:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 338:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
- 339:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 340:MCAL/RCC/RCC_program.c **** 
- 341:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_8
- 342:MCAL/RCC/RCC_program.c **** 
- 343:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 344:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 345:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
- 346:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 347:MCAL/RCC/RCC_program.c **** 
- 348:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_9
- 349:MCAL/RCC/RCC_program.c **** 
- 350:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 351:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 352:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
-ARM GAS  /tmp/cckvtjXn.s 			page 15
-
-
- 353:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_21);
- 354:MCAL/RCC/RCC_program.c **** 
- 355:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_10
- 356:MCAL/RCC/RCC_program.c **** 
- 357:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 358:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 359:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 360:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 361:MCAL/RCC/RCC_program.c **** 
- 362:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_11
- 363:MCAL/RCC/RCC_program.c **** 
- 364:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 365:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 366:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 367:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 368:MCAL/RCC/RCC_program.c **** 
- 369:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_12
- 370:MCAL/RCC/RCC_program.c **** 
- 371:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 372:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 373:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 374:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 375:MCAL/RCC/RCC_program.c **** 
- 376:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_13
- 377:MCAL/RCC/RCC_program.c **** 
- 378:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 379:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 380:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_20);
- 381:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 382:MCAL/RCC/RCC_program.c **** 
- 383:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_14
- 384:MCAL/RCC/RCC_program.c **** 
- 385:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 386:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 387:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
- 388:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 389:MCAL/RCC/RCC_program.c **** 
- 390:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_15
- 391:MCAL/RCC/RCC_program.c **** 
- 392:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_18);
- 393:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_19);
- 394:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
- 395:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 396:MCAL/RCC/RCC_program.c **** 
- 397:MCAL/RCC/RCC_program.c ****     #elif  PLL_MULTIPLCATION_FACTOR ==MUL_16
- 398:MCAL/RCC/RCC_program.c **** 
- 399:MCAL/RCC/RCC_program.c ****         CLR_BIT(RCC->CFGR , PLLMUL_18);
- 400:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_19);
- 401:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_20);
- 402:MCAL/RCC/RCC_program.c ****         SET_BIT(RCC->CFGR , PLLMUL_21);
- 403:MCAL/RCC/RCC_program.c **** 
- 404:MCAL/RCC/RCC_program.c ****     #endif
- 405:MCAL/RCC/RCC_program.c ****   #endif
- 406:MCAL/RCC/RCC_program.c **** }
- 421              		.loc 1 406 1 view .LVU73
- 422 0000 7047     		bx	lr
- 423              		.cfi_endproc
-ARM GAS  /tmp/cckvtjXn.s 			page 16
-
-
- 424              	.LFE8:
- 426              		.section	.text.RCC_voidHSEBYPASS,"ax",%progbits
- 427              		.align	1
- 428              		.global	RCC_voidHSEBYPASS
- 429              		.syntax unified
- 430              		.thumb
- 431              		.thumb_func
- 432              		.fpu softvfp
- 434              	RCC_voidHSEBYPASS:
- 435              	.LFB9:
- 407:MCAL/RCC/RCC_program.c **** 
- 408:MCAL/RCC/RCC_program.c ****  void RCC_voidHSEBYPASS(void){
- 436              		.loc 1 408 30 view -0
- 437              		.cfi_startproc
- 438              		@ args = 0, pretend = 0, frame = 0
- 439              		@ frame_needed = 0, uses_anonymous_args = 0
- 440              		@ link register save eliminated.
- 409:MCAL/RCC/RCC_program.c **** 
- 410:MCAL/RCC/RCC_program.c **** 	#ifdef    HSE_TYPE
- 411:MCAL/RCC/RCC_program.c **** 
- 412:MCAL/RCC/RCC_program.c **** 		#if (HSE_TYPE == CRYSTAL)
- 413:MCAL/RCC/RCC_program.c **** 				CLR_BIT( RCC->CR, HSEBYP );
- 414:MCAL/RCC/RCC_program.c **** 
- 415:MCAL/RCC/RCC_program.c **** 		#elif  (HSE_TYPE == RC)
- 416:MCAL/RCC/RCC_program.c **** 				SET_BIT( RCC->CR, HSEBYP );
- 417:MCAL/RCC/RCC_program.c **** 
- 418:MCAL/RCC/RCC_program.c **** 		#endif
- 419:MCAL/RCC/RCC_program.c **** 	#endif
- 420:MCAL/RCC/RCC_program.c **** }
- 441              		.loc 1 420 1 view .LVU75
- 442 0000 7047     		bx	lr
- 443              		.cfi_endproc
- 444              	.LFE9:
- 446              		.text
- 447              	.Letext0:
- 448              		.file 2 "LIB/STD_TYPES.h"
- 449              		.file 3 "LIB/STM32F103C8.h"
-ARM GAS  /tmp/cckvtjXn.s 			page 17
+ 243              		.syntax unified
+ 244              		.thumb
+ 245              		.thumb_func
+ 246              		.fpu softvfp
+ 248              	RCC_voidSETPLLPRESCALLER:
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 251              		@ link register save eliminated.
+ 252 0000 7047     		bx	lr
+ 254              		.section	.text.RCC_voidSETPLL_MULTIPLCATION_FACTOR,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	RCC_voidSETPLL_MULTIPLCATION_FACTOR
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.fpu softvfp
+ 262              	RCC_voidSETPLL_MULTIPLCATION_FACTOR:
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265              		@ link register save eliminated.
+ 266 0000 7047     		bx	lr
+ 268              		.section	.text.RCC_voidHSEBYPASS,"ax",%progbits
+ 269              		.align	1
+ 270              		.global	RCC_voidHSEBYPASS
+ 271              		.syntax unified
+ 272              		.thumb
+ 273              		.thumb_func
+ 274              		.fpu softvfp
+ 276              	RCC_voidHSEBYPASS:
+ 277              		@ args = 0, pretend = 0, frame = 0
+ 278              		@ frame_needed = 0, uses_anonymous_args = 0
+ 279              		@ link register save eliminated.
+ 280 0000 7047     		bx	lr
+ 282              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
+ARM GAS  /tmp/ccy7pcLg.s 			page 6
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 RCC_program.c
-     /tmp/cckvtjXn.s:16     .text.RCC_enumPeripheralCLKEnable:0000000000000000 $t
-     /tmp/cckvtjXn.s:24     .text.RCC_enumPeripheralCLKEnable:0000000000000000 RCC_enumPeripheralCLKEnable
-     /tmp/cckvtjXn.s:114    .text.RCC_enumPeripheralCLKEnable:000000000000004c $d
-     /tmp/cckvtjXn.s:119    .text.RCC_enumPeripheralCLKDisable:0000000000000000 $t
-     /tmp/cckvtjXn.s:126    .text.RCC_enumPeripheralCLKDisable:0000000000000000 RCC_enumPeripheralCLKDisable
-     /tmp/cckvtjXn.s:215    .text.RCC_enumPeripheralCLKDisable:0000000000000050 $d
-     /tmp/cckvtjXn.s:220    .text.RCC_voidSETAHB_Prescaller:0000000000000000 $t
-     /tmp/cckvtjXn.s:227    .text.RCC_voidSETAHB_Prescaller:0000000000000000 RCC_voidSETAHB_Prescaller
-     /tmp/cckvtjXn.s:244    .text.RCC_voidSETAHB_Prescaller:000000000000000c $d
-     /tmp/cckvtjXn.s:249    .text.RCC_voidSETAPB1_Prescaller:0000000000000000 $t
-     /tmp/cckvtjXn.s:256    .text.RCC_voidSETAPB1_Prescaller:0000000000000000 RCC_voidSETAPB1_Prescaller
-     /tmp/cckvtjXn.s:273    .text.RCC_voidSETAPB1_Prescaller:000000000000000c $d
-     /tmp/cckvtjXn.s:278    .text.RCC_voidSETAPB2_Prescaller:0000000000000000 $t
-     /tmp/cckvtjXn.s:285    .text.RCC_voidSETAPB2_Prescaller:0000000000000000 RCC_voidSETAPB2_Prescaller
-     /tmp/cckvtjXn.s:302    .text.RCC_voidSETAPB2_Prescaller:000000000000000c $d
-     /tmp/cckvtjXn.s:307    .text.RCC_voidCLKInit:0000000000000000 $t
-     /tmp/cckvtjXn.s:314    .text.RCC_voidCLKInit:0000000000000000 RCC_voidCLKInit
-     /tmp/cckvtjXn.s:362    .text.RCC_voidCLKInit:0000000000000034 $d
-     /tmp/cckvtjXn.s:367    .text.RCC_voidSETPLL_CLK_SOURCE:0000000000000000 $t
-     /tmp/cckvtjXn.s:374    .text.RCC_voidSETPLL_CLK_SOURCE:0000000000000000 RCC_voidSETPLL_CLK_SOURCE
-     /tmp/cckvtjXn.s:387    .text.RCC_voidSETPLLPRESCALLER:0000000000000000 $t
-     /tmp/cckvtjXn.s:394    .text.RCC_voidSETPLLPRESCALLER:0000000000000000 RCC_voidSETPLLPRESCALLER
-     /tmp/cckvtjXn.s:407    .text.RCC_voidSETPLL_MULTIPLCATION_FACTOR:0000000000000000 $t
-     /tmp/cckvtjXn.s:414    .text.RCC_voidSETPLL_MULTIPLCATION_FACTOR:0000000000000000 RCC_voidSETPLL_MULTIPLCATION_FACTOR
-     /tmp/cckvtjXn.s:427    .text.RCC_voidHSEBYPASS:0000000000000000 $t
-     /tmp/cckvtjXn.s:434    .text.RCC_voidHSEBYPASS:0000000000000000 RCC_voidHSEBYPASS
+     /tmp/ccy7pcLg.s:14     .text.RCC_enumPeripheralCLKEnable:0000000000000000 $t
+     /tmp/ccy7pcLg.s:22     .text.RCC_enumPeripheralCLKEnable:0000000000000000 RCC_enumPeripheralCLKEnable
+     /tmp/ccy7pcLg.s:67     .text.RCC_enumPeripheralCLKEnable:000000000000004c $d
+     /tmp/ccy7pcLg.s:70     .text.RCC_enumPeripheralCLKDisable:0000000000000000 $t
+     /tmp/ccy7pcLg.s:77     .text.RCC_enumPeripheralCLKDisable:0000000000000000 RCC_enumPeripheralCLKDisable
+     /tmp/ccy7pcLg.s:122    .text.RCC_enumPeripheralCLKDisable:0000000000000050 $d
+     /tmp/ccy7pcLg.s:125    .text.RCC_voidSETAHB_Prescaller:0000000000000000 $t
+     /tmp/ccy7pcLg.s:132    .text.RCC_voidSETAHB_Prescaller:0000000000000000 RCC_voidSETAHB_Prescaller
+     /tmp/ccy7pcLg.s:144    .text.RCC_voidSETAHB_Prescaller:000000000000000c $d
+     /tmp/ccy7pcLg.s:147    .text.RCC_voidSETAPB1_Prescaller:0000000000000000 $t
+     /tmp/ccy7pcLg.s:154    .text.RCC_voidSETAPB1_Prescaller:0000000000000000 RCC_voidSETAPB1_Prescaller
+     /tmp/ccy7pcLg.s:166    .text.RCC_voidSETAPB1_Prescaller:000000000000000c $d
+     /tmp/ccy7pcLg.s:169    .text.RCC_voidSETAPB2_Prescaller:0000000000000000 $t
+     /tmp/ccy7pcLg.s:176    .text.RCC_voidSETAPB2_Prescaller:0000000000000000 RCC_voidSETAPB2_Prescaller
+     /tmp/ccy7pcLg.s:188    .text.RCC_voidSETAPB2_Prescaller:000000000000000c $d
+     /tmp/ccy7pcLg.s:191    .text.RCC_voidCLKInit:0000000000000000 $t
+     /tmp/ccy7pcLg.s:198    .text.RCC_voidCLKInit:0000000000000000 RCC_voidCLKInit
+     /tmp/ccy7pcLg.s:224    .text.RCC_voidCLKInit:0000000000000034 $d
+     /tmp/ccy7pcLg.s:227    .text.RCC_voidSETPLL_CLK_SOURCE:0000000000000000 $t
+     /tmp/ccy7pcLg.s:234    .text.RCC_voidSETPLL_CLK_SOURCE:0000000000000000 RCC_voidSETPLL_CLK_SOURCE
+     /tmp/ccy7pcLg.s:241    .text.RCC_voidSETPLLPRESCALLER:0000000000000000 $t
+     /tmp/ccy7pcLg.s:248    .text.RCC_voidSETPLLPRESCALLER:0000000000000000 RCC_voidSETPLLPRESCALLER
+     /tmp/ccy7pcLg.s:255    .text.RCC_voidSETPLL_MULTIPLCATION_FACTOR:0000000000000000 $t
+     /tmp/ccy7pcLg.s:262    .text.RCC_voidSETPLL_MULTIPLCATION_FACTOR:0000000000000000 RCC_voidSETPLL_MULTIPLCATION_FACTOR
+     /tmp/ccy7pcLg.s:269    .text.RCC_voidHSEBYPASS:0000000000000000 $t
+     /tmp/ccy7pcLg.s:276    .text.RCC_voidHSEBYPASS:0000000000000000 RCC_voidHSEBYPASS
 
 NO UNDEFINED SYMBOLS

@@ -77,7 +77,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  //HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -87,11 +87,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  RCC_voidCLKInit();
-  STK_voidInit();
 
-  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
-  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPC_CLK);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -154,6 +150,11 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+  RCC_voidCLKInit();
+  STK_voidInit();
+  
+  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
+  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPC_CLK);
 }
 
 /* USER CODE BEGIN 4 */

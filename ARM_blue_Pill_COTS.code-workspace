@@ -13,7 +13,8 @@
 			"gpio_interface.h": "c",
 			"nvic_interface.h": "c",
 			"systick_interface.h": "c",
-			"rcc_interface.h": "c"
+			"rcc_interface.h": "c",
+			"iostream": "cpp"
 		}
 	}
 }

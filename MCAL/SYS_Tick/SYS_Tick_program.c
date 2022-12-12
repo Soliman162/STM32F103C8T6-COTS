@@ -124,27 +124,27 @@ ERROR_enumSTATE STK_enumGetRemainingTime(u32 *Copy_pu32RemainingTime)
     return  LOC_enumError_State;
 }
 
-void SysTick_Handler(void)
-{
-    static u8 LOC_u8Temp_CLR = 0;
-    if( STK_CallBack != NULL )
-    {
-    	if ( STK_u8ModeOfInterval == MODE_OF_INTERVAL_SINGLE )
-    	{
-    		/* Disable STK Interrupt */
-    		CLR_BIT(STK->CTRL, 1);
-
-    		/* Stop Timer */
-    		CLR_BIT(STK->CTRL, 0);
-    		STK -> LOAD = 0;
-    		STK -> VAL  = 0;
-    	}
-
-    	/* Callback notification */
-    	STK_CallBack();
-
-    	/* Clear interrupt flag */
-    	LOC_u8Temp_CLR =GET_BIT(STK->CTRL,16);
-    }
-
-}
+//void SysTick_Handler(void)
+//{
+//    //static u8 LOC_u8Temp_CLR = 0;
+//    if( STK_CallBack != NULL )
+//    {
+//    	if ( STK_u8ModeOfInterval == MODE_OF_INTERVAL_SINGLE )
+//    	{
+//    		/* Disable STK Interrupt */
+//    		CLR_BIT(STK->CTRL, 1);
+//
+//    		/* Stop Timer */
+//    		CLR_BIT(STK->CTRL, 0);
+//    		STK -> LOAD = 0;
+//    		STK -> VAL  = 0;
+//    	}
+//
+//    	/* Callback notification */
+//    	STK_CallBack();
+//
+//    	/* Clear interrupt flag */
+//    	(void)GET_BIT(STK->CTRL,16);
+//    }
+//
+//}
