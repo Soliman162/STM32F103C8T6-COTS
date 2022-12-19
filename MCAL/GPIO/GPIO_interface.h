@@ -29,37 +29,6 @@
 #define     INPUT_PULL_DOWN                                         0b1000
 #define     INPUT_PULL_UP                                           0b11000
 
-typedef enum{
-
-    GPIOA_PORT=0,
-    GPIOB_PORT=1,
-    GPIOC_PORT=2,
-	GPIOD_PORT,
-	GPIOE_PORT,
-
-}PORT;
-
-typedef enum{
-
-    PIN_0=0,
-    PIN_1,
-    PIN_2,
-    PIN_3,
-    PIN_4,
-    PIN_5,
-    PIN_6,
-    PIN_7,
-    PIN_8,
-    PIN_9,
-    PIN_10,
-    PIN_11,
-    PIN_12,
-    PIN_13,
-    PIN_14,
-    PIN_15
-
-}PIN;
-
 typedef struct{
 
     PORT PORT_ID;

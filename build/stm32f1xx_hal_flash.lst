@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHOOq9l.s 			page 1
+ARM GAS  /tmp/ccoIRdsf.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
   58 0012 D361     		str	r3, [r2, #28]
   59 0014 1023     		movs	r3, #16
   60              	.L5:
-ARM GAS  /tmp/ccHOOq9l.s 			page 2
+ARM GAS  /tmp/ccoIRdsf.s 			page 2
 
 
   61 0016 144A     		ldr	r2, .L11
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  117 0008 012B     		cmp	r3, #1
  118 000a 26D0     		beq	.L18
  119 000c 0646     		mov	r6, r0
-ARM GAS  /tmp/ccHOOq9l.s 			page 3
+ARM GAS  /tmp/ccoIRdsf.s 			page 3
 
 
  120 000e 0846     		mov	r0, r1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  176              	HAL_FLASH_EndOfOperationCallback:
  177              		@ args = 0, pretend = 0, frame = 0
  178              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccHOOq9l.s 			page 4
+ARM GAS  /tmp/ccoIRdsf.s 			page 4
 
 
  179              		@ link register save eliminated.
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  237 0044 424B     		ldr	r3, .L44+4
  238 0046 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  239 0048 DBB2     		uxtb	r3, r3
-ARM GAS  /tmp/ccHOOq9l.s 			page 5
+ARM GAS  /tmp/ccoIRdsf.s 			page 5
 
 
  240 004a 012B     		cmp	r3, #1
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  294 00b6 5A60     		str	r2, [r3, #4]
  295 00b8 5B68     		ldr	r3, [r3, #4]
  296 00ba 7BB1     		cbz	r3, .L31
-ARM GAS  /tmp/ccHOOq9l.s 			page 6
+ARM GAS  /tmp/ccoIRdsf.s 			page 6
 
 
  297 00bc 244C     		ldr	r4, .L44+4
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  351 013e A1E7     		b	.L35
  352              	.L43:
  353 0140 034B     		ldr	r3, .L44+4
-ARM GAS  /tmp/ccHOOq9l.s 			page 7
+ARM GAS  /tmp/ccoIRdsf.s 			page 7
 
 
  354 0142 9868     		ldr	r0, [r3, #8]
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  412              		@ frame_needed = 0, uses_anonymous_args = 0
  413              		@ link register save eliminated.
  414 0000 034A     		ldr	r2, .L53
-ARM GAS  /tmp/ccHOOq9l.s 			page 8
+ARM GAS  /tmp/ccoIRdsf.s 			page 8
 
 
  415 0002 1369     		ldr	r3, [r2, #16]
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  473 000a 0020     		movs	r0, #0
  474 000c 7047     		bx	lr
  475              	.L62:
-ARM GAS  /tmp/ccHOOq9l.s 			page 9
+ARM GAS  /tmp/ccoIRdsf.s 			page 9
 
 
  476 000e 00BF     		.align	2
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  536 0018 F7D0     		beq	.L70
  537 001a 24B1     		cbz	r4, .L71
  538 001c FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  /tmp/ccHOOq9l.s 			page 10
+ARM GAS  /tmp/ccoIRdsf.s 			page 10
 
 
  539 0020 401B     		subs	r0, r0, r5
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  595 000e 0446     		mov	r4, r0
  596 0010 0F46     		mov	r7, r1
  597 0012 9046     		mov	r8, r2
-ARM GAS  /tmp/ccHOOq9l.s 			page 11
+ARM GAS  /tmp/ccoIRdsf.s 			page 11
 
 
  598 0014 1F4B     		ldr	r3, .L92
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  652 0092 FAE7     		b	.L82
  653              	.L93:
  654              		.align	2
-ARM GAS  /tmp/ccHOOq9l.s 			page 12
+ARM GAS  /tmp/ccoIRdsf.s 			page 12
 
 
  655              	.L92:
@@ -666,51 +666,51 @@ ARM GAS  /tmp/ccHOOq9l.s 			page 1
  657 0098 00200240 		.word	1073881088
  659              		.comm	pFlash,32,8
  660              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
-ARM GAS  /tmp/ccHOOq9l.s 			page 13
+ARM GAS  /tmp/ccoIRdsf.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f1xx_hal_flash.c
-     /tmp/ccHOOq9l.s:14     .text.FLASH_Program_HalfWord:0000000000000000 $t
-     /tmp/ccHOOq9l.s:21     .text.FLASH_Program_HalfWord:0000000000000000 FLASH_Program_HalfWord
-     /tmp/ccHOOq9l.s:37     .text.FLASH_Program_HalfWord:0000000000000014 $d
+     /tmp/ccoIRdsf.s:14     .text.FLASH_Program_HalfWord:0000000000000000 $t
+     /tmp/ccoIRdsf.s:21     .text.FLASH_Program_HalfWord:0000000000000000 FLASH_Program_HalfWord
+     /tmp/ccoIRdsf.s:37     .text.FLASH_Program_HalfWord:0000000000000014 $d
                             *COM*:0000000000000020 pFlash
-     /tmp/ccHOOq9l.s:41     .text.FLASH_SetErrorCode:0000000000000000 $t
-     /tmp/ccHOOq9l.s:47     .text.FLASH_SetErrorCode:0000000000000000 FLASH_SetErrorCode
-     /tmp/ccHOOq9l.s:99     .text.FLASH_SetErrorCode:0000000000000068 $d
-     /tmp/ccHOOq9l.s:103    .text.HAL_FLASH_Program_IT:0000000000000000 $t
-     /tmp/ccHOOq9l.s:110    .text.HAL_FLASH_Program_IT:0000000000000000 HAL_FLASH_Program_IT
-     /tmp/ccHOOq9l.s:165    .text.HAL_FLASH_Program_IT:0000000000000060 $d
-     /tmp/ccHOOq9l.s:169    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 $t
-     /tmp/ccHOOq9l.s:176    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 HAL_FLASH_EndOfOperationCallback
-     /tmp/ccHOOq9l.s:183    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 $t
-     /tmp/ccHOOq9l.s:190    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 HAL_FLASH_OperationErrorCallback
-     /tmp/ccHOOq9l.s:197    .text.HAL_FLASH_IRQHandler:0000000000000000 $t
-     /tmp/ccHOOq9l.s:204    .text.HAL_FLASH_IRQHandler:0000000000000000 HAL_FLASH_IRQHandler
-     /tmp/ccHOOq9l.s:361    .text.HAL_FLASH_IRQHandler:000000000000014c $d
-     /tmp/ccHOOq9l.s:365    .text.HAL_FLASH_Unlock:0000000000000000 $t
-     /tmp/ccHOOq9l.s:372    .text.HAL_FLASH_Unlock:0000000000000000 HAL_FLASH_Unlock
-     /tmp/ccHOOq9l.s:399    .text.HAL_FLASH_Unlock:000000000000002c $d
-     /tmp/ccHOOq9l.s:403    .text.HAL_FLASH_Lock:0000000000000000 $t
-     /tmp/ccHOOq9l.s:410    .text.HAL_FLASH_Lock:0000000000000000 HAL_FLASH_Lock
-     /tmp/ccHOOq9l.s:423    .text.HAL_FLASH_Lock:0000000000000010 $d
-     /tmp/ccHOOq9l.s:426    .text.HAL_FLASH_OB_Unlock:0000000000000000 $t
-     /tmp/ccHOOq9l.s:433    .text.HAL_FLASH_OB_Unlock:0000000000000000 HAL_FLASH_OB_Unlock
-     /tmp/ccHOOq9l.s:454    .text.HAL_FLASH_OB_Unlock:0000000000000020 $d
-     /tmp/ccHOOq9l.s:458    .text.HAL_FLASH_OB_Lock:0000000000000000 $t
-     /tmp/ccHOOq9l.s:465    .text.HAL_FLASH_OB_Lock:0000000000000000 HAL_FLASH_OB_Lock
-     /tmp/ccHOOq9l.s:478    .text.HAL_FLASH_OB_Lock:0000000000000010 $d
-     /tmp/ccHOOq9l.s:481    .text.HAL_FLASH_OB_Launch:0000000000000000 $t
-     /tmp/ccHOOq9l.s:488    .text.HAL_FLASH_OB_Launch:0000000000000000 HAL_FLASH_OB_Launch
-     /tmp/ccHOOq9l.s:496    .text.HAL_FLASH_GetError:0000000000000000 $t
-     /tmp/ccHOOq9l.s:503    .text.HAL_FLASH_GetError:0000000000000000 HAL_FLASH_GetError
-     /tmp/ccHOOq9l.s:513    .text.HAL_FLASH_GetError:0000000000000008 $d
-     /tmp/ccHOOq9l.s:516    .text.FLASH_WaitForLastOperation:0000000000000000 $t
-     /tmp/ccHOOq9l.s:523    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
-     /tmp/ccHOOq9l.s:576    .text.FLASH_WaitForLastOperation:0000000000000064 $d
-     /tmp/ccHOOq9l.s:579    .text.HAL_FLASH_Program:0000000000000000 $t
-     /tmp/ccHOOq9l.s:586    .text.HAL_FLASH_Program:0000000000000000 HAL_FLASH_Program
-     /tmp/ccHOOq9l.s:656    .text.HAL_FLASH_Program:0000000000000094 $d
+     /tmp/ccoIRdsf.s:41     .text.FLASH_SetErrorCode:0000000000000000 $t
+     /tmp/ccoIRdsf.s:47     .text.FLASH_SetErrorCode:0000000000000000 FLASH_SetErrorCode
+     /tmp/ccoIRdsf.s:99     .text.FLASH_SetErrorCode:0000000000000068 $d
+     /tmp/ccoIRdsf.s:103    .text.HAL_FLASH_Program_IT:0000000000000000 $t
+     /tmp/ccoIRdsf.s:110    .text.HAL_FLASH_Program_IT:0000000000000000 HAL_FLASH_Program_IT
+     /tmp/ccoIRdsf.s:165    .text.HAL_FLASH_Program_IT:0000000000000060 $d
+     /tmp/ccoIRdsf.s:169    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 $t
+     /tmp/ccoIRdsf.s:176    .text.HAL_FLASH_EndOfOperationCallback:0000000000000000 HAL_FLASH_EndOfOperationCallback
+     /tmp/ccoIRdsf.s:183    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 $t
+     /tmp/ccoIRdsf.s:190    .text.HAL_FLASH_OperationErrorCallback:0000000000000000 HAL_FLASH_OperationErrorCallback
+     /tmp/ccoIRdsf.s:197    .text.HAL_FLASH_IRQHandler:0000000000000000 $t
+     /tmp/ccoIRdsf.s:204    .text.HAL_FLASH_IRQHandler:0000000000000000 HAL_FLASH_IRQHandler
+     /tmp/ccoIRdsf.s:361    .text.HAL_FLASH_IRQHandler:000000000000014c $d
+     /tmp/ccoIRdsf.s:365    .text.HAL_FLASH_Unlock:0000000000000000 $t
+     /tmp/ccoIRdsf.s:372    .text.HAL_FLASH_Unlock:0000000000000000 HAL_FLASH_Unlock
+     /tmp/ccoIRdsf.s:399    .text.HAL_FLASH_Unlock:000000000000002c $d
+     /tmp/ccoIRdsf.s:403    .text.HAL_FLASH_Lock:0000000000000000 $t
+     /tmp/ccoIRdsf.s:410    .text.HAL_FLASH_Lock:0000000000000000 HAL_FLASH_Lock
+     /tmp/ccoIRdsf.s:423    .text.HAL_FLASH_Lock:0000000000000010 $d
+     /tmp/ccoIRdsf.s:426    .text.HAL_FLASH_OB_Unlock:0000000000000000 $t
+     /tmp/ccoIRdsf.s:433    .text.HAL_FLASH_OB_Unlock:0000000000000000 HAL_FLASH_OB_Unlock
+     /tmp/ccoIRdsf.s:454    .text.HAL_FLASH_OB_Unlock:0000000000000020 $d
+     /tmp/ccoIRdsf.s:458    .text.HAL_FLASH_OB_Lock:0000000000000000 $t
+     /tmp/ccoIRdsf.s:465    .text.HAL_FLASH_OB_Lock:0000000000000000 HAL_FLASH_OB_Lock
+     /tmp/ccoIRdsf.s:478    .text.HAL_FLASH_OB_Lock:0000000000000010 $d
+     /tmp/ccoIRdsf.s:481    .text.HAL_FLASH_OB_Launch:0000000000000000 $t
+     /tmp/ccoIRdsf.s:488    .text.HAL_FLASH_OB_Launch:0000000000000000 HAL_FLASH_OB_Launch
+     /tmp/ccoIRdsf.s:496    .text.HAL_FLASH_GetError:0000000000000000 $t
+     /tmp/ccoIRdsf.s:503    .text.HAL_FLASH_GetError:0000000000000000 HAL_FLASH_GetError
+     /tmp/ccoIRdsf.s:513    .text.HAL_FLASH_GetError:0000000000000008 $d
+     /tmp/ccoIRdsf.s:516    .text.FLASH_WaitForLastOperation:0000000000000000 $t
+     /tmp/ccoIRdsf.s:523    .text.FLASH_WaitForLastOperation:0000000000000000 FLASH_WaitForLastOperation
+     /tmp/ccoIRdsf.s:576    .text.FLASH_WaitForLastOperation:0000000000000064 $d
+     /tmp/ccoIRdsf.s:579    .text.HAL_FLASH_Program:0000000000000000 $t
+     /tmp/ccoIRdsf.s:586    .text.HAL_FLASH_Program:0000000000000000 HAL_FLASH_Program
+     /tmp/ccoIRdsf.s:656    .text.HAL_FLASH_Program:0000000000000094 $d
 
 UNDEFINED SYMBOLS
 FLASH_PageErase

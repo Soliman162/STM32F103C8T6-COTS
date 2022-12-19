@@ -343,6 +343,16 @@ Discarded input sections
                 0x0000000000000000        0x2 build/RCC_program.o
  .text.RCC_voidHSEBYPASS
                 0x0000000000000000        0x2 build/RCC_program.o
+ .text          0x0000000000000000        0x0 build/IR_inferared_program.o
+ .data          0x0000000000000000        0x0 build/IR_inferared_program.o
+ .bss           0x0000000000000000        0x0 build/IR_inferared_program.o
+ .text.IR_voidInit
+                0x0000000000000000       0x24 build/IR_inferared_program.o
+ .text.Check_voidObject_Existance
+                0x0000000000000000       0x24 build/IR_inferared_program.o
+ .comment       0x0000000000000000       0x5a build/IR_inferared_program.o
+ .ARM.attributes
+                0x0000000000000000       0x2d build/IR_inferared_program.o
  .text          0x0000000000000000       0x14 build/startup_stm32f103xb.o
  .data          0x0000000000000000        0x0 build/startup_stm32f103xb.o
  .bss           0x0000000000000000        0x0 build/startup_stm32f103xb.o
@@ -484,6 +494,7 @@ LOAD build/system_stm32f1xx.o
 LOAD build/GPIO_program.o
 LOAD build/SYS_Tick_program.o
 LOAD build/RCC_program.o
+LOAD build/IR_inferared_program.o
 LOAD build/startup_stm32f103xb.o
 LOAD /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc_nano.a
 LOAD /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a
@@ -839,7 +850,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/crtn.o
                 0x0000000000000287       0x2d /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/crtend.o
  .ARM.attributes
                 0x00000000000002b4       0x1d /usr/lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/crtn.o
-OUTPUT(build/test_cube.elf elf32-littlearm)
+OUTPUT(build/ARM_COTS_STM32F103C8T6.elf elf32-littlearm)
 LOAD linker stubs
 LOAD /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libc.a
 LOAD /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/thumb/v7-m/nofp/libm.a
@@ -906,6 +917,7 @@ APBPrescTable                                     build/system_stm32f1xx.o
 BusFault_Handler                                  build/stm32f1xx_it.o
 CAN1_RX1_IRQHandler                               build/startup_stm32f103xb.o
 CAN1_SCE_IRQHandler                               build/startup_stm32f103xb.o
+Check_voidObject_Existance                        build/IR_inferared_program.o
 DMA1_Channel1_IRQHandler                          build/startup_stm32f103xb.o
 DMA1_Channel2_IRQHandler                          build/startup_stm32f103xb.o
 DMA1_Channel3_IRQHandler                          build/startup_stm32f103xb.o
@@ -929,7 +941,9 @@ FLASH_PageErase                                   build/stm32f1xx_hal_flash_ex.o
 FLASH_WaitForLastOperation                        build/stm32f1xx_hal_flash.o
                                                   build/stm32f1xx_hal_flash_ex.o
 GPIO_enumGETPinValue                              build/GPIO_program.o
+                                                  build/IR_inferared_program.o
 GPIO_enumSETPinMODE                               build/GPIO_program.o
+                                                  build/IR_inferared_program.o
                                                   build/main.o
 GPIO_enumSETPinValue                              build/GPIO_program.o
                                                   build/main.o
@@ -1052,6 +1066,7 @@ I2C1_ER_IRQHandler                                build/startup_stm32f103xb.o
 I2C1_EV_IRQHandler                                build/startup_stm32f103xb.o
 I2C2_ER_IRQHandler                                build/startup_stm32f103xb.o
 I2C2_EV_IRQHandler                                build/startup_stm32f103xb.o
+IR_voidInit                                       build/IR_inferared_program.o
 MemManage_Handler                                 build/stm32f1xx_it.o
 NMI_Handler                                       build/stm32f1xx_it.o
 PVD_IRQHandler                                    build/startup_stm32f103xb.o

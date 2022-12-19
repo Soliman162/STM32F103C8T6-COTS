@@ -13,7 +13,7 @@
 ######################################
 # target
 ######################################
-TARGET = test_cube
+TARGET = ARM_COTS_STM32F103C8T6
 
 ######################################
 # st-link tool
@@ -61,7 +61,8 @@ Core/Src/system_stm32f1xx.c
 C_SOURCES += \
 MCAL/GPIO/GPIO_program.c \
 MCAL/SYS_Tick/SYS_Tick_program.c \
-MCAL/RCC/RCC_program.c
+MCAL/RCC/RCC_program.c	\
+HAL/IR_inferared/IR_inferared_program.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -128,6 +129,8 @@ C_INCLUDES += \
 -IMCAL/GPIO	\
 -IMCAL/SYS_Tick 	\
 -IMCAL/RCC		\
+-IHAL/IR_inferared \
+-IHAL/DC_motor	\
 -ILIB 
 
 # compile gcc flags

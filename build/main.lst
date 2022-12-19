@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccDN0F2C.s 			page 1
+ARM GAS  /tmp/ccEt2e3L.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccDN0F2C.s 			page 1
   58 0018 0593     		str	r3, [sp, #20]
   59 001a 0223     		movs	r3, #2
   60 001c 0693     		str	r3, [sp, #24]
-ARM GAS  /tmp/ccDN0F2C.s 			page 2
+ARM GAS  /tmp/ccEt2e3L.s 			page 2
 
 
   61 001e 0123     		movs	r3, #1
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccDN0F2C.s 			page 1
  117 001e 8DF80230 		strb	r3, [sp, #2]
  118 0022 FFF7FEFF 		bl	HAL_Init
  119 0026 FFF7FEFF 		bl	SystemClock_Config
-ARM GAS  /tmp/ccDN0F2C.s 			page 3
+ARM GAS  /tmp/ccEt2e3L.s 			page 3
 
 
  120 002a 01A8     		add	r0, sp, #4
@@ -163,19 +163,19 @@ ARM GAS  /tmp/ccDN0F2C.s 			page 1
  160 0001 01       		.byte	1
  161 0002 01       		.byte	1
  162              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
-ARM GAS  /tmp/ccDN0F2C.s 			page 4
+ARM GAS  /tmp/ccEt2e3L.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccDN0F2C.s:14     .text.Error_Handler:0000000000000000 $t
-     /tmp/ccDN0F2C.s:22     .text.Error_Handler:0000000000000000 Error_Handler
-     /tmp/ccDN0F2C.s:37     .text.SystemClock_Config:0000000000000000 $t
-     /tmp/ccDN0F2C.s:44     .text.SystemClock_Config:0000000000000000 SystemClock_Config
-     /tmp/ccDN0F2C.s:95     .text.main:0000000000000000 $t
-     /tmp/ccDN0F2C.s:102    .text.main:0000000000000000 main
-     /tmp/ccDN0F2C.s:152    .text.main:0000000000000078 $d
-     /tmp/ccDN0F2C.s:156    .rodata:0000000000000000 $d
+     /tmp/ccEt2e3L.s:14     .text.Error_Handler:0000000000000000 $t
+     /tmp/ccEt2e3L.s:22     .text.Error_Handler:0000000000000000 Error_Handler
+     /tmp/ccEt2e3L.s:37     .text.SystemClock_Config:0000000000000000 $t
+     /tmp/ccEt2e3L.s:44     .text.SystemClock_Config:0000000000000000 SystemClock_Config
+     /tmp/ccEt2e3L.s:95     .text.main:0000000000000000 $t
+     /tmp/ccEt2e3L.s:102    .text.main:0000000000000000 main
+     /tmp/ccEt2e3L.s:152    .text.main:0000000000000078 $d
+     /tmp/ccEt2e3L.s:156    .rodata:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 memset

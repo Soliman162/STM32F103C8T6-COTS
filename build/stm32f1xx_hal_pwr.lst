@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccWSRsz2.s 			page 1
+ARM GAS  /tmp/ccSzTkMT.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
   58              	.L3:
   59 0014 00100240 		.word	1073876992
   61              		.section	.text.HAL_PWR_EnableBkUpAccess,"ax",%progbits
-ARM GAS  /tmp/ccWSRsz2.s 			page 2
+ARM GAS  /tmp/ccSzTkMT.s 			page 2
 
 
   62              		.align	1
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  121 000e 1C4B     		ldr	r3, .L16+4
  122 0010 5A68     		ldr	r2, [r3, #4]
  123 0012 22F48032 		bic	r2, r2, #65536
-ARM GAS  /tmp/ccWSRsz2.s 			page 3
+ARM GAS  /tmp/ccSzTkMT.s 			page 3
 
 
  124 0016 5A60     		str	r2, [r3, #4]
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  179              		.fpu softvfp
  181              	HAL_PWR_EnablePVD:
  182              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccWSRsz2.s 			page 4
+ARM GAS  /tmp/ccSzTkMT.s 			page 4
 
 
  183              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  241              		.align	2
  242              	.L25:
  243 0014 20808310 		.word	277053472
-ARM GAS  /tmp/ccWSRsz2.s 			page 5
+ARM GAS  /tmp/ccSzTkMT.s 			page 5
 
 
  245              		.section	.text.HAL_PWR_DisableWakeUpPin,"ax",%progbits
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  302              	@ 0 "" 2
  303              		.thumb
  304              		.syntax unified
-ARM GAS  /tmp/ccWSRsz2.s 			page 6
+ARM GAS  /tmp/ccSzTkMT.s 			page 6
 
 
  305 0014 7047     		bx	lr
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  361              	@ 0 "" 2
  362              		.thumb
  363              		.syntax unified
-ARM GAS  /tmp/ccWSRsz2.s 			page 7
+ARM GAS  /tmp/ccSzTkMT.s 			page 7
 
 
  364 0034 FFF7FEFF 		bl	PWR_OverloadWfe
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  422 000a 7047     		bx	lr
  423              	.L47:
  424              		.align	2
-ARM GAS  /tmp/ccWSRsz2.s 			page 8
+ARM GAS  /tmp/ccSzTkMT.s 			page 8
 
 
  425              	.L46:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  485 0002 1369     		ldr	r3, [r2, #16]
  486 0004 23F01003 		bic	r3, r3, #16
  487 0008 1361     		str	r3, [r2, #16]
-ARM GAS  /tmp/ccWSRsz2.s 			page 9
+ARM GAS  /tmp/ccSzTkMT.s 			page 9
 
 
  488 000a 7047     		bx	lr
@@ -526,62 +526,62 @@ ARM GAS  /tmp/ccWSRsz2.s 			page 1
  534              	.L62:
  535 001c 00040140 		.word	1073808384
  537              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
-ARM GAS  /tmp/ccWSRsz2.s 			page 10
+ARM GAS  /tmp/ccSzTkMT.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f1xx_hal_pwr.c
-     /tmp/ccWSRsz2.s:14     .text.PWR_OverloadWfe:0000000000000000 $t
-     /tmp/ccWSRsz2.s:21     .text.PWR_OverloadWfe:0000000000000000 PWR_OverloadWfe
-     /tmp/ccWSRsz2.s:37     .text.HAL_PWR_DeInit:0000000000000000 $t
-     /tmp/ccWSRsz2.s:44     .text.HAL_PWR_DeInit:0000000000000000 HAL_PWR_DeInit
-     /tmp/ccWSRsz2.s:59     .text.HAL_PWR_DeInit:0000000000000014 $d
-     /tmp/ccWSRsz2.s:62     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 $t
-     /tmp/ccWSRsz2.s:69     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 HAL_PWR_EnableBkUpAccess
-     /tmp/ccWSRsz2.s:80     .text.HAL_PWR_EnableBkUpAccess:0000000000000008 $d
-     /tmp/ccWSRsz2.s:83     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 $t
-     /tmp/ccWSRsz2.s:90     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 HAL_PWR_DisableBkUpAccess
-     /tmp/ccWSRsz2.s:101    .text.HAL_PWR_DisableBkUpAccess:0000000000000008 $d
-     /tmp/ccWSRsz2.s:104    .text.HAL_PWR_ConfigPVD:0000000000000000 $t
-     /tmp/ccWSRsz2.s:111    .text.HAL_PWR_ConfigPVD:0000000000000000 HAL_PWR_ConfigPVD
-     /tmp/ccWSRsz2.s:170    .text.HAL_PWR_ConfigPVD:000000000000007c $d
-     /tmp/ccWSRsz2.s:174    .text.HAL_PWR_EnablePVD:0000000000000000 $t
-     /tmp/ccWSRsz2.s:181    .text.HAL_PWR_EnablePVD:0000000000000000 HAL_PWR_EnablePVD
-     /tmp/ccWSRsz2.s:192    .text.HAL_PWR_EnablePVD:0000000000000008 $d
-     /tmp/ccWSRsz2.s:195    .text.HAL_PWR_DisablePVD:0000000000000000 $t
-     /tmp/ccWSRsz2.s:202    .text.HAL_PWR_DisablePVD:0000000000000000 HAL_PWR_DisablePVD
-     /tmp/ccWSRsz2.s:213    .text.HAL_PWR_DisablePVD:0000000000000008 $d
-     /tmp/ccWSRsz2.s:216    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 $t
-     /tmp/ccWSRsz2.s:223    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 HAL_PWR_EnableWakeUpPin
-     /tmp/ccWSRsz2.s:243    .text.HAL_PWR_EnableWakeUpPin:0000000000000014 $d
-     /tmp/ccWSRsz2.s:246    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 $t
-     /tmp/ccWSRsz2.s:253    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 HAL_PWR_DisableWakeUpPin
-     /tmp/ccWSRsz2.s:273    .text.HAL_PWR_DisableWakeUpPin:0000000000000014 $d
-     /tmp/ccWSRsz2.s:276    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 $t
-     /tmp/ccWSRsz2.s:283    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 HAL_PWR_EnterSLEEPMode
-     /tmp/ccWSRsz2.s:317    .text.HAL_PWR_EnterSLEEPMode:000000000000001c $d
-     /tmp/ccWSRsz2.s:320    .text.HAL_PWR_EnterSTOPMode:0000000000000000 $t
-     /tmp/ccWSRsz2.s:327    .text.HAL_PWR_EnterSTOPMode:0000000000000000 HAL_PWR_EnterSTOPMode
-     /tmp/ccWSRsz2.s:370    .text.HAL_PWR_EnterSTOPMode:0000000000000040 $d
-     /tmp/ccWSRsz2.s:374    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 $t
-     /tmp/ccWSRsz2.s:381    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 HAL_PWR_EnterSTANDBYMode
-     /tmp/ccWSRsz2.s:403    .text.HAL_PWR_EnterSTANDBYMode:0000000000000018 $d
-     /tmp/ccWSRsz2.s:407    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 $t
-     /tmp/ccWSRsz2.s:414    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 HAL_PWR_EnableSleepOnExit
-     /tmp/ccWSRsz2.s:426    .text.HAL_PWR_EnableSleepOnExit:000000000000000c $d
-     /tmp/ccWSRsz2.s:429    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 $t
-     /tmp/ccWSRsz2.s:436    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 HAL_PWR_DisableSleepOnExit
-     /tmp/ccWSRsz2.s:448    .text.HAL_PWR_DisableSleepOnExit:000000000000000c $d
-     /tmp/ccWSRsz2.s:451    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 $t
-     /tmp/ccWSRsz2.s:458    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 HAL_PWR_EnableSEVOnPend
-     /tmp/ccWSRsz2.s:470    .text.HAL_PWR_EnableSEVOnPend:000000000000000c $d
-     /tmp/ccWSRsz2.s:473    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 $t
-     /tmp/ccWSRsz2.s:480    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 HAL_PWR_DisableSEVOnPend
-     /tmp/ccWSRsz2.s:492    .text.HAL_PWR_DisableSEVOnPend:000000000000000c $d
-     /tmp/ccWSRsz2.s:495    .text.HAL_PWR_PVDCallback:0000000000000000 $t
-     /tmp/ccWSRsz2.s:502    .text.HAL_PWR_PVDCallback:0000000000000000 HAL_PWR_PVDCallback
-     /tmp/ccWSRsz2.s:509    .text.HAL_PWR_PVD_IRQHandler:0000000000000000 $t
-     /tmp/ccWSRsz2.s:516    .text.HAL_PWR_PVD_IRQHandler:0000000000000000 HAL_PWR_PVD_IRQHandler
-     /tmp/ccWSRsz2.s:535    .text.HAL_PWR_PVD_IRQHandler:000000000000001c $d
+     /tmp/ccSzTkMT.s:14     .text.PWR_OverloadWfe:0000000000000000 $t
+     /tmp/ccSzTkMT.s:21     .text.PWR_OverloadWfe:0000000000000000 PWR_OverloadWfe
+     /tmp/ccSzTkMT.s:37     .text.HAL_PWR_DeInit:0000000000000000 $t
+     /tmp/ccSzTkMT.s:44     .text.HAL_PWR_DeInit:0000000000000000 HAL_PWR_DeInit
+     /tmp/ccSzTkMT.s:59     .text.HAL_PWR_DeInit:0000000000000014 $d
+     /tmp/ccSzTkMT.s:62     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 $t
+     /tmp/ccSzTkMT.s:69     .text.HAL_PWR_EnableBkUpAccess:0000000000000000 HAL_PWR_EnableBkUpAccess
+     /tmp/ccSzTkMT.s:80     .text.HAL_PWR_EnableBkUpAccess:0000000000000008 $d
+     /tmp/ccSzTkMT.s:83     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 $t
+     /tmp/ccSzTkMT.s:90     .text.HAL_PWR_DisableBkUpAccess:0000000000000000 HAL_PWR_DisableBkUpAccess
+     /tmp/ccSzTkMT.s:101    .text.HAL_PWR_DisableBkUpAccess:0000000000000008 $d
+     /tmp/ccSzTkMT.s:104    .text.HAL_PWR_ConfigPVD:0000000000000000 $t
+     /tmp/ccSzTkMT.s:111    .text.HAL_PWR_ConfigPVD:0000000000000000 HAL_PWR_ConfigPVD
+     /tmp/ccSzTkMT.s:170    .text.HAL_PWR_ConfigPVD:000000000000007c $d
+     /tmp/ccSzTkMT.s:174    .text.HAL_PWR_EnablePVD:0000000000000000 $t
+     /tmp/ccSzTkMT.s:181    .text.HAL_PWR_EnablePVD:0000000000000000 HAL_PWR_EnablePVD
+     /tmp/ccSzTkMT.s:192    .text.HAL_PWR_EnablePVD:0000000000000008 $d
+     /tmp/ccSzTkMT.s:195    .text.HAL_PWR_DisablePVD:0000000000000000 $t
+     /tmp/ccSzTkMT.s:202    .text.HAL_PWR_DisablePVD:0000000000000000 HAL_PWR_DisablePVD
+     /tmp/ccSzTkMT.s:213    .text.HAL_PWR_DisablePVD:0000000000000008 $d
+     /tmp/ccSzTkMT.s:216    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 $t
+     /tmp/ccSzTkMT.s:223    .text.HAL_PWR_EnableWakeUpPin:0000000000000000 HAL_PWR_EnableWakeUpPin
+     /tmp/ccSzTkMT.s:243    .text.HAL_PWR_EnableWakeUpPin:0000000000000014 $d
+     /tmp/ccSzTkMT.s:246    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 $t
+     /tmp/ccSzTkMT.s:253    .text.HAL_PWR_DisableWakeUpPin:0000000000000000 HAL_PWR_DisableWakeUpPin
+     /tmp/ccSzTkMT.s:273    .text.HAL_PWR_DisableWakeUpPin:0000000000000014 $d
+     /tmp/ccSzTkMT.s:276    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 $t
+     /tmp/ccSzTkMT.s:283    .text.HAL_PWR_EnterSLEEPMode:0000000000000000 HAL_PWR_EnterSLEEPMode
+     /tmp/ccSzTkMT.s:317    .text.HAL_PWR_EnterSLEEPMode:000000000000001c $d
+     /tmp/ccSzTkMT.s:320    .text.HAL_PWR_EnterSTOPMode:0000000000000000 $t
+     /tmp/ccSzTkMT.s:327    .text.HAL_PWR_EnterSTOPMode:0000000000000000 HAL_PWR_EnterSTOPMode
+     /tmp/ccSzTkMT.s:370    .text.HAL_PWR_EnterSTOPMode:0000000000000040 $d
+     /tmp/ccSzTkMT.s:374    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 $t
+     /tmp/ccSzTkMT.s:381    .text.HAL_PWR_EnterSTANDBYMode:0000000000000000 HAL_PWR_EnterSTANDBYMode
+     /tmp/ccSzTkMT.s:403    .text.HAL_PWR_EnterSTANDBYMode:0000000000000018 $d
+     /tmp/ccSzTkMT.s:407    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 $t
+     /tmp/ccSzTkMT.s:414    .text.HAL_PWR_EnableSleepOnExit:0000000000000000 HAL_PWR_EnableSleepOnExit
+     /tmp/ccSzTkMT.s:426    .text.HAL_PWR_EnableSleepOnExit:000000000000000c $d
+     /tmp/ccSzTkMT.s:429    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 $t
+     /tmp/ccSzTkMT.s:436    .text.HAL_PWR_DisableSleepOnExit:0000000000000000 HAL_PWR_DisableSleepOnExit
+     /tmp/ccSzTkMT.s:448    .text.HAL_PWR_DisableSleepOnExit:000000000000000c $d
+     /tmp/ccSzTkMT.s:451    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 $t
+     /tmp/ccSzTkMT.s:458    .text.HAL_PWR_EnableSEVOnPend:0000000000000000 HAL_PWR_EnableSEVOnPend
+     /tmp/ccSzTkMT.s:470    .text.HAL_PWR_EnableSEVOnPend:000000000000000c $d
+     /tmp/ccSzTkMT.s:473    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 $t
+     /tmp/ccSzTkMT.s:480    .text.HAL_PWR_DisableSEVOnPend:0000000000000000 HAL_PWR_DisableSEVOnPend
+     /tmp/ccSzTkMT.s:492    .text.HAL_PWR_DisableSEVOnPend:000000000000000c $d
+     /tmp/ccSzTkMT.s:495    .text.HAL_PWR_PVDCallback:0000000000000000 $t
+     /tmp/ccSzTkMT.s:502    .text.HAL_PWR_PVDCallback:0000000000000000 HAL_PWR_PVDCallback
+     /tmp/ccSzTkMT.s:509    .text.HAL_PWR_PVD_IRQHandler:0000000000000000 $t
+     /tmp/ccSzTkMT.s:516    .text.HAL_PWR_PVD_IRQHandler:0000000000000000 HAL_PWR_PVD_IRQHandler
+     /tmp/ccSzTkMT.s:535    .text.HAL_PWR_PVD_IRQHandler:000000000000001c $d
 
 NO UNDEFINED SYMBOLS

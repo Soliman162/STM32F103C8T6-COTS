@@ -14,7 +14,8 @@
 			"nvic_interface.h": "c",
 			"systick_interface.h": "c",
 			"rcc_interface.h": "c",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"stm32f1xx_hal_rcc.h": "c"
 		}
 	}
 }
