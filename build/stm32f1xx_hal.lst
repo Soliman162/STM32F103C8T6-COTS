@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccqb3oxk.s 			page 1
+ARM GAS  /tmp/ccaL1oNb.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
   60 0010 DC60     		str	r4, [r3, #12]
   61 0012 FFF7FEFF 		bl	HAL_MspDeInit
   62 0016 2046     		mov	r0, r4
-ARM GAS  /tmp/ccqb3oxk.s 			page 2
+ARM GAS  /tmp/ccaL1oNb.s 			page 2
 
 
   63 0018 10BD     		pop	{r4, pc}
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  120              		.thumb_func
  121              		.fpu softvfp
  123              	HAL_Init:
-ARM GAS  /tmp/ccqb3oxk.s 			page 3
+ARM GAS  /tmp/ccaL1oNb.s 			page 3
 
 
  124              		@ args = 0, pretend = 0, frame = 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  182 0004 7047     		bx	lr
  183              	.L24:
  184 0006 00BF     		.align	2
-ARM GAS  /tmp/ccqb3oxk.s 			page 4
+ARM GAS  /tmp/ccaL1oNb.s 			page 4
 
 
  185              	.L23:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  244              		.align	1
  245              		.global	HAL_GetTickFreq
  246              		.syntax unified
-ARM GAS  /tmp/ccqb3oxk.s 			page 5
+ARM GAS  /tmp/ccaL1oNb.s 			page 5
 
 
  247              		.thumb
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  306 0000 024A     		ldr	r2, .L45
  307 0002 1368     		ldr	r3, [r2]
  308 0004 23F00203 		bic	r3, r3, #2
-ARM GAS  /tmp/ccqb3oxk.s 			page 6
+ARM GAS  /tmp/ccaL1oNb.s 			page 6
 
 
  309 0008 1360     		str	r3, [r2]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  369 0000 014B     		ldr	r3, .L54
  370 0002 1868     		ldr	r0, [r3]
  371 0004 000C     		lsrs	r0, r0, #16
-ARM GAS  /tmp/ccqb3oxk.s 			page 7
+ARM GAS  /tmp/ccaL1oNb.s 			page 7
 
 
  372 0006 7047     		bx	lr
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  432 0002 1868     		ldr	r0, [r3]
  433 0004 7047     		bx	lr
  434              	.L64:
-ARM GAS  /tmp/ccqb3oxk.s 			page 8
+ARM GAS  /tmp/ccaL1oNb.s 			page 8
 
 
  435 0006 00BF     		.align	2
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  495 0004 23F00103 		bic	r3, r3, #1
  496 0008 5360     		str	r3, [r2, #4]
  497 000a 7047     		bx	lr
-ARM GAS  /tmp/ccqb3oxk.s 			page 9
+ARM GAS  /tmp/ccaL1oNb.s 			page 9
 
 
  498              	.L73:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  558              		@ link register save eliminated.
  559 0000 024A     		ldr	r2, .L81
  560 0002 5368     		ldr	r3, [r2, #4]
-ARM GAS  /tmp/ccqb3oxk.s 			page 10
+ARM GAS  /tmp/ccaL1oNb.s 			page 10
 
 
  561 0004 43F00403 		orr	r3, r3, #4
@@ -581,91 +581,91 @@ ARM GAS  /tmp/ccqb3oxk.s 			page 1
  605              	uwTickPrio:
  606 0000 10000000 		.word	16
  607              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
-ARM GAS  /tmp/ccqb3oxk.s 			page 11
+ARM GAS  /tmp/ccaL1oNb.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f1xx_hal.c
-     /tmp/ccqb3oxk.s:14     .text.HAL_MspInit:0000000000000000 $t
-     /tmp/ccqb3oxk.s:22     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-     /tmp/ccqb3oxk.s:29     .text.HAL_MspDeInit:0000000000000000 $t
-     /tmp/ccqb3oxk.s:36     .text.HAL_MspDeInit:0000000000000000 HAL_MspDeInit
-     /tmp/ccqb3oxk.s:43     .text.HAL_DeInit:0000000000000000 $t
-     /tmp/ccqb3oxk.s:50     .text.HAL_DeInit:0000000000000000 HAL_DeInit
-     /tmp/ccqb3oxk.s:67     .text.HAL_DeInit:000000000000001c $d
-     /tmp/ccqb3oxk.s:70     .text.HAL_InitTick:0000000000000000 $t
-     /tmp/ccqb3oxk.s:77     .text.HAL_InitTick:0000000000000000 HAL_InitTick
-     /tmp/ccqb3oxk.s:111    .text.HAL_InitTick:0000000000000040 $d
-     /tmp/ccqb3oxk.s:116    .text.HAL_Init:0000000000000000 $t
-     /tmp/ccqb3oxk.s:123    .text.HAL_Init:0000000000000000 HAL_Init
-     /tmp/ccqb3oxk.s:141    .text.HAL_Init:0000000000000020 $d
-     /tmp/ccqb3oxk.s:144    .text.HAL_IncTick:0000000000000000 $t
-     /tmp/ccqb3oxk.s:151    .text.HAL_IncTick:0000000000000000 HAL_IncTick
-     /tmp/ccqb3oxk.s:165    .text.HAL_IncTick:0000000000000010 $d
+     /tmp/ccaL1oNb.s:14     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/ccaL1oNb.s:22     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/ccaL1oNb.s:29     .text.HAL_MspDeInit:0000000000000000 $t
+     /tmp/ccaL1oNb.s:36     .text.HAL_MspDeInit:0000000000000000 HAL_MspDeInit
+     /tmp/ccaL1oNb.s:43     .text.HAL_DeInit:0000000000000000 $t
+     /tmp/ccaL1oNb.s:50     .text.HAL_DeInit:0000000000000000 HAL_DeInit
+     /tmp/ccaL1oNb.s:67     .text.HAL_DeInit:000000000000001c $d
+     /tmp/ccaL1oNb.s:70     .text.HAL_InitTick:0000000000000000 $t
+     /tmp/ccaL1oNb.s:77     .text.HAL_InitTick:0000000000000000 HAL_InitTick
+     /tmp/ccaL1oNb.s:111    .text.HAL_InitTick:0000000000000040 $d
+     /tmp/ccaL1oNb.s:116    .text.HAL_Init:0000000000000000 $t
+     /tmp/ccaL1oNb.s:123    .text.HAL_Init:0000000000000000 HAL_Init
+     /tmp/ccaL1oNb.s:141    .text.HAL_Init:0000000000000020 $d
+     /tmp/ccaL1oNb.s:144    .text.HAL_IncTick:0000000000000000 $t
+     /tmp/ccaL1oNb.s:151    .text.HAL_IncTick:0000000000000000 HAL_IncTick
+     /tmp/ccaL1oNb.s:165    .text.HAL_IncTick:0000000000000010 $d
                             *COM*:0000000000000004 uwTick
-     /tmp/ccqb3oxk.s:169    .text.HAL_GetTick:0000000000000000 $t
-     /tmp/ccqb3oxk.s:176    .text.HAL_GetTick:0000000000000000 HAL_GetTick
-     /tmp/ccqb3oxk.s:186    .text.HAL_GetTick:0000000000000008 $d
-     /tmp/ccqb3oxk.s:189    .text.HAL_GetTickPrio:0000000000000000 $t
-     /tmp/ccqb3oxk.s:196    .text.HAL_GetTickPrio:0000000000000000 HAL_GetTickPrio
-     /tmp/ccqb3oxk.s:206    .text.HAL_GetTickPrio:0000000000000008 $d
-     /tmp/ccqb3oxk.s:209    .text.HAL_SetTickFreq:0000000000000000 $t
-     /tmp/ccqb3oxk.s:216    .text.HAL_SetTickFreq:0000000000000000 HAL_SetTickFreq
-     /tmp/ccqb3oxk.s:240    .text.HAL_SetTickFreq:0000000000000024 $d
-     /tmp/ccqb3oxk.s:244    .text.HAL_GetTickFreq:0000000000000000 $t
-     /tmp/ccqb3oxk.s:251    .text.HAL_GetTickFreq:0000000000000000 HAL_GetTickFreq
-     /tmp/ccqb3oxk.s:261    .text.HAL_GetTickFreq:0000000000000008 $d
-     /tmp/ccqb3oxk.s:264    .text.HAL_Delay:0000000000000000 $t
-     /tmp/ccqb3oxk.s:271    .text.HAL_Delay:0000000000000000 HAL_Delay
-     /tmp/ccqb3oxk.s:292    .text.HAL_Delay:0000000000000024 $d
-     /tmp/ccqb3oxk.s:295    .text.HAL_SuspendTick:0000000000000000 $t
-     /tmp/ccqb3oxk.s:302    .text.HAL_SuspendTick:0000000000000000 HAL_SuspendTick
-     /tmp/ccqb3oxk.s:314    .text.HAL_SuspendTick:000000000000000c $d
-     /tmp/ccqb3oxk.s:317    .text.HAL_ResumeTick:0000000000000000 $t
-     /tmp/ccqb3oxk.s:324    .text.HAL_ResumeTick:0000000000000000 HAL_ResumeTick
-     /tmp/ccqb3oxk.s:336    .text.HAL_ResumeTick:000000000000000c $d
-     /tmp/ccqb3oxk.s:339    .text.HAL_GetHalVersion:0000000000000000 $t
-     /tmp/ccqb3oxk.s:346    .text.HAL_GetHalVersion:0000000000000000 HAL_GetHalVersion
-     /tmp/ccqb3oxk.s:355    .text.HAL_GetHalVersion:0000000000000004 $d
-     /tmp/ccqb3oxk.s:358    .text.HAL_GetREVID:0000000000000000 $t
-     /tmp/ccqb3oxk.s:365    .text.HAL_GetREVID:0000000000000000 HAL_GetREVID
-     /tmp/ccqb3oxk.s:376    .text.HAL_GetREVID:0000000000000008 $d
-     /tmp/ccqb3oxk.s:379    .text.HAL_GetDEVID:0000000000000000 $t
-     /tmp/ccqb3oxk.s:386    .text.HAL_GetDEVID:0000000000000000 HAL_GetDEVID
-     /tmp/ccqb3oxk.s:397    .text.HAL_GetDEVID:000000000000000c $d
-     /tmp/ccqb3oxk.s:400    .text.HAL_GetUIDw0:0000000000000000 $t
-     /tmp/ccqb3oxk.s:407    .text.HAL_GetUIDw0:0000000000000000 HAL_GetUIDw0
-     /tmp/ccqb3oxk.s:417    .text.HAL_GetUIDw0:0000000000000008 $d
-     /tmp/ccqb3oxk.s:420    .text.HAL_GetUIDw1:0000000000000000 $t
-     /tmp/ccqb3oxk.s:427    .text.HAL_GetUIDw1:0000000000000000 HAL_GetUIDw1
-     /tmp/ccqb3oxk.s:437    .text.HAL_GetUIDw1:0000000000000008 $d
-     /tmp/ccqb3oxk.s:440    .text.HAL_GetUIDw2:0000000000000000 $t
-     /tmp/ccqb3oxk.s:447    .text.HAL_GetUIDw2:0000000000000000 HAL_GetUIDw2
-ARM GAS  /tmp/ccqb3oxk.s 			page 12
+     /tmp/ccaL1oNb.s:169    .text.HAL_GetTick:0000000000000000 $t
+     /tmp/ccaL1oNb.s:176    .text.HAL_GetTick:0000000000000000 HAL_GetTick
+     /tmp/ccaL1oNb.s:186    .text.HAL_GetTick:0000000000000008 $d
+     /tmp/ccaL1oNb.s:189    .text.HAL_GetTickPrio:0000000000000000 $t
+     /tmp/ccaL1oNb.s:196    .text.HAL_GetTickPrio:0000000000000000 HAL_GetTickPrio
+     /tmp/ccaL1oNb.s:206    .text.HAL_GetTickPrio:0000000000000008 $d
+     /tmp/ccaL1oNb.s:209    .text.HAL_SetTickFreq:0000000000000000 $t
+     /tmp/ccaL1oNb.s:216    .text.HAL_SetTickFreq:0000000000000000 HAL_SetTickFreq
+     /tmp/ccaL1oNb.s:240    .text.HAL_SetTickFreq:0000000000000024 $d
+     /tmp/ccaL1oNb.s:244    .text.HAL_GetTickFreq:0000000000000000 $t
+     /tmp/ccaL1oNb.s:251    .text.HAL_GetTickFreq:0000000000000000 HAL_GetTickFreq
+     /tmp/ccaL1oNb.s:261    .text.HAL_GetTickFreq:0000000000000008 $d
+     /tmp/ccaL1oNb.s:264    .text.HAL_Delay:0000000000000000 $t
+     /tmp/ccaL1oNb.s:271    .text.HAL_Delay:0000000000000000 HAL_Delay
+     /tmp/ccaL1oNb.s:292    .text.HAL_Delay:0000000000000024 $d
+     /tmp/ccaL1oNb.s:295    .text.HAL_SuspendTick:0000000000000000 $t
+     /tmp/ccaL1oNb.s:302    .text.HAL_SuspendTick:0000000000000000 HAL_SuspendTick
+     /tmp/ccaL1oNb.s:314    .text.HAL_SuspendTick:000000000000000c $d
+     /tmp/ccaL1oNb.s:317    .text.HAL_ResumeTick:0000000000000000 $t
+     /tmp/ccaL1oNb.s:324    .text.HAL_ResumeTick:0000000000000000 HAL_ResumeTick
+     /tmp/ccaL1oNb.s:336    .text.HAL_ResumeTick:000000000000000c $d
+     /tmp/ccaL1oNb.s:339    .text.HAL_GetHalVersion:0000000000000000 $t
+     /tmp/ccaL1oNb.s:346    .text.HAL_GetHalVersion:0000000000000000 HAL_GetHalVersion
+     /tmp/ccaL1oNb.s:355    .text.HAL_GetHalVersion:0000000000000004 $d
+     /tmp/ccaL1oNb.s:358    .text.HAL_GetREVID:0000000000000000 $t
+     /tmp/ccaL1oNb.s:365    .text.HAL_GetREVID:0000000000000000 HAL_GetREVID
+     /tmp/ccaL1oNb.s:376    .text.HAL_GetREVID:0000000000000008 $d
+     /tmp/ccaL1oNb.s:379    .text.HAL_GetDEVID:0000000000000000 $t
+     /tmp/ccaL1oNb.s:386    .text.HAL_GetDEVID:0000000000000000 HAL_GetDEVID
+     /tmp/ccaL1oNb.s:397    .text.HAL_GetDEVID:000000000000000c $d
+     /tmp/ccaL1oNb.s:400    .text.HAL_GetUIDw0:0000000000000000 $t
+     /tmp/ccaL1oNb.s:407    .text.HAL_GetUIDw0:0000000000000000 HAL_GetUIDw0
+     /tmp/ccaL1oNb.s:417    .text.HAL_GetUIDw0:0000000000000008 $d
+     /tmp/ccaL1oNb.s:420    .text.HAL_GetUIDw1:0000000000000000 $t
+     /tmp/ccaL1oNb.s:427    .text.HAL_GetUIDw1:0000000000000000 HAL_GetUIDw1
+     /tmp/ccaL1oNb.s:437    .text.HAL_GetUIDw1:0000000000000008 $d
+     /tmp/ccaL1oNb.s:440    .text.HAL_GetUIDw2:0000000000000000 $t
+     /tmp/ccaL1oNb.s:447    .text.HAL_GetUIDw2:0000000000000000 HAL_GetUIDw2
+ARM GAS  /tmp/ccaL1oNb.s 			page 12
 
 
-     /tmp/ccqb3oxk.s:457    .text.HAL_GetUIDw2:0000000000000008 $d
-     /tmp/ccqb3oxk.s:460    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 $t
-     /tmp/ccqb3oxk.s:467    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 HAL_DBGMCU_EnableDBGSleepMode
-     /tmp/ccqb3oxk.s:479    .text.HAL_DBGMCU_EnableDBGSleepMode:000000000000000c $d
-     /tmp/ccqb3oxk.s:482    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 $t
-     /tmp/ccqb3oxk.s:489    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 HAL_DBGMCU_DisableDBGSleepMode
-     /tmp/ccqb3oxk.s:501    .text.HAL_DBGMCU_DisableDBGSleepMode:000000000000000c $d
-     /tmp/ccqb3oxk.s:504    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 $t
-     /tmp/ccqb3oxk.s:511    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 HAL_DBGMCU_EnableDBGStopMode
-     /tmp/ccqb3oxk.s:523    .text.HAL_DBGMCU_EnableDBGStopMode:000000000000000c $d
-     /tmp/ccqb3oxk.s:526    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 $t
-     /tmp/ccqb3oxk.s:533    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 HAL_DBGMCU_DisableDBGStopMode
-     /tmp/ccqb3oxk.s:545    .text.HAL_DBGMCU_DisableDBGStopMode:000000000000000c $d
-     /tmp/ccqb3oxk.s:548    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 $t
-     /tmp/ccqb3oxk.s:555    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 HAL_DBGMCU_EnableDBGStandbyMode
-     /tmp/ccqb3oxk.s:567    .text.HAL_DBGMCU_EnableDBGStandbyMode:000000000000000c $d
-     /tmp/ccqb3oxk.s:570    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 $t
-     /tmp/ccqb3oxk.s:577    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 HAL_DBGMCU_DisableDBGStandbyMode
-     /tmp/ccqb3oxk.s:589    .text.HAL_DBGMCU_DisableDBGStandbyMode:000000000000000c $d
-     /tmp/ccqb3oxk.s:598    .data.uwTickFreq:0000000000000000 uwTickFreq
-     /tmp/ccqb3oxk.s:605    .data.uwTickPrio:0000000000000000 uwTickPrio
-     /tmp/ccqb3oxk.s:601    .data.uwTickPrio:0000000000000000 $d
+     /tmp/ccaL1oNb.s:457    .text.HAL_GetUIDw2:0000000000000008 $d
+     /tmp/ccaL1oNb.s:460    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 $t
+     /tmp/ccaL1oNb.s:467    .text.HAL_DBGMCU_EnableDBGSleepMode:0000000000000000 HAL_DBGMCU_EnableDBGSleepMode
+     /tmp/ccaL1oNb.s:479    .text.HAL_DBGMCU_EnableDBGSleepMode:000000000000000c $d
+     /tmp/ccaL1oNb.s:482    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 $t
+     /tmp/ccaL1oNb.s:489    .text.HAL_DBGMCU_DisableDBGSleepMode:0000000000000000 HAL_DBGMCU_DisableDBGSleepMode
+     /tmp/ccaL1oNb.s:501    .text.HAL_DBGMCU_DisableDBGSleepMode:000000000000000c $d
+     /tmp/ccaL1oNb.s:504    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 $t
+     /tmp/ccaL1oNb.s:511    .text.HAL_DBGMCU_EnableDBGStopMode:0000000000000000 HAL_DBGMCU_EnableDBGStopMode
+     /tmp/ccaL1oNb.s:523    .text.HAL_DBGMCU_EnableDBGStopMode:000000000000000c $d
+     /tmp/ccaL1oNb.s:526    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 $t
+     /tmp/ccaL1oNb.s:533    .text.HAL_DBGMCU_DisableDBGStopMode:0000000000000000 HAL_DBGMCU_DisableDBGStopMode
+     /tmp/ccaL1oNb.s:545    .text.HAL_DBGMCU_DisableDBGStopMode:000000000000000c $d
+     /tmp/ccaL1oNb.s:548    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 $t
+     /tmp/ccaL1oNb.s:555    .text.HAL_DBGMCU_EnableDBGStandbyMode:0000000000000000 HAL_DBGMCU_EnableDBGStandbyMode
+     /tmp/ccaL1oNb.s:567    .text.HAL_DBGMCU_EnableDBGStandbyMode:000000000000000c $d
+     /tmp/ccaL1oNb.s:570    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 $t
+     /tmp/ccaL1oNb.s:577    .text.HAL_DBGMCU_DisableDBGStandbyMode:0000000000000000 HAL_DBGMCU_DisableDBGStandbyMode
+     /tmp/ccaL1oNb.s:589    .text.HAL_DBGMCU_DisableDBGStandbyMode:000000000000000c $d
+     /tmp/ccaL1oNb.s:598    .data.uwTickFreq:0000000000000000 uwTickFreq
+     /tmp/ccaL1oNb.s:605    .data.uwTickPrio:0000000000000000 uwTickPrio
+     /tmp/ccaL1oNb.s:601    .data.uwTickPrio:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SYSTICK_Config

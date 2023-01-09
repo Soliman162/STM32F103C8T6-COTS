@@ -150,6 +150,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+  /*init clk with my config*/
   RCC_voidCLKInit();
   STK_voidInit();
   
