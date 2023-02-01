@@ -20,7 +20,7 @@ build/main.o: Test/main.c Core/Inc/main.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h LIB/STD_TYPES.h \
  MCAL/RCC/RCC_interface.h MCAL/SYS_Tick/SysTick_interface.h \
- MCAL/GPIO/GPIO_interface.h
+ MCAL/GPIO/GPIO_interface.h HAL/DC_motor/DC_interface.h
 
 Core/Inc/main.h:
 
@@ -75,3 +75,5 @@ MCAL/RCC/RCC_interface.h:
 MCAL/SYS_Tick/SysTick_interface.h:
 
 MCAL/GPIO/GPIO_interface.h:
+
+HAL/DC_motor/DC_interface.h:

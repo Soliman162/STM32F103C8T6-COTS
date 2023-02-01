@@ -15,7 +15,17 @@
 			"systick_interface.h": "c",
 			"rcc_interface.h": "c",
 			"iostream": "cpp",
-			"stm32f1xx_hal_rcc.h": "c"
-		}
+			"stm32f1xx_hal_rcc.h": "c",
+			"dc_private.h": "c",
+			"dc_interface.h": "c",
+			"dc_config.h": "c"
+		},
+		"makefile.launchConfigurations": [
+			{
+				"cwd": "/home/soliman/ARM/ARM_blue_Pill_COTS/build",
+				"binaryPath": "/home/soliman/ARM/ARM_blue_Pill_COTS/build/ARM_COTS_STM32F103C8T6.elf",
+				"binaryArgs": []
+			}
+		]
 	}
 }

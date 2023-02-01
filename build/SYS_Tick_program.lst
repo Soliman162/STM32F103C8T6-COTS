@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccL3j6EQ.s 			page 1
+ARM GAS  /tmp/ccrQCb4p.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -13,274 +13,623 @@ ARM GAS  /tmp/ccL3j6EQ.s 			page 1
   10              		.eabi_attribute 18, 4
   11              		.file	"SYS_Tick_program.c"
   12              		.text
-  13              		.section	.text.STK_voidInit,"ax",%progbits
-  14              		.align	1
-  15              		.global	STK_voidInit
-  16              		.arch armv7-m
-  17              		.syntax unified
-  18              		.thumb
-  19              		.thumb_func
-  20              		.fpu softvfp
-  22              	STK_voidInit:
-  23              		@ args = 0, pretend = 0, frame = 0
-  24              		@ frame_needed = 0, uses_anonymous_args = 0
-  25              		@ link register save eliminated.
-  26 0000 024A     		ldr	r2, .L2
-  27 0002 1368     		ldr	r3, [r2]
-  28 0004 23F00403 		bic	r3, r3, #4
-  29 0008 1360     		str	r3, [r2]
-  30 000a 7047     		bx	lr
-  31              	.L3:
-  32              		.align	2
-  33              	.L2:
-  34 000c 10E000E0 		.word	-536813552
-  36              		.section	.text.STK_voidSetBusyWait,"ax",%progbits
-  37              		.align	1
-  38              		.global	STK_voidSetBusyWait
-  39              		.syntax unified
-  40              		.thumb
-  41              		.thumb_func
-  42              		.fpu softvfp
-  44              	STK_voidSetBusyWait:
-  45              		@ args = 0, pretend = 0, frame = 0
-  46              		@ frame_needed = 0, uses_anonymous_args = 0
-  47              		@ link register save eliminated.
-  48 0000 B0F1807F 		cmp	r0, #16777216
-  49 0004 14D2     		bcs	.L7
-  50 0006 0B4B     		ldr	r3, .L8
-  51 0008 5860     		str	r0, [r3, #4]
-  52 000a 1A68     		ldr	r2, [r3]
-  53 000c 42F00102 		orr	r2, r2, #1
-  54 0010 1A60     		str	r2, [r3]
-  55              	.L6:
-  56 0012 084B     		ldr	r3, .L8
-  57 0014 1B68     		ldr	r3, [r3]
-  58 0016 13F4803F 		tst	r3, #65536
-  59 001a FAD0     		beq	.L6
-  60 001c 054B     		ldr	r3, .L8
-ARM GAS  /tmp/ccL3j6EQ.s 			page 2
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.STK_voidInit,"ax",%progbits
+  16              		.align	1
+  17              		.global	STK_voidInit
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	STK_voidInit:
+  25              	.LFB0:
+  26              		.file 1 "MCAL/SYS_Tick/SYS_Tick_program.c"
+   1:MCAL/SYS_Tick/SYS_Tick_program.c **** #include "STD_TYPES.h"
+   2:MCAL/SYS_Tick/SYS_Tick_program.c **** #include "BIT_MATH.h"
+   3:MCAL/SYS_Tick/SYS_Tick_program.c **** #include "STM32F103C8.h"
+   4:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+   5:MCAL/SYS_Tick/SYS_Tick_program.c **** #include "SysTick_interface.h"
+   6:MCAL/SYS_Tick/SYS_Tick_program.c **** #include "SysTick_private.h"
+   7:MCAL/SYS_Tick/SYS_Tick_program.c **** #include "SysTick_config.h"
+   8:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+   9:MCAL/SYS_Tick/SYS_Tick_program.c **** void (* STK_CallBack)(void) = NULL;
+  10:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  11:MCAL/SYS_Tick/SYS_Tick_program.c **** static u8 STK_u8ModeOfInterval ;
+  12:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  13:MCAL/SYS_Tick/SYS_Tick_program.c **** void STK_voidInit(void)
+  14:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+  27              		.loc 1 14 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  15:MCAL/SYS_Tick/SYS_Tick_program.c ****     #ifdef  STK_CLK_SOURCE
+  16:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  17:MCAL/SYS_Tick/SYS_Tick_program.c ****         #if STK_CLK_SOURCE == AHB
+  18:MCAL/SYS_Tick/SYS_Tick_program.c ****             SET_BIT(STK->CTRL,2);
+  19:MCAL/SYS_Tick/SYS_Tick_program.c ****         #elif STK_CLK_SOURCE == AHB_DIVIDEDBY_8
+  20:MCAL/SYS_Tick/SYS_Tick_program.c ****             CLR_BIT(STK->CTRL,2);
+  32              		.loc 1 20 13 view .LVU1
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 1368     		ldr	r3, [r2]
+  35 0004 23F00403 		bic	r3, r3, #4
+  36 0008 1360     		str	r3, [r2]
+  21:MCAL/SYS_Tick/SYS_Tick_program.c ****         #endif
+  22:MCAL/SYS_Tick/SYS_Tick_program.c ****     #endif
+ARM GAS  /tmp/ccrQCb4p.s 			page 2
 
 
-  61 001e 1A68     		ldr	r2, [r3]
-  62 0020 22F00102 		bic	r2, r2, #1
-  63 0024 1A60     		str	r2, [r3]
-  64 0026 0022     		movs	r2, #0
-  65 0028 5A60     		str	r2, [r3, #4]
-  66 002a 9A60     		str	r2, [r3, #8]
-  67 002c 0120     		movs	r0, #1
-  68 002e 7047     		bx	lr
-  69              	.L7:
-  70 0030 0020     		movs	r0, #0
-  71 0032 7047     		bx	lr
-  72              	.L9:
-  73              		.align	2
-  74              	.L8:
-  75 0034 10E000E0 		.word	-536813552
-  77              		.section	.text.STK_enumSetIntervalSingle,"ax",%progbits
-  78              		.align	1
-  79              		.global	STK_enumSetIntervalSingle
-  80              		.syntax unified
-  81              		.thumb
-  82              		.thumb_func
-  83              		.fpu softvfp
-  85              	STK_enumSetIntervalSingle:
-  86              		@ args = 0, pretend = 0, frame = 0
-  87              		@ frame_needed = 0, uses_anonymous_args = 0
-  88              		@ link register save eliminated.
-  89 0000 B9B1     		cbz	r1, .L12
-  90 0002 10B4     		push	{r4}
-  91 0004 B0F1807F 		cmp	r0, #16777216
-  92 0008 15D2     		bcs	.L13
-  93 000a 0C4B     		ldr	r3, .L18
-  94 000c 1A68     		ldr	r2, [r3]
-  95 000e 22F00102 		bic	r2, r2, #1
-  96 0012 1A60     		str	r2, [r3]
-  97 0014 0022     		movs	r2, #0
-  98 0016 9A60     		str	r2, [r3, #8]
-  99 0018 5860     		str	r0, [r3, #4]
- 100 001a 1A68     		ldr	r2, [r3]
- 101 001c 42F00102 		orr	r2, r2, #1
- 102 0020 1A60     		str	r2, [r3]
- 103 0022 074A     		ldr	r2, .L18+4
- 104 0024 1160     		str	r1, [r2]
- 105 0026 1A68     		ldr	r2, [r3]
- 106 0028 42F00202 		orr	r2, r2, #2
- 107 002c 1A60     		str	r2, [r3]
- 108 002e 0120     		movs	r0, #1
- 109 0030 02E0     		b	.L11
- 110              	.L12:
- 111 0032 0020     		movs	r0, #0
- 112 0034 7047     		bx	lr
- 113              	.L13:
- 114 0036 0020     		movs	r0, #0
- 115              	.L11:
- 116 0038 10BC     		pop	{r4}
- 117 003a 7047     		bx	lr
- 118              	.L19:
- 119              		.align	2
-ARM GAS  /tmp/ccL3j6EQ.s 			page 3
+  23:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+  37              		.loc 1 23 1 is_stmt 0 view .LVU2
+  38 000a 7047     		bx	lr
+  39              	.L3:
+  40              		.align	2
+  41              	.L2:
+  42 000c 10E000E0 		.word	-536813552
+  43              		.cfi_endproc
+  44              	.LFE0:
+  46              		.section	.text.STK_voidSetBusyWait,"ax",%progbits
+  47              		.align	1
+  48              		.global	STK_voidSetBusyWait
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  52              		.fpu softvfp
+  54              	STK_voidSetBusyWait:
+  55              	.LVL0:
+  56              	.LFB1:
+  24:MCAL/SYS_Tick/SYS_Tick_program.c **** ERROR_enumSTATE STK_voidSetBusyWait(u32 Copy_u32Tick_numbers )
+  25:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+  57              		.loc 1 25 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+  61              		@ link register save eliminated.
+  26:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+  62              		.loc 1 26 5 view .LVU4
+  27:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  28:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_u32Tick_numbers <= MAX_TICK_TIMES )
+  63              		.loc 1 28 5 view .LVU5
+  64              		.loc 1 28 7 is_stmt 0 view .LVU6
+  65 0000 B0F1807F 		cmp	r0, #16777216
+  66 0004 14D2     		bcs	.L7
+  29:MCAL/SYS_Tick/SYS_Tick_program.c ****     {
+  30:MCAL/SYS_Tick/SYS_Tick_program.c ****         STK->LOAD = Copy_u32Tick_numbers;
+  67              		.loc 1 30 9 is_stmt 1 view .LVU7
+  68              		.loc 1 30 19 is_stmt 0 view .LVU8
+  69 0006 0B4B     		ldr	r3, .L8
+  70 0008 5860     		str	r0, [r3, #4]
+  31:MCAL/SYS_Tick/SYS_Tick_program.c ****         SET_BIT(STK->CTRL ,0);
+  71              		.loc 1 31 9 is_stmt 1 view .LVU9
+  72 000a 1A68     		ldr	r2, [r3]
+  73 000c 42F00102 		orr	r2, r2, #1
+  74 0010 1A60     		str	r2, [r3]
+  32:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  33:MCAL/SYS_Tick/SYS_Tick_program.c ****         while(GET_BIT(STK->CTRL ,16) != 1);
+  75              		.loc 1 33 9 view .LVU10
+  76              	.L6:
+  77              		.loc 1 33 43 discriminator 1 view .LVU11
+  78              		.loc 1 33 14 discriminator 1 view .LVU12
+  79              		.loc 1 33 15 is_stmt 0 discriminator 1 view .LVU13
+  80 0012 084B     		ldr	r3, .L8
+  81 0014 1B68     		ldr	r3, [r3]
+  82              		.loc 1 33 14 discriminator 1 view .LVU14
+  83 0016 13F4803F 		tst	r3, #65536
+  84 001a FAD0     		beq	.L6
+ARM GAS  /tmp/ccrQCb4p.s 			page 3
 
 
- 120              	.L18:
- 121 003c 10E000E0 		.word	-536813552
- 122 0040 00000000 		.word	.LANCHOR0
- 124              		.section	.text.STK_enumSetIntervalPeriodic,"ax",%progbits
- 125              		.align	1
- 126              		.global	STK_enumSetIntervalPeriodic
- 127              		.syntax unified
- 128              		.thumb
- 129              		.thumb_func
- 130              		.fpu softvfp
- 132              	STK_enumSetIntervalPeriodic:
- 133              		@ args = 0, pretend = 0, frame = 0
- 134              		@ frame_needed = 0, uses_anonymous_args = 0
- 135              		@ link register save eliminated.
- 136 0000 91B1     		cbz	r1, .L22
- 137 0002 10B4     		push	{r4}
- 138 0004 B0F1807F 		cmp	r0, #16777216
- 139 0008 10D2     		bcs	.L23
- 140 000a 0138     		subs	r0, r0, #1
- 141 000c 094B     		ldr	r3, .L28
- 142 000e 5860     		str	r0, [r3, #4]
- 143 0010 1A68     		ldr	r2, [r3]
- 144 0012 42F00102 		orr	r2, r2, #1
- 145 0016 1A60     		str	r2, [r3]
- 146 0018 074A     		ldr	r2, .L28+4
- 147 001a 1160     		str	r1, [r2]
- 148 001c 1A68     		ldr	r2, [r3]
- 149 001e 42F00202 		orr	r2, r2, #2
- 150 0022 1A60     		str	r2, [r3]
- 151 0024 0120     		movs	r0, #1
- 152 0026 02E0     		b	.L21
- 153              	.L22:
- 154 0028 0020     		movs	r0, #0
- 155 002a 7047     		bx	lr
- 156              	.L23:
- 157 002c 0020     		movs	r0, #0
- 158              	.L21:
- 159 002e 10BC     		pop	{r4}
- 160 0030 7047     		bx	lr
- 161              	.L29:
- 162 0032 00BF     		.align	2
- 163              	.L28:
- 164 0034 10E000E0 		.word	-536813552
- 165 0038 00000000 		.word	.LANCHOR0
- 167              		.section	.text.STK_voidStopTimer,"ax",%progbits
- 168              		.align	1
- 169              		.global	STK_voidStopTimer
- 170              		.syntax unified
- 171              		.thumb
- 172              		.thumb_func
- 173              		.fpu softvfp
- 175              	STK_voidStopTimer:
- 176              		@ args = 0, pretend = 0, frame = 0
- 177              		@ frame_needed = 0, uses_anonymous_args = 0
- 178              		@ link register save eliminated.
- 179 0000 064B     		ldr	r3, .L31
- 180 0002 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccL3j6EQ.s 			page 4
+  34:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  35:MCAL/SYS_Tick/SYS_Tick_program.c ****         CLR_BIT(STK->CTRL ,0);
+  85              		.loc 1 35 9 is_stmt 1 view .LVU15
+  86 001c 054B     		ldr	r3, .L8
+  87 001e 1A68     		ldr	r2, [r3]
+  88 0020 22F00102 		bic	r2, r2, #1
+  89 0024 1A60     		str	r2, [r3]
+  36:MCAL/SYS_Tick/SYS_Tick_program.c ****         STK->LOAD = 0;
+  90              		.loc 1 36 9 view .LVU16
+  91              		.loc 1 36 19 is_stmt 0 view .LVU17
+  92 0026 0022     		movs	r2, #0
+  93 0028 5A60     		str	r2, [r3, #4]
+  37:MCAL/SYS_Tick/SYS_Tick_program.c ****         STK->VAL = 0;
+  94              		.loc 1 37 9 is_stmt 1 view .LVU18
+  95              		.loc 1 37 18 is_stmt 0 view .LVU19
+  96 002a 9A60     		str	r2, [r3, #8]
+  26:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  97              		.loc 1 26 21 view .LVU20
+  98 002c 0120     		movs	r0, #1
+  99              	.LVL1:
+  26:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 100              		.loc 1 26 21 view .LVU21
+ 101 002e 7047     		bx	lr
+ 102              	.LVL2:
+ 103              	.L7:
+  38:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  39:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK; }
+ 104              		.loc 1 39 32 view .LVU22
+ 105 0030 0020     		movs	r0, #0
+ 106              	.LVL3:
+  40:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  41:MCAL/SYS_Tick/SYS_Tick_program.c ****     return LOC_enumError_State;
+ 107              		.loc 1 41 5 is_stmt 1 view .LVU23
+  42:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 108              		.loc 1 42 1 is_stmt 0 view .LVU24
+ 109 0032 7047     		bx	lr
+ 110              	.L9:
+ 111              		.align	2
+ 112              	.L8:
+ 113 0034 10E000E0 		.word	-536813552
+ 114              		.cfi_endproc
+ 115              	.LFE1:
+ 117              		.section	.text.STK_enumSetIntervalSingle,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	STK_enumSetIntervalSingle
+ 120              		.syntax unified
+ 121              		.thumb
+ 122              		.thumb_func
+ 123              		.fpu softvfp
+ 125              	STK_enumSetIntervalSingle:
+ 126              	.LVL4:
+ 127              	.LFB2:
+  43:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  44:MCAL/SYS_Tick/SYS_Tick_program.c **** ERROR_enumSTATE STK_enumSetIntervalSingle(u32 Copy_u32Tick_numbers ,void(*Copy_STK_CallBack)(void))
+  45:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+ 128              		.loc 1 45 1 is_stmt 1 view -0
+ 129              		.cfi_startproc
+ARM GAS  /tmp/ccrQCb4p.s 			page 4
 
 
- 181 0004 22F00202 		bic	r2, r2, #2
- 182 0008 1A60     		str	r2, [r3]
- 183 000a 1A68     		ldr	r2, [r3]
- 184 000c 22F00102 		bic	r2, r2, #1
- 185 0010 1A60     		str	r2, [r3]
- 186 0012 0022     		movs	r2, #0
- 187 0014 5A60     		str	r2, [r3, #4]
- 188 0016 9A60     		str	r2, [r3, #8]
- 189 0018 7047     		bx	lr
- 190              	.L32:
- 191 001a 00BF     		.align	2
- 192              	.L31:
- 193 001c 10E000E0 		.word	-536813552
- 195              		.section	.text.STK_enumGetElapsedTime,"ax",%progbits
- 196              		.align	1
- 197              		.global	STK_enumGetElapsedTime
- 198              		.syntax unified
- 199              		.thumb
- 200              		.thumb_func
- 201              		.fpu softvfp
- 203              	STK_enumGetElapsedTime:
- 204              		@ args = 0, pretend = 0, frame = 0
- 205              		@ frame_needed = 0, uses_anonymous_args = 0
- 206              		@ link register save eliminated.
- 207 0000 30B1     		cbz	r0, .L35
- 208 0002 044A     		ldr	r2, .L36
- 209 0004 5368     		ldr	r3, [r2, #4]
- 210 0006 9268     		ldr	r2, [r2, #8]
- 211 0008 9B1A     		subs	r3, r3, r2
- 212 000a 0360     		str	r3, [r0]
- 213 000c 0120     		movs	r0, #1
- 214 000e 7047     		bx	lr
- 215              	.L35:
- 216 0010 0020     		movs	r0, #0
- 217 0012 7047     		bx	lr
- 218              	.L37:
- 219              		.align	2
- 220              	.L36:
- 221 0014 10E000E0 		.word	-536813552
- 223              		.section	.text.STK_enumGetRemainingTime,"ax",%progbits
- 224              		.align	1
- 225              		.global	STK_enumGetRemainingTime
- 226              		.syntax unified
- 227              		.thumb
- 228              		.thumb_func
- 229              		.fpu softvfp
- 231              	STK_enumGetRemainingTime:
- 232              		@ args = 0, pretend = 0, frame = 0
- 233              		@ frame_needed = 0, uses_anonymous_args = 0
- 234              		@ link register save eliminated.
- 235 0000 20B1     		cbz	r0, .L40
- 236 0002 034A     		ldr	r2, .L41
- 237 0004 9268     		ldr	r2, [r2, #8]
- 238 0006 0260     		str	r2, [r0]
- 239 0008 0120     		movs	r0, #1
- 240 000a 7047     		bx	lr
- 241              	.L40:
-ARM GAS  /tmp/ccL3j6EQ.s 			page 5
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 132              		@ link register save eliminated.
+  46:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+ 133              		.loc 1 46 5 view .LVU26
+  47:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_STK_CallBack != NULL )
+ 134              		.loc 1 47 5 view .LVU27
+ 135              		.loc 1 47 7 is_stmt 0 view .LVU28
+ 136 0000 B9B1     		cbz	r1, .L12
+  45:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+ 137              		.loc 1 45 1 view .LVU29
+ 138 0002 10B4     		push	{r4}
+ 139              	.LCFI0:
+ 140              		.cfi_def_cfa_offset 4
+ 141              		.cfi_offset 4, -4
+  48:MCAL/SYS_Tick/SYS_Tick_program.c ****     {
+  49:MCAL/SYS_Tick/SYS_Tick_program.c ****         if( Copy_u32Tick_numbers <= MAX_TICK_TIMES )
+ 142              		.loc 1 49 9 is_stmt 1 view .LVU30
+ 143              		.loc 1 49 11 is_stmt 0 view .LVU31
+ 144 0004 B0F1807F 		cmp	r0, #16777216
+ 145 0008 15D2     		bcs	.L13
+  50:MCAL/SYS_Tick/SYS_Tick_program.c ****         {
+  51:MCAL/SYS_Tick/SYS_Tick_program.c ****             CLR_BIT(STK->CTRL ,0);
+ 146              		.loc 1 51 13 is_stmt 1 view .LVU32
+ 147 000a 0C4B     		ldr	r3, .L18
+ 148 000c 1A68     		ldr	r2, [r3]
+ 149 000e 22F00102 		bic	r2, r2, #1
+ 150 0012 1A60     		str	r2, [r3]
+  52:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK->VAL = 0;
+ 151              		.loc 1 52 13 view .LVU33
+ 152              		.loc 1 52 22 is_stmt 0 view .LVU34
+ 153 0014 0022     		movs	r2, #0
+ 154 0016 9A60     		str	r2, [r3, #8]
+  53:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  54:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK->LOAD = Copy_u32Tick_numbers;
+ 155              		.loc 1 54 13 is_stmt 1 view .LVU35
+ 156              		.loc 1 54 23 is_stmt 0 view .LVU36
+ 157 0018 5860     		str	r0, [r3, #4]
+  55:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  56:MCAL/SYS_Tick/SYS_Tick_program.c ****             SET_BIT(STK->CTRL ,0);
+ 158              		.loc 1 56 13 is_stmt 1 view .LVU37
+ 159 001a 1A68     		ldr	r2, [r3]
+ 160 001c 42F00102 		orr	r2, r2, #1
+ 161 0020 1A60     		str	r2, [r3]
+  57:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  58:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK_CallBack = Copy_STK_CallBack;
+ 162              		.loc 1 58 13 view .LVU38
+ 163              		.loc 1 58 26 is_stmt 0 view .LVU39
+ 164 0022 074A     		ldr	r2, .L18+4
+ 165 0024 1160     		str	r1, [r2]
+  59:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  60:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK_u8ModeOfInterval =  MODE_OF_INTERVAL_SINGLE ;
+ 166              		.loc 1 60 13 is_stmt 1 view .LVU40
+  61:MCAL/SYS_Tick/SYS_Tick_program.c ****    
+  62:MCAL/SYS_Tick/SYS_Tick_program.c ****             SET_BIT(STK->CTRL ,1);
+ 167              		.loc 1 62 13 view .LVU41
+ 168 0026 1A68     		ldr	r2, [r3]
+ARM GAS  /tmp/ccrQCb4p.s 			page 5
 
 
- 242 000c 0020     		movs	r0, #0
- 243 000e 7047     		bx	lr
- 244              	.L42:
- 245              		.align	2
- 246              	.L41:
- 247 0010 10E000E0 		.word	-536813552
- 249              		.global	STK_CallBack
- 250              		.section	.bss.STK_CallBack,"aw",%nobits
- 251              		.align	2
- 252              		.set	.LANCHOR0,. + 0
- 255              	STK_CallBack:
- 256 0000 00000000 		.space	4
- 257              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
-ARM GAS  /tmp/ccL3j6EQ.s 			page 6
+ 169 0028 42F00202 		orr	r2, r2, #2
+ 170 002c 1A60     		str	r2, [r3]
+  46:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_STK_CallBack != NULL )
+ 171              		.loc 1 46 21 is_stmt 0 view .LVU42
+ 172 002e 0120     		movs	r0, #1
+ 173              	.LVL5:
+  46:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_STK_CallBack != NULL )
+ 174              		.loc 1 46 21 view .LVU43
+ 175 0030 02E0     		b	.L11
+ 176              	.LVL6:
+ 177              	.L12:
+ 178              	.LCFI1:
+ 179              		.cfi_def_cfa_offset 0
+ 180              		.cfi_restore 4
+  63:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  64:MCAL/SYS_Tick/SYS_Tick_program.c ****         }else{ LOC_enumError_State = STD_TYPES_NOK; }
+  65:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK; }
+ 181              		.loc 1 65 32 view .LVU44
+ 182 0032 0020     		movs	r0, #0
+ 183              	.LVL7:
+  66:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  67:MCAL/SYS_Tick/SYS_Tick_program.c ****     return LOC_enumError_State;
+ 184              		.loc 1 67 5 is_stmt 1 view .LVU45
+  68:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  69:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 185              		.loc 1 69 1 is_stmt 0 view .LVU46
+ 186 0034 7047     		bx	lr
+ 187              	.LVL8:
+ 188              	.L13:
+ 189              	.LCFI2:
+ 190              		.cfi_def_cfa_offset 4
+ 191              		.cfi_offset 4, -4
+  64:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK; }
+ 192              		.loc 1 64 36 view .LVU47
+ 193 0036 0020     		movs	r0, #0
+ 194              	.LVL9:
+ 195              	.L11:
+  67:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 196              		.loc 1 67 5 is_stmt 1 view .LVU48
+ 197              		.loc 1 69 1 is_stmt 0 view .LVU49
+ 198 0038 10BC     		pop	{r4}
+ 199              	.LCFI3:
+ 200              		.cfi_restore 4
+ 201              		.cfi_def_cfa_offset 0
+ 202 003a 7047     		bx	lr
+ 203              	.L19:
+ 204              		.align	2
+ 205              	.L18:
+ 206 003c 10E000E0 		.word	-536813552
+ 207 0040 00000000 		.word	.LANCHOR0
+ 208              		.cfi_endproc
+ 209              	.LFE2:
+ 211              		.section	.text.STK_enumSetIntervalPeriodic,"ax",%progbits
+ 212              		.align	1
+ 213              		.global	STK_enumSetIntervalPeriodic
+ 214              		.syntax unified
+ 215              		.thumb
+ARM GAS  /tmp/ccrQCb4p.s 			page 6
+
+
+ 216              		.thumb_func
+ 217              		.fpu softvfp
+ 219              	STK_enumSetIntervalPeriodic:
+ 220              	.LVL10:
+ 221              	.LFB3:
+  70:MCAL/SYS_Tick/SYS_Tick_program.c **** ERROR_enumSTATE STK_enumSetIntervalPeriodic(u32 Copy_u32Tick_numbers ,void(*Copy_STK_CallBack)(void
+  71:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+ 222              		.loc 1 71 1 is_stmt 1 view -0
+ 223              		.cfi_startproc
+ 224              		@ args = 0, pretend = 0, frame = 0
+ 225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226              		@ link register save eliminated.
+  72:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+ 227              		.loc 1 72 5 view .LVU51
+  73:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_STK_CallBack != NULL )
+ 228              		.loc 1 73 5 view .LVU52
+ 229              		.loc 1 73 7 is_stmt 0 view .LVU53
+ 230 0000 91B1     		cbz	r1, .L22
+  71:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+ 231              		.loc 1 71 1 view .LVU54
+ 232 0002 10B4     		push	{r4}
+ 233              	.LCFI4:
+ 234              		.cfi_def_cfa_offset 4
+ 235              		.cfi_offset 4, -4
+  74:MCAL/SYS_Tick/SYS_Tick_program.c ****     {
+  75:MCAL/SYS_Tick/SYS_Tick_program.c ****         if( Copy_u32Tick_numbers <= MAX_TICK_TIMES )
+ 236              		.loc 1 75 9 is_stmt 1 view .LVU55
+ 237              		.loc 1 75 11 is_stmt 0 view .LVU56
+ 238 0004 B0F1807F 		cmp	r0, #16777216
+ 239 0008 10D2     		bcs	.L23
+  76:MCAL/SYS_Tick/SYS_Tick_program.c ****         {
+  77:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  78:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK->LOAD = Copy_u32Tick_numbers-1;
+ 240              		.loc 1 78 13 is_stmt 1 view .LVU57
+ 241              		.loc 1 78 45 is_stmt 0 view .LVU58
+ 242 000a 0138     		subs	r0, r0, #1
+ 243              	.LVL11:
+ 244              		.loc 1 78 23 view .LVU59
+ 245 000c 094B     		ldr	r3, .L28
+ 246 000e 5860     		str	r0, [r3, #4]
+  79:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  80:MCAL/SYS_Tick/SYS_Tick_program.c ****             SET_BIT(STK->CTRL ,0);
+ 247              		.loc 1 80 13 is_stmt 1 view .LVU60
+ 248 0010 1A68     		ldr	r2, [r3]
+ 249 0012 42F00102 		orr	r2, r2, #1
+ 250 0016 1A60     		str	r2, [r3]
+  81:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  82:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK_CallBack = Copy_STK_CallBack;
+ 251              		.loc 1 82 13 view .LVU61
+ 252              		.loc 1 82 26 is_stmt 0 view .LVU62
+ 253 0018 074A     		ldr	r2, .L28+4
+ 254 001a 1160     		str	r1, [r2]
+  83:MCAL/SYS_Tick/SYS_Tick_program.c ****             
+  84:MCAL/SYS_Tick/SYS_Tick_program.c ****             STK_u8ModeOfInterval = MODE_OF_INTERVAL_PERIODIC;
+ 255              		.loc 1 84 13 is_stmt 1 view .LVU63
+  85:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  86:MCAL/SYS_Tick/SYS_Tick_program.c ****             SET_BIT(STK->CTRL ,1);
+ARM GAS  /tmp/ccrQCb4p.s 			page 7
+
+
+ 256              		.loc 1 86 13 view .LVU64
+ 257 001c 1A68     		ldr	r2, [r3]
+ 258 001e 42F00202 		orr	r2, r2, #2
+ 259 0022 1A60     		str	r2, [r3]
+  72:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_STK_CallBack != NULL )
+ 260              		.loc 1 72 21 is_stmt 0 view .LVU65
+ 261 0024 0120     		movs	r0, #1
+ 262              	.LVL12:
+  72:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_STK_CallBack != NULL )
+ 263              		.loc 1 72 21 view .LVU66
+ 264 0026 02E0     		b	.L21
+ 265              	.LVL13:
+ 266              	.L22:
+ 267              	.LCFI5:
+ 268              		.cfi_def_cfa_offset 0
+ 269              		.cfi_restore 4
+  87:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  88:MCAL/SYS_Tick/SYS_Tick_program.c ****         }else{ LOC_enumError_State = STD_TYPES_NOK; }
+  89:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK; }
+ 270              		.loc 1 89 32 view .LVU67
+ 271 0028 0020     		movs	r0, #0
+ 272              	.LVL14:
+  90:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  91:MCAL/SYS_Tick/SYS_Tick_program.c ****     return LOC_enumError_State;
+ 273              		.loc 1 91 5 is_stmt 1 view .LVU68
+  92:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 274              		.loc 1 92 1 is_stmt 0 view .LVU69
+ 275 002a 7047     		bx	lr
+ 276              	.LVL15:
+ 277              	.L23:
+ 278              	.LCFI6:
+ 279              		.cfi_def_cfa_offset 4
+ 280              		.cfi_offset 4, -4
+  88:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK; }
+ 281              		.loc 1 88 36 view .LVU70
+ 282 002c 0020     		movs	r0, #0
+ 283              	.LVL16:
+ 284              	.L21:
+  91:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 285              		.loc 1 91 5 is_stmt 1 view .LVU71
+ 286              		.loc 1 92 1 is_stmt 0 view .LVU72
+ 287 002e 10BC     		pop	{r4}
+ 288              	.LCFI7:
+ 289              		.cfi_restore 4
+ 290              		.cfi_def_cfa_offset 0
+ 291 0030 7047     		bx	lr
+ 292              	.L29:
+ 293 0032 00BF     		.align	2
+ 294              	.L28:
+ 295 0034 10E000E0 		.word	-536813552
+ 296 0038 00000000 		.word	.LANCHOR0
+ 297              		.cfi_endproc
+ 298              	.LFE3:
+ 300              		.section	.text.STK_voidStopTimer,"ax",%progbits
+ 301              		.align	1
+ 302              		.global	STK_voidStopTimer
+ 303              		.syntax unified
+ARM GAS  /tmp/ccrQCb4p.s 			page 8
+
+
+ 304              		.thumb
+ 305              		.thumb_func
+ 306              		.fpu softvfp
+ 308              	STK_voidStopTimer:
+ 309              	.LFB4:
+  93:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  94:MCAL/SYS_Tick/SYS_Tick_program.c **** void STK_voidStopTimer(void)
+  95:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+ 310              		.loc 1 95 1 is_stmt 1 view -0
+ 311              		.cfi_startproc
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+  96:MCAL/SYS_Tick/SYS_Tick_program.c ****     CLR_BIT(STK->CTRL ,1);
+ 315              		.loc 1 96 5 view .LVU74
+ 316 0000 064B     		ldr	r3, .L31
+ 317 0002 1A68     		ldr	r2, [r3]
+ 318 0004 22F00202 		bic	r2, r2, #2
+ 319 0008 1A60     		str	r2, [r3]
+  97:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+  98:MCAL/SYS_Tick/SYS_Tick_program.c ****     CLR_BIT(STK->CTRL ,0);
+ 320              		.loc 1 98 5 view .LVU75
+ 321 000a 1A68     		ldr	r2, [r3]
+ 322 000c 22F00102 		bic	r2, r2, #1
+ 323 0010 1A60     		str	r2, [r3]
+  99:MCAL/SYS_Tick/SYS_Tick_program.c ****     STK->LOAD = 0;
+ 324              		.loc 1 99 5 view .LVU76
+ 325              		.loc 1 99 15 is_stmt 0 view .LVU77
+ 326 0012 0022     		movs	r2, #0
+ 327 0014 5A60     		str	r2, [r3, #4]
+ 100:MCAL/SYS_Tick/SYS_Tick_program.c ****     STK->VAL = 0;
+ 328              		.loc 1 100 5 is_stmt 1 view .LVU78
+ 329              		.loc 1 100 14 is_stmt 0 view .LVU79
+ 330 0016 9A60     		str	r2, [r3, #8]
+ 101:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 102:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 331              		.loc 1 102 1 view .LVU80
+ 332 0018 7047     		bx	lr
+ 333              	.L32:
+ 334 001a 00BF     		.align	2
+ 335              	.L31:
+ 336 001c 10E000E0 		.word	-536813552
+ 337              		.cfi_endproc
+ 338              	.LFE4:
+ 340              		.section	.text.STK_enumGetElapsedTime,"ax",%progbits
+ 341              		.align	1
+ 342              		.global	STK_enumGetElapsedTime
+ 343              		.syntax unified
+ 344              		.thumb
+ 345              		.thumb_func
+ 346              		.fpu softvfp
+ 348              	STK_enumGetElapsedTime:
+ 349              	.LVL17:
+ 350              	.LFB5:
+ 103:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 104:MCAL/SYS_Tick/SYS_Tick_program.c **** ERROR_enumSTATE STK_enumGetElapsedTime(volatile u32 *Copy_pu32ElapsedTime)
+ 105:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+ARM GAS  /tmp/ccrQCb4p.s 			page 9
+
+
+ 351              		.loc 1 105 1 is_stmt 1 view -0
+ 352              		.cfi_startproc
+ 353              		@ args = 0, pretend = 0, frame = 0
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ 355              		@ link register save eliminated.
+ 106:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+ 356              		.loc 1 106 5 view .LVU82
+ 107:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_pu32ElapsedTime != NULL)
+ 357              		.loc 1 107 5 view .LVU83
+ 358              		.loc 1 107 7 is_stmt 0 view .LVU84
+ 359 0000 30B1     		cbz	r0, .L35
+ 108:MCAL/SYS_Tick/SYS_Tick_program.c ****     {
+ 109:MCAL/SYS_Tick/SYS_Tick_program.c ****         *Copy_pu32ElapsedTime = (STK->LOAD - STK->VAL) ;
+ 360              		.loc 1 109 9 is_stmt 1 view .LVU85
+ 361              		.loc 1 109 37 is_stmt 0 view .LVU86
+ 362 0002 044A     		ldr	r2, .L36
+ 363 0004 5368     		ldr	r3, [r2, #4]
+ 364              		.loc 1 109 49 view .LVU87
+ 365 0006 9268     		ldr	r2, [r2, #8]
+ 366              		.loc 1 109 44 view .LVU88
+ 367 0008 9B1A     		subs	r3, r3, r2
+ 368              		.loc 1 109 31 view .LVU89
+ 369 000a 0360     		str	r3, [r0]
+ 106:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_pu32ElapsedTime != NULL)
+ 370              		.loc 1 106 21 view .LVU90
+ 371 000c 0120     		movs	r0, #1
+ 372              	.LVL18:
+ 106:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_pu32ElapsedTime != NULL)
+ 373              		.loc 1 106 21 view .LVU91
+ 374 000e 7047     		bx	lr
+ 375              	.LVL19:
+ 376              	.L35:
+ 110:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 111:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK;}
+ 377              		.loc 1 111 32 view .LVU92
+ 378 0010 0020     		movs	r0, #0
+ 379              	.LVL20:
+ 112:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 113:MCAL/SYS_Tick/SYS_Tick_program.c ****     return  LOC_enumError_State;
+ 380              		.loc 1 113 5 is_stmt 1 view .LVU93
+ 114:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 381              		.loc 1 114 1 is_stmt 0 view .LVU94
+ 382 0012 7047     		bx	lr
+ 383              	.L37:
+ 384              		.align	2
+ 385              	.L36:
+ 386 0014 10E000E0 		.word	-536813552
+ 387              		.cfi_endproc
+ 388              	.LFE5:
+ 390              		.section	.text.STK_enumGetRemainingTime,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	STK_enumGetRemainingTime
+ 393              		.syntax unified
+ 394              		.thumb
+ 395              		.thumb_func
+ 396              		.fpu softvfp
+ 398              	STK_enumGetRemainingTime:
+ARM GAS  /tmp/ccrQCb4p.s 			page 10
+
+
+ 399              	.LVL21:
+ 400              	.LFB6:
+ 115:MCAL/SYS_Tick/SYS_Tick_program.c **** ERROR_enumSTATE STK_enumGetRemainingTime(u32 *Copy_pu32RemainingTime)
+ 116:MCAL/SYS_Tick/SYS_Tick_program.c **** {
+ 401              		.loc 1 116 1 is_stmt 1 view -0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 0
+ 404              		@ frame_needed = 0, uses_anonymous_args = 0
+ 405              		@ link register save eliminated.
+ 117:MCAL/SYS_Tick/SYS_Tick_program.c ****     ERROR_enumSTATE LOC_enumError_State = STD_TYPES_OK;
+ 406              		.loc 1 117 5 view .LVU96
+ 118:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_pu32RemainingTime != NULL)
+ 407              		.loc 1 118 5 view .LVU97
+ 408              		.loc 1 118 7 is_stmt 0 view .LVU98
+ 409 0000 20B1     		cbz	r0, .L40
+ 119:MCAL/SYS_Tick/SYS_Tick_program.c ****     {
+ 120:MCAL/SYS_Tick/SYS_Tick_program.c ****         *Copy_pu32RemainingTime = STK->VAL ;
+ 410              		.loc 1 120 9 is_stmt 1 view .LVU99
+ 411              		.loc 1 120 38 is_stmt 0 view .LVU100
+ 412 0002 034A     		ldr	r2, .L41
+ 413 0004 9268     		ldr	r2, [r2, #8]
+ 414              		.loc 1 120 33 view .LVU101
+ 415 0006 0260     		str	r2, [r0]
+ 117:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_pu32RemainingTime != NULL)
+ 416              		.loc 1 117 21 view .LVU102
+ 417 0008 0120     		movs	r0, #1
+ 418              	.LVL22:
+ 117:MCAL/SYS_Tick/SYS_Tick_program.c ****     if( Copy_pu32RemainingTime != NULL)
+ 419              		.loc 1 117 21 view .LVU103
+ 420 000a 7047     		bx	lr
+ 421              	.LVL23:
+ 422              	.L40:
+ 121:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 122:MCAL/SYS_Tick/SYS_Tick_program.c ****     }else{ LOC_enumError_State = STD_TYPES_NOK;}
+ 423              		.loc 1 122 32 view .LVU104
+ 424 000c 0020     		movs	r0, #0
+ 425              	.LVL24:
+ 123:MCAL/SYS_Tick/SYS_Tick_program.c **** 
+ 124:MCAL/SYS_Tick/SYS_Tick_program.c ****     return  LOC_enumError_State;
+ 426              		.loc 1 124 5 is_stmt 1 view .LVU105
+ 125:MCAL/SYS_Tick/SYS_Tick_program.c **** }
+ 427              		.loc 1 125 1 is_stmt 0 view .LVU106
+ 428 000e 7047     		bx	lr
+ 429              	.L42:
+ 430              		.align	2
+ 431              	.L41:
+ 432 0010 10E000E0 		.word	-536813552
+ 433              		.cfi_endproc
+ 434              	.LFE6:
+ 436              		.global	STK_CallBack
+ 437              		.section	.bss.STK_CallBack,"aw",%nobits
+ 438              		.align	2
+ 439              		.set	.LANCHOR0,. + 0
+ 442              	STK_CallBack:
+ 443 0000 00000000 		.space	4
+ 444              		.text
+ 445              	.Letext0:
+ARM GAS  /tmp/ccrQCb4p.s 			page 11
+
+
+ 446              		.file 2 "LIB/STD_TYPES.h"
+ 447              		.file 3 "LIB/STM32F103C8.h"
+ARM GAS  /tmp/ccrQCb4p.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 SYS_Tick_program.c
-     /tmp/ccL3j6EQ.s:14     .text.STK_voidInit:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:22     .text.STK_voidInit:0000000000000000 STK_voidInit
-     /tmp/ccL3j6EQ.s:34     .text.STK_voidInit:000000000000000c $d
-     /tmp/ccL3j6EQ.s:37     .text.STK_voidSetBusyWait:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:44     .text.STK_voidSetBusyWait:0000000000000000 STK_voidSetBusyWait
-     /tmp/ccL3j6EQ.s:75     .text.STK_voidSetBusyWait:0000000000000034 $d
-     /tmp/ccL3j6EQ.s:78     .text.STK_enumSetIntervalSingle:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:85     .text.STK_enumSetIntervalSingle:0000000000000000 STK_enumSetIntervalSingle
-     /tmp/ccL3j6EQ.s:121    .text.STK_enumSetIntervalSingle:000000000000003c $d
-     /tmp/ccL3j6EQ.s:125    .text.STK_enumSetIntervalPeriodic:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:132    .text.STK_enumSetIntervalPeriodic:0000000000000000 STK_enumSetIntervalPeriodic
-     /tmp/ccL3j6EQ.s:164    .text.STK_enumSetIntervalPeriodic:0000000000000034 $d
-     /tmp/ccL3j6EQ.s:168    .text.STK_voidStopTimer:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:175    .text.STK_voidStopTimer:0000000000000000 STK_voidStopTimer
-     /tmp/ccL3j6EQ.s:193    .text.STK_voidStopTimer:000000000000001c $d
-     /tmp/ccL3j6EQ.s:196    .text.STK_enumGetElapsedTime:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:203    .text.STK_enumGetElapsedTime:0000000000000000 STK_enumGetElapsedTime
-     /tmp/ccL3j6EQ.s:221    .text.STK_enumGetElapsedTime:0000000000000014 $d
-     /tmp/ccL3j6EQ.s:224    .text.STK_enumGetRemainingTime:0000000000000000 $t
-     /tmp/ccL3j6EQ.s:231    .text.STK_enumGetRemainingTime:0000000000000000 STK_enumGetRemainingTime
-     /tmp/ccL3j6EQ.s:247    .text.STK_enumGetRemainingTime:0000000000000010 $d
-     /tmp/ccL3j6EQ.s:255    .bss.STK_CallBack:0000000000000000 STK_CallBack
-     /tmp/ccL3j6EQ.s:251    .bss.STK_CallBack:0000000000000000 $d
+     /tmp/ccrQCb4p.s:16     .text.STK_voidInit:0000000000000000 $t
+     /tmp/ccrQCb4p.s:24     .text.STK_voidInit:0000000000000000 STK_voidInit
+     /tmp/ccrQCb4p.s:42     .text.STK_voidInit:000000000000000c $d
+     /tmp/ccrQCb4p.s:47     .text.STK_voidSetBusyWait:0000000000000000 $t
+     /tmp/ccrQCb4p.s:54     .text.STK_voidSetBusyWait:0000000000000000 STK_voidSetBusyWait
+     /tmp/ccrQCb4p.s:113    .text.STK_voidSetBusyWait:0000000000000034 $d
+     /tmp/ccrQCb4p.s:118    .text.STK_enumSetIntervalSingle:0000000000000000 $t
+     /tmp/ccrQCb4p.s:125    .text.STK_enumSetIntervalSingle:0000000000000000 STK_enumSetIntervalSingle
+     /tmp/ccrQCb4p.s:206    .text.STK_enumSetIntervalSingle:000000000000003c $d
+     /tmp/ccrQCb4p.s:212    .text.STK_enumSetIntervalPeriodic:0000000000000000 $t
+     /tmp/ccrQCb4p.s:219    .text.STK_enumSetIntervalPeriodic:0000000000000000 STK_enumSetIntervalPeriodic
+     /tmp/ccrQCb4p.s:295    .text.STK_enumSetIntervalPeriodic:0000000000000034 $d
+     /tmp/ccrQCb4p.s:301    .text.STK_voidStopTimer:0000000000000000 $t
+     /tmp/ccrQCb4p.s:308    .text.STK_voidStopTimer:0000000000000000 STK_voidStopTimer
+     /tmp/ccrQCb4p.s:336    .text.STK_voidStopTimer:000000000000001c $d
+     /tmp/ccrQCb4p.s:341    .text.STK_enumGetElapsedTime:0000000000000000 $t
+     /tmp/ccrQCb4p.s:348    .text.STK_enumGetElapsedTime:0000000000000000 STK_enumGetElapsedTime
+     /tmp/ccrQCb4p.s:386    .text.STK_enumGetElapsedTime:0000000000000014 $d
+     /tmp/ccrQCb4p.s:391    .text.STK_enumGetRemainingTime:0000000000000000 $t
+     /tmp/ccrQCb4p.s:398    .text.STK_enumGetRemainingTime:0000000000000000 STK_enumGetRemainingTime
+     /tmp/ccrQCb4p.s:432    .text.STK_enumGetRemainingTime:0000000000000010 $d
+     /tmp/ccrQCb4p.s:442    .bss.STK_CallBack:0000000000000000 STK_CallBack
+     /tmp/ccrQCb4p.s:438    .bss.STK_CallBack:0000000000000000 $d
 
 NO UNDEFINED SYMBOLS

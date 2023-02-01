@@ -1,0 +1,5 @@
+define init_stm32_debug
+target extended-remote localhost:3333
+
+end
+init_stm32_debug

@@ -1,0 +1,219 @@
+ARM GAS  /tmp/ccIjPBxh.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"DC_program.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.DCMotor_voidInit,"ax",%progbits
+  16              		.align	1
+  17              		.global	DCMotor_voidInit
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	DCMotor_voidInit:
+  25              	.LVL0:
+  26              	.LFB0:
+  27              		.file 1 "HAL/DC_motor/DC_program.c"
+   1:HAL/DC_motor/DC_program.c **** #include "STD_TYPES.h"
+   2:HAL/DC_motor/DC_program.c **** 
+   3:HAL/DC_motor/DC_program.c **** #include "GPIO_interface.h"
+   4:HAL/DC_motor/DC_program.c **** 
+   5:HAL/DC_motor/DC_program.c **** #include "DC_interface.h"
+   6:HAL/DC_motor/DC_program.c **** #include "DC_private.h"
+   7:HAL/DC_motor/DC_program.c **** #include "DC_config.h"
+   8:HAL/DC_motor/DC_program.c **** 
+   9:HAL/DC_motor/DC_program.c **** void DCMotor_voidInit(const DC_Motor_Config_t* CopY_Motor)
+  10:HAL/DC_motor/DC_program.c **** {
+  28              		.loc 1 10 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 10 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0446     		mov	r4, r0
+  11:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinMODE( &CopY_Motor->Motor_Data[CW_INDEX] );
+  39              		.loc 1 11 5 is_stmt 1 view .LVU2
+  40 0004 FFF7FEFF 		bl	GPIO_enumSETPinMODE
+  41              	.LVL1:
+  12:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinMODE( &CopY_Motor->Motor_Data[CCW_INDEX] );
+  42              		.loc 1 12 5 view .LVU3
+  43 0008 E01C     		adds	r0, r4, #3
+  44 000a FFF7FEFF 		bl	GPIO_enumSETPinMODE
+  45              	.LVL2:
+  13:HAL/DC_motor/DC_program.c **** }
+ARM GAS  /tmp/ccIjPBxh.s 			page 2
+
+
+  46              		.loc 1 13 1 is_stmt 0 view .LVU4
+  47 000e 10BD     		pop	{r4, pc}
+  48              		.loc 1 13 1 view .LVU5
+  49              		.cfi_endproc
+  50              	.LFE0:
+  52              		.section	.text.DCMotor_voidRotate_CW,"ax",%progbits
+  53              		.align	1
+  54              		.global	DCMotor_voidRotate_CW
+  55              		.syntax unified
+  56              		.thumb
+  57              		.thumb_func
+  58              		.fpu softvfp
+  60              	DCMotor_voidRotate_CW:
+  61              	.LVL3:
+  62              	.LFB1:
+  14:HAL/DC_motor/DC_program.c **** void DCMotor_voidRotate_CW(const DC_Motor_Config_t* CopY_Motor)
+  15:HAL/DC_motor/DC_program.c **** {
+  63              		.loc 1 15 1 is_stmt 1 view -0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67              		.loc 1 15 1 is_stmt 0 view .LVU7
+  68 0000 10B5     		push	{r4, lr}
+  69              	.LCFI1:
+  70              		.cfi_def_cfa_offset 8
+  71              		.cfi_offset 4, -8
+  72              		.cfi_offset 14, -4
+  73 0002 0446     		mov	r4, r0
+  16:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinValue( &CopY_Motor->Motor_Data[CCW_INDEX]  , GPIO_LOW );
+  74              		.loc 1 16 5 is_stmt 1 view .LVU8
+  75 0004 0021     		movs	r1, #0
+  76 0006 0330     		adds	r0, r0, #3
+  77              	.LVL4:
+  78              		.loc 1 16 5 is_stmt 0 view .LVU9
+  79 0008 FFF7FEFF 		bl	GPIO_enumSETPinValue
+  80              	.LVL5:
+  17:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinValue( &CopY_Motor->Motor_Data[CW_INDEX]  , GPIO_HIGH );
+  81              		.loc 1 17 5 is_stmt 1 view .LVU10
+  82 000c 0121     		movs	r1, #1
+  83 000e 2046     		mov	r0, r4
+  84 0010 FFF7FEFF 		bl	GPIO_enumSETPinValue
+  85              	.LVL6:
+  18:HAL/DC_motor/DC_program.c **** }
+  86              		.loc 1 18 1 is_stmt 0 view .LVU11
+  87 0014 10BD     		pop	{r4, pc}
+  88              		.loc 1 18 1 view .LVU12
+  89              		.cfi_endproc
+  90              	.LFE1:
+  92              		.section	.text.DCMotor_voidRotate_CCW,"ax",%progbits
+  93              		.align	1
+  94              		.global	DCMotor_voidRotate_CCW
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  98              		.fpu softvfp
+ 100              	DCMotor_voidRotate_CCW:
+ 101              	.LVL7:
+ARM GAS  /tmp/ccIjPBxh.s 			page 3
+
+
+ 102              	.LFB2:
+  19:HAL/DC_motor/DC_program.c **** void DCMotor_voidRotate_CCW(const DC_Motor_Config_t* CopY_Motor)
+  20:HAL/DC_motor/DC_program.c **** {
+ 103              		.loc 1 20 1 is_stmt 1 view -0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107              		.loc 1 20 1 is_stmt 0 view .LVU14
+ 108 0000 10B5     		push	{r4, lr}
+ 109              	.LCFI2:
+ 110              		.cfi_def_cfa_offset 8
+ 111              		.cfi_offset 4, -8
+ 112              		.cfi_offset 14, -4
+ 113 0002 0446     		mov	r4, r0
+  21:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinValue( &CopY_Motor->Motor_Data[CW_INDEX]  , GPIO_LOW );
+ 114              		.loc 1 21 5 is_stmt 1 view .LVU15
+ 115 0004 0021     		movs	r1, #0
+ 116 0006 FFF7FEFF 		bl	GPIO_enumSETPinValue
+ 117              	.LVL8:
+  22:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinValue( &CopY_Motor->Motor_Data[CCW_INDEX]  , GPIO_HIGH );
+ 118              		.loc 1 22 5 view .LVU16
+ 119 000a 0121     		movs	r1, #1
+ 120 000c E01C     		adds	r0, r4, #3
+ 121 000e FFF7FEFF 		bl	GPIO_enumSETPinValue
+ 122              	.LVL9:
+  23:HAL/DC_motor/DC_program.c **** }
+ 123              		.loc 1 23 1 is_stmt 0 view .LVU17
+ 124 0012 10BD     		pop	{r4, pc}
+ 125              		.loc 1 23 1 view .LVU18
+ 126              		.cfi_endproc
+ 127              	.LFE2:
+ 129              		.section	.text.DCMotor_voidStop,"ax",%progbits
+ 130              		.align	1
+ 131              		.global	DCMotor_voidStop
+ 132              		.syntax unified
+ 133              		.thumb
+ 134              		.thumb_func
+ 135              		.fpu softvfp
+ 137              	DCMotor_voidStop:
+ 138              	.LVL10:
+ 139              	.LFB3:
+  24:HAL/DC_motor/DC_program.c **** void DCMotor_voidStop(const DC_Motor_Config_t *CopY_Motor)
+  25:HAL/DC_motor/DC_program.c **** {
+ 140              		.loc 1 25 1 is_stmt 1 view -0
+ 141              		.cfi_startproc
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144              		.loc 1 25 1 is_stmt 0 view .LVU20
+ 145 0000 10B5     		push	{r4, lr}
+ 146              	.LCFI3:
+ 147              		.cfi_def_cfa_offset 8
+ 148              		.cfi_offset 4, -8
+ 149              		.cfi_offset 14, -4
+ 150 0002 0446     		mov	r4, r0
+  26:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinValue( &CopY_Motor->Motor_Data[CW_INDEX]  , GPIO_LOW );
+ 151              		.loc 1 26 5 is_stmt 1 view .LVU21
+ 152 0004 0021     		movs	r1, #0
+ARM GAS  /tmp/ccIjPBxh.s 			page 4
+
+
+ 153 0006 FFF7FEFF 		bl	GPIO_enumSETPinValue
+ 154              	.LVL11:
+  27:HAL/DC_motor/DC_program.c ****     GPIO_enumSETPinValue( &CopY_Motor->Motor_Data[CCW_INDEX]  , GPIO_LOW );
+ 155              		.loc 1 27 5 view .LVU22
+ 156 000a 0021     		movs	r1, #0
+ 157 000c E01C     		adds	r0, r4, #3
+ 158 000e FFF7FEFF 		bl	GPIO_enumSETPinValue
+ 159              	.LVL12:
+  28:HAL/DC_motor/DC_program.c **** }
+ 160              		.loc 1 28 1 is_stmt 0 view .LVU23
+ 161 0012 10BD     		pop	{r4, pc}
+ 162              		.loc 1 28 1 view .LVU24
+ 163              		.cfi_endproc
+ 164              	.LFE3:
+ 166              		.text
+ 167              	.Letext0:
+ 168              		.file 2 "LIB/STD_TYPES.h"
+ 169              		.file 3 "MCAL/GPIO/GPIO_interface.h"
+ 170              		.file 4 "HAL/DC_motor/DC_interface.h"
+ARM GAS  /tmp/ccIjPBxh.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 DC_program.c
+     /tmp/ccIjPBxh.s:16     .text.DCMotor_voidInit:0000000000000000 $t
+     /tmp/ccIjPBxh.s:24     .text.DCMotor_voidInit:0000000000000000 DCMotor_voidInit
+     /tmp/ccIjPBxh.s:53     .text.DCMotor_voidRotate_CW:0000000000000000 $t
+     /tmp/ccIjPBxh.s:60     .text.DCMotor_voidRotate_CW:0000000000000000 DCMotor_voidRotate_CW
+     /tmp/ccIjPBxh.s:93     .text.DCMotor_voidRotate_CCW:0000000000000000 $t
+     /tmp/ccIjPBxh.s:100    .text.DCMotor_voidRotate_CCW:0000000000000000 DCMotor_voidRotate_CCW
+     /tmp/ccIjPBxh.s:130    .text.DCMotor_voidStop:0000000000000000 $t
+     /tmp/ccIjPBxh.s:137    .text.DCMotor_voidStop:0000000000000000 DCMotor_voidStop
+
+UNDEFINED SYMBOLS
+GPIO_enumSETPinMODE
+GPIO_enumSETPinValue

@@ -24,7 +24,7 @@ STL = st-flash
 # building variables
 ######################################
 # debug build?
-DEBUG = 0
+DEBUG = 1
 # optimization
 OPT = -Og
 
@@ -34,6 +34,7 @@ OPT = -Og
 #######################################
 # Build path
 BUILD_DIR = build
+DEBUG_DIR = debug
 
 ######################################
 # source
@@ -62,7 +63,8 @@ C_SOURCES += \
 MCAL/GPIO/GPIO_program.c \
 MCAL/SYS_Tick/SYS_Tick_program.c \
 MCAL/RCC/RCC_program.c	\
-HAL/IR_inferared/IR_inferared_program.c
+HAL/IR_inferared/IR_inferared_program.c \
+HAL/DC_motor/DC_program.c
 
 # ASM sources
 ASM_SOURCES =  \
@@ -200,7 +202,7 @@ clean:
 #######################################
 # flash code
 #######################################
-flash:
+flash: erase
 	$(STL) write ${BUILD_DIR}/$(TARGET).bin 0x8000000 
 
 #######################################
@@ -208,6 +210,11 @@ flash:
 #######################################
 erase:
 	$(STL) erase
+#######################################
+# debug code
+#######################################
+gdb:
+	gdb-multiarch ${BUILD_DIR}/$(TARGET).elf -x $(DEBUG_DIR)/start
 
 #######################################
 # dependencies

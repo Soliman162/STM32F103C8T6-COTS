@@ -25,6 +25,8 @@
 #include "SysTick_interface.h"
 #include "GPIO_interface.h"
 
+#include "DC_interface.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -72,6 +74,22 @@ int main(void)
   GPIO_CONFIG_t LED_1 = {GPIOA_PORT, PIN_0, GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ};
   GPIO_CONFIG_t LED_2 = {GPIOA_PORT, PIN_1, GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ};
 
+  /*  GPIO_CONFIG_t Motor_pin[2] = {
+                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_2,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ},
+                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_3,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ}
+                              }; 
+
+  DC_Motor_Config_t  Motor ;
+
+  Motor.Motor_Data[0] = Motor_pin[0];
+  Motor.Motor_Data[1] = Motor_pin[1];
+    */
+
+  DC_Motor_Config_t  Motor = {
+                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_2,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ},
+                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_3,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ}
+                              };
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -92,12 +110,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
+
+  DCMotor_voidInit(&Motor);
   
-  GPIO_enumSETPinMODE( &LED_1 );
+/*   GPIO_enumSETPinMODE( &LED_1 );
   GPIO_enumSETPinMODE( &LED_2 );
 
   GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
-  GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
+  GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW ); */
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -105,15 +125,20 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    GPIO_enumSETPinValue( &LED_1  ,GPIO_HIGH );
-    GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
+/*     GPIO_enumSETPinValue( &LED_1  ,GPIO_HIGH );
+    GPIO_enumSETPinValue( &LED_2  ,GPIO_HIGH ); */
+
+    DCMotor_voidRotate_CW(&Motor);
     STK_voidSetBusyWait(1000000);
     /* USER CODE BEGIN 3 */
-    GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
-    GPIO_enumSETPinValue( &LED_2  ,GPIO_HIGH );
+/*     GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
+    GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW ); */
+    DCMotor_voidRotate_CCW(&Motor);
     STK_voidSetBusyWait(1000000);
   }
   /* USER CODE END 3 */
+
+  return 0;
 }
 
 /**
