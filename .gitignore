@@ -1,2 +1,5 @@
-build
+build/
 ARM_blue_Pill_COTS.code-workspace
+.vscode/
+.gdb_history
+debug/
