@@ -1,8 +1,6 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "STD_TYPES.h"
-
 /*Pin_Value*/
 #define GPIO_LOW    0
 #define GPIO_HIGH   1
@@ -28,8 +26,8 @@
 /*INPUT*/
 #define     INPUT_ANALOG                                            0b0000
 #define     INPUT_FLOATING                                          0b0100
-#define     INPUT_PULL_DOWN                                         0b1000
-#define     INPUT_PULL_UP                                           0b11000
+#define     INPUT_PULL_DOWN_OR_UP                                   0b1000
+//#define     INPUT_PULL_UP                                           0b11000
 
 typedef struct{
 
@@ -44,7 +42,12 @@ ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN );
 ERROR_enumSTATE GPIO_enumSETPinValue( const  GPIO_CONFIG_t * Copy_ptu8PIN  , u8 Pin_u8Value );
 ERROR_enumSTATE GPIO_enumGETPinValue( const  GPIO_CONFIG_t * Copy_ptu8PIN  , u8 *Pin_ptru8Value );
 
-ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Pin_u8Value );
-ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u8 Pin_u8Value );
+ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Port_u8Mode );
+
+ERROR_enumSTATE GPIO_enumGETPort_OUTPUT_Value( PORT port_indx , u16 *Port_ptru8Value );
+ERROR_enumSTATE GPIO_enumGETPort_INPUT_Value( PORT port_indx , u16 *Port_ptru8Value );
+ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u16 Port_u16Value );
+
+//ERROR_enumSTATE GPIO_enumSET_GOB_Mode( PORT port_indx  , u8 Port_u8Mode, u8 start_pin, u8 End_pin);
 
 #endif

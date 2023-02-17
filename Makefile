@@ -52,7 +52,8 @@ Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c \
-Core/Src/system_stm32f1xx.c  
+Core/Src/system_stm32f1xx.c  \
+HAL/stepper_motor/stepper_program.c
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
@@ -133,6 +134,7 @@ C_INCLUDES += \
 -IMCAL/RCC		\
 -IHAL/IR_inferared \
 -IHAL/DC_motor	\
+-IHAL/stepper_motor \
 -ILIB 
 
 # compile gcc flags

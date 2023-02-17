@@ -6,18 +6,18 @@
 #include "GPIO_private.h"
 #include "GPIO_config.h"
 
-static GPIO_REG_DEF_t * GPIO_PORT[7] = {GPIOA,GPIOB,GPIOC,GPIOD,GPIOE};
+static GPIO_REG_DEF_t * GPIO_PORT[5] = {GPIOA,GPIOB,GPIOC,GPIOD,GPIOE};
 
 ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN )
 {
 
-	ERROR_enumSTATE LOC_u8State = STD_TYPES_OK;
+	ERROR_enumSTATE LOC_u8State = STD_TYPES_NOK;
 	u8 LOC_u8CopyMode ;
 	u8 LOc_u8CopyPin_num;
 	u8 LOC_u8CopyPort_ID;
 
-	if(Copy_ptru8PIN != NULL){
-
+	if(Copy_ptru8PIN != NULL)
+	{
 		LOC_u8CopyMode = Copy_ptru8PIN->PIN_MODE;
 		LOc_u8CopyPin_num = Copy_ptru8PIN->PIN_NUM;
 		LOC_u8CopyPort_ID =Copy_ptru8PIN->PORT_ID;
@@ -26,12 +26,8 @@ ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN )
 		{
 			if( LOc_u8CopyPin_num<=PIN_15 )
 			{
-				if( LOC_u8CopyMode ==  INPUT_PULL_UP )
-				{
-					GPIO_PORT[LOC_u8CopyPort_ID]->BSRR = (1<<LOc_u8CopyPin_num);
-					LOC_u8CopyMode = 0b1000;
-
-				}else if( LOC_u8CopyMode ==  INPUT_PULL_DOWN )
+				LOC_u8State = STD_TYPES_OK;
+				if( LOC_u8CopyMode ==  INPUT_PULL_DOWN_OR_UP )
 				{
 					GPIO_PORT[LOC_u8CopyPort_ID]->BRR = (1<<LOc_u8CopyPin_num);
 				}
@@ -47,12 +43,9 @@ ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN )
 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH &=  (~(0b1111<< (LOc_u8CopyPin_num * 4) ) ) ;
 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
 				}
-
-			}else{LOC_u8State = STD_TYPES_NOK;}
-
-		}else{ LOC_u8State = STD_TYPES_NOK; }
-
-	}else{ LOC_u8State = STD_TYPES_NOK; }
+			}
+		}
+	}
 
 	return LOC_u8State;
 }
@@ -60,14 +53,16 @@ ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN )
 
 ERROR_enumSTATE GPIO_enumSETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 Pin_u8Value )
 {
-	ERROR_enumSTATE LOC_u8State = STD_TYPES_OK;
+	ERROR_enumSTATE LOC_u8State = STD_TYPES_NOK;
 
-	if( Copy_ptru8PIN !=NULL){
-
+	if( Copy_ptru8PIN !=NULL)
+	{
 		if( Copy_ptru8PIN->PORT_ID<=GPIOC_PORT )
 		{
 			if( Copy_ptru8PIN->PIN_NUM<=PIN_15 )
 			{
+				LOC_u8State = STD_TYPES_NOK;
+
 				if( Pin_u8Value == GPIO_HIGH )
 				{
 					GPIO_PORT[Copy_ptru8PIN->PORT_ID]->BSRR = (1<<Copy_ptru8PIN->PIN_NUM);
@@ -76,9 +71,8 @@ ERROR_enumSTATE GPIO_enumSETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 
 				{
 					GPIO_PORT[Copy_ptru8PIN->PORT_ID]->BRR = (1<<Copy_ptru8PIN->PIN_NUM);
 				}
-			}else{ LOC_u8State = STD_TYPES_NOK; }
-
-		}else{ LOC_u8State = STD_TYPES_NOK; }
+			}
+		}
 	}
 	return LOC_u8State;
 }
@@ -86,7 +80,6 @@ ERROR_enumSTATE GPIO_enumSETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 
 
 ERROR_enumSTATE GPIO_enumGETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 *Pin_ptru8Value )
 {
-
 	ERROR_enumSTATE LOC_u8State = STD_TYPES_OK;
 
 	if( Copy_ptru8PIN !=NULL )
@@ -108,23 +101,99 @@ ERROR_enumSTATE GPIO_enumGETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 
 	return LOC_u8State;
 }
 
-ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Pin_u8Value )
+ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Port_u8Mode )
 {
 	ERROR_enumSTATE  LOC_u8State = STD_TYPES_NOK;
 
 	if( (port_indx >= GPIOA_PORT) && (port_indx <=GPIOC_PORT) )
 	{
 		LOC_u8State = STD_TYPES_OK;
-
-
+		u32 Port_value = 0;
+		/*reset register */
+		if(Port_u8Mode == INPUT_PULL_DOWN_OR_UP)
+		{
+			GPIO_PORT[port_indx]->BRR = 0xFFF;
+		}
+		/*Calc port value*/
+		for( u8 i=0;i<8;i++ )
+		{
+			Port_value |= Port_u8Mode<<(i*4);
+		}
+		/*clear port*/	
+		GPIO_PORT[port_indx]->CRL = 0;
+		GPIO_PORT[port_indx]->CRH = 0;
+		/*set port value*/
+		GPIO_PORT[port_indx]->CRL = Port_value;
+		GPIO_PORT[port_indx]->CRH = Port_value;
 	}
-
 
 	return LOC_u8State;
 }
 
-ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u8 Pin_u8Value )
+ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u16 Port_u16Value )
 {
-
+	ERROR_enumSTATE  LOC_u8State = STD_TYPES_NOK;
 	
+	if( (port_indx >= GPIOA_PORT) && (port_indx <= GPIOC_PORT) )
+	{
+		LOC_u8State = STD_TYPES_OK;
+		GPIO_PORT[port_indx]->ODR = Port_u16Value;
+	}
+	return LOC_u8State;
 }
+
+ERROR_enumSTATE GPIO_enumGETPort_INPUT_Value( PORT port_indx , u16 *Port_ptru8Value )
+{
+	ERROR_enumSTATE LOC_u8State = STD_TYPES_NOK;
+
+	if( port_indx >= GPIOA_PORT && port_indx <= GPIOC_PORT )
+	{
+		LOC_u8State = STD_TYPES_OK;
+		*Port_ptru8Value = GPIO_PORT[port_indx]->IDR ;		
+	}
+	return LOC_u8State;
+}
+
+ERROR_enumSTATE GPIO_enumGETPort_OUTPUT_Value( PORT port_indx , u16 *Port_ptru8Value )
+{
+	ERROR_enumSTATE LOC_u8State = STD_TYPES_NOK;
+
+	if( port_indx >= GPIOA_PORT && port_indx <= GPIOC_PORT )
+	{
+		LOC_u8State = STD_TYPES_OK;
+		*Port_ptru8Value = GPIO_PORT[port_indx]->ODR ;		
+	}
+	return LOC_u8State;
+}
+
+/* ERROR_enumSTATE GPIO_enumSET_GOB_Mode( PORT port_indx  , u8 Port_u8Mode, u8 Start_pin, u8 End_pin)
+{
+	ERROR_enumSTATE LOC_enumState = STD_TYPES_NOK;
+	u16 BRR_Value = 0;
+
+	if( port_indx >= GPIOA_PORT && port_indx <= GPIOC_PORT )
+	{
+		LOC_u8State = STD_TYPES_OK;
+		for(u8 i=Start_pin;i<=End_pin;i++)
+		{
+			BRR_Value |= ;
+		}
+		if( Port_u8Mode ==  INPUT_PULL_DOWN_OR_UP )
+		{
+			GPIO_PORT[port_indx]->BRR = (1<<LOc_u8CopyPin_num);
+		}
+
+		if( LOc_u8CopyPin_num<=PIN_7 )
+		{
+			(GPIO_PORT[port_indx]->CRL) &=  (~(0b1111<<(LOc_u8CopyPin_num * 4) ) );
+			(GPIO_PORT[port_indx]->CRL) |=  ( Port_u8Mode << ( LOc_u8CopyPin_num * 4 ) );
+
+		}else if( LOc_u8CopyPin_num>=PIN_8 )
+		{
+			LOc_u8CopyPin_num-=8;
+			GPIO_PORT[port_indx]->CRH &=  (~(0b1111<< (LOc_u8CopyPin_num * 4) ) ) ;
+			GPIO_PORT[port_indx]->CRH |=  ( Port_u8Mode << (  LOc_u8CopyPin_num * 4) );
+		}
+	}
+	return LOC_enumState;
+} */
