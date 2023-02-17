@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccMTiER2.s 			page 1
+ARM GAS  /tmp/ccICEqvC.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -8,148 +8,73 @@ ARM GAS  /tmp/ccMTiER2.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 2
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"IR_inferared_program.c"
   12              		.text
-  13              	.Ltext0:
-  14              		.cfi_sections	.debug_frame
-  15              		.section	.text.IR_voidInit,"ax",%progbits
-  16              		.align	1
-  17              		.global	IR_voidInit
-  18              		.arch armv7-m
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu softvfp
-  24              	IR_voidInit:
-  25              	.LVL0:
-  26              	.LFB0:
-  27              		.file 1 "HAL/IR_inferared/IR_inferared_program.c"
-   1:HAL/IR_inferared/IR_inferared_program.c **** #include "STD_TYPES.h"
-   2:HAL/IR_inferared/IR_inferared_program.c **** 
-   3:HAL/IR_inferared/IR_inferared_program.c **** #include "GPIO_interface.h"
-   4:HAL/IR_inferared/IR_inferared_program.c **** 
-   5:HAL/IR_inferared/IR_inferared_program.c **** #include "IR_inferared_interface.h"
-   6:HAL/IR_inferared/IR_inferared_program.c **** #include "IR_inferared_private.h"
-   7:HAL/IR_inferared/IR_inferared_program.c **** #include "IR_inferared_config.h"
-   8:HAL/IR_inferared/IR_inferared_program.c **** 
-   9:HAL/IR_inferared/IR_inferared_program.c **** void IR_voidInit(const IR_Config_t * Copy_ptrstrIR)
-  10:HAL/IR_inferared/IR_inferared_program.c **** {
-  28              		.loc 1 10 1 view -0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 8
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		.loc 1 10 1 is_stmt 0 view .LVU1
-  33 0000 00B5     		push	{lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 4
-  36              		.cfi_offset 14, -4
-  37 0002 83B0     		sub	sp, sp, #12
-  38              	.LCFI1:
-  39              		.cfi_def_cfa_offset 16
-  11:HAL/IR_inferared/IR_inferared_program.c ****     GPIO_CONFIG_t CopY_IR_GPIO = {Copy_ptrstrIR->port,Copy_ptrstrIR->Pin,INPUT_FLOATING};    
-  40              		.loc 1 11 5 is_stmt 1 view .LVU2
-  41              		.loc 1 11 48 is_stmt 0 view .LVU3
-  42 0004 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
-  43              		.loc 1 11 19 view .LVU4
-  44 0006 8DF80430 		strb	r3, [sp, #4]
-  45              		.loc 1 11 68 view .LVU5
-  46 000a 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
-  47              		.loc 1 11 19 view .LVU6
-ARM GAS  /tmp/ccMTiER2.s 			page 2
+  13              		.section	.text.IR_voidInit,"ax",%progbits
+  14              		.align	1
+  15              		.p2align 2,,3
+  16              		.global	IR_voidInit
+  17              		.arch armv7-m
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	IR_voidInit:
+  24              		@ args = 0, pretend = 0, frame = 8
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26 0000 0423     		movs	r3, #4
+  27 0002 00B5     		push	{lr}
+  28 0004 83B0     		sub	sp, sp, #12
+  29 0006 0178     		ldrb	r1, [r0]	@ zero_extendqisi2
+  30 0008 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+  31 000a 0DEB0300 		add	r0, sp, r3
+  32 000e 8DF80410 		strb	r1, [sp, #4]
+  33 0012 8DF80520 		strb	r2, [sp, #5]
+  34 0016 8DF80630 		strb	r3, [sp, #6]
+  35 001a FFF7FEFF 		bl	GPIO_enumSETPinMODE
+  36 001e 03B0     		add	sp, sp, #12
+  37              		@ sp needed
+  38 0020 5DF804FB 		ldr	pc, [sp], #4
+  40              		.section	.text.Check_voidObject_Existance,"ax",%progbits
+  41              		.align	1
+  42              		.p2align 2,,3
+  43              		.global	Check_voidObject_Existance
+  44              		.syntax unified
+  45              		.thumb
+  46              		.thumb_func
+  47              		.fpu softvfp
+  49              	Check_voidObject_Existance:
+  50              		@ args = 0, pretend = 0, frame = 8
+  51              		@ frame_needed = 0, uses_anonymous_args = 0
+  52 0000 0423     		movs	r3, #4
+  53 0002 10B5     		push	{r4, lr}
+  54 0004 82B0     		sub	sp, sp, #8
+  55 0006 0478     		ldrb	r4, [r0]	@ zero_extendqisi2
+  56 0008 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+  57 000a 0DEB0300 		add	r0, sp, r3
+  58 000e 8DF80440 		strb	r4, [sp, #4]
+  59 0012 8DF80520 		strb	r2, [sp, #5]
+  60 0016 8DF80630 		strb	r3, [sp, #6]
+ARM GAS  /tmp/ccICEqvC.s 			page 2
 
 
-  48 000c 8DF80530 		strb	r3, [sp, #5]
-  49 0010 0423     		movs	r3, #4
-  50 0012 8DF80630 		strb	r3, [sp, #6]
-  12:HAL/IR_inferared/IR_inferared_program.c ****     GPIO_enumSETPinMODE( &CopY_IR_GPIO );
-  51              		.loc 1 12 5 is_stmt 1 view .LVU7
-  52 0016 0DEB0300 		add	r0, sp, r3
-  53              	.LVL1:
-  54              		.loc 1 12 5 is_stmt 0 view .LVU8
-  55 001a FFF7FEFF 		bl	GPIO_enumSETPinMODE
-  56              	.LVL2:
-  13:HAL/IR_inferared/IR_inferared_program.c **** }
-  57              		.loc 1 13 1 view .LVU9
-  58 001e 03B0     		add	sp, sp, #12
-  59              	.LCFI2:
-  60              		.cfi_def_cfa_offset 4
-  61              		@ sp needed
-  62 0020 5DF804FB 		ldr	pc, [sp], #4
-  63              		.cfi_endproc
-  64              	.LFE0:
-  66              		.section	.text.Check_voidObject_Existance,"ax",%progbits
-  67              		.align	1
-  68              		.global	Check_voidObject_Existance
-  69              		.syntax unified
-  70              		.thumb
-  71              		.thumb_func
-  72              		.fpu softvfp
-  74              	Check_voidObject_Existance:
-  75              	.LVL3:
-  76              	.LFB1:
-  14:HAL/IR_inferared/IR_inferared_program.c **** 
-  15:HAL/IR_inferared/IR_inferared_program.c **** void Check_voidObject_Existance(const IR_Config_t * Copy_ptrstrIR, EXISTANCE *Copy_Check )
-  16:HAL/IR_inferared/IR_inferared_program.c **** {
-  77              		.loc 1 16 1 is_stmt 1 view -0
-  78              		.cfi_startproc
-  79              		@ args = 0, pretend = 0, frame = 8
-  80              		@ frame_needed = 0, uses_anonymous_args = 0
-  81              		.loc 1 16 1 is_stmt 0 view .LVU11
-  82 0000 00B5     		push	{lr}
-  83              	.LCFI3:
-  84              		.cfi_def_cfa_offset 4
-  85              		.cfi_offset 14, -4
-  86 0002 83B0     		sub	sp, sp, #12
-  87              	.LCFI4:
-  88              		.cfi_def_cfa_offset 16
-  17:HAL/IR_inferared/IR_inferared_program.c ****     GPIO_CONFIG_t CopY_IR = {Copy_ptrstrIR->port,Copy_ptrstrIR->Pin,INPUT_FLOATING};
-  89              		.loc 1 17 5 is_stmt 1 view .LVU12
-  90              		.loc 1 17 43 is_stmt 0 view .LVU13
-  91 0004 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
-  92              		.loc 1 17 19 view .LVU14
-  93 0006 8DF80430 		strb	r3, [sp, #4]
-  94              		.loc 1 17 63 view .LVU15
-  95 000a 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
-  96              		.loc 1 17 19 view .LVU16
-  97 000c 8DF80530 		strb	r3, [sp, #5]
-  98 0010 0423     		movs	r3, #4
-  99 0012 8DF80630 		strb	r3, [sp, #6]
-  18:HAL/IR_inferared/IR_inferared_program.c ****     GPIO_enumGETPinValue(&CopY_IR, Copy_Check );
-ARM GAS  /tmp/ccMTiER2.s 			page 3
-
-
- 100              		.loc 1 18 5 is_stmt 1 view .LVU17
- 101 0016 0DEB0300 		add	r0, sp, r3
- 102              	.LVL4:
- 103              		.loc 1 18 5 is_stmt 0 view .LVU18
- 104 001a FFF7FEFF 		bl	GPIO_enumGETPinValue
- 105              	.LVL5:
-  19:HAL/IR_inferared/IR_inferared_program.c **** }...
- 106              		.loc 1 19 1 view .LVU19
- 107 001e 03B0     		add	sp, sp, #12
- 108              	.LCFI5:
- 109              		.cfi_def_cfa_offset 4
- 110              		@ sp needed
- 111 0020 5DF804FB 		ldr	pc, [sp], #4
- 112              		.cfi_endproc
- 113              	.LFE1:
- 115              		.text
- 116              	.Letext0:
- 117              		.file 2 "LIB/STD_TYPES.h"
- 118              		.file 3 "MCAL/GPIO/GPIO_interface.h"
- 119              		.file 4 "HAL/IR_inferared/IR_inferared_interface.h"
-ARM GAS  /tmp/ccMTiER2.s 			page 4
+  61 001a FFF7FEFF 		bl	GPIO_enumGETPinValue
+  62 001e 02B0     		add	sp, sp, #8
+  63              		@ sp needed
+  64 0020 10BD     		pop	{r4, pc}
+  66 0022 00BF     		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
+ARM GAS  /tmp/ccICEqvC.s 			page 3
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 IR_inferared_program.c
-     /tmp/ccMTiER2.s:16     .text.IR_voidInit:0000000000000000 $t
-     /tmp/ccMTiER2.s:24     .text.IR_voidInit:0000000000000000 IR_voidInit
-     /tmp/ccMTiER2.s:67     .text.Check_voidObject_Existance:0000000000000000 $t
-     /tmp/ccMTiER2.s:74     .text.Check_voidObject_Existance:0000000000000000 Check_voidObject_Existance
+     /tmp/ccICEqvC.s:14     .text.IR_voidInit:0000000000000000 $t
+     /tmp/ccICEqvC.s:23     .text.IR_voidInit:0000000000000000 IR_voidInit
+     /tmp/ccICEqvC.s:41     .text.Check_voidObject_Existance:0000000000000000 $t
+     /tmp/ccICEqvC.s:49     .text.Check_voidObject_Existance:0000000000000000 Check_voidObject_Existance
 
 UNDEFINED SYMBOLS
 GPIO_enumSETPinMODE

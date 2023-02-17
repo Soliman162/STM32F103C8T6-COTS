@@ -1,6 +1,8 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
+#include "STD_TYPES.h"
+
 /*Pin_Value*/
 #define GPIO_LOW    0
 #define GPIO_HIGH   1
@@ -41,5 +43,8 @@ typedef struct{
 ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN );
 ERROR_enumSTATE GPIO_enumSETPinValue( const  GPIO_CONFIG_t * Copy_ptu8PIN  , u8 Pin_u8Value );
 ERROR_enumSTATE GPIO_enumGETPinValue( const  GPIO_CONFIG_t * Copy_ptu8PIN  , u8 *Pin_ptru8Value );
+
+ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Pin_u8Value );
+ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u8 Pin_u8Value );
 
 #endif

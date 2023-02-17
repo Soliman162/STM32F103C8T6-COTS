@@ -107,3 +107,24 @@ ERROR_enumSTATE GPIO_enumGETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 
 
 	return LOC_u8State;
 }
+
+ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Pin_u8Value )
+{
+	ERROR_enumSTATE  LOC_u8State = STD_TYPES_NOK;
+
+	if( (port_indx >= GPIOA_PORT) && (port_indx <=GPIOC_PORT) )
+	{
+		LOC_u8State = STD_TYPES_OK;
+
+
+	}
+
+
+	return LOC_u8State;
+}
+
+ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u8 Pin_u8Value )
+{
+
+	
+}

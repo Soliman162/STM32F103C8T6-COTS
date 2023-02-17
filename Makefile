@@ -24,9 +24,9 @@ STL = st-flash
 # building variables
 ######################################
 # debug build?
-DEBUG = 1
+DEBUG = 0
 # optimization
-OPT = -Og
+OPT = -O3
 
 
 #######################################
@@ -211,11 +211,14 @@ flash: erase
 erase:
 	$(STL) erase
 #######################################
-# debug code
+# debug code	# -x $(DEBUG_DIR)/start
 #######################################
-gdb:
-	gdb-multiarch ${BUILD_DIR}/$(TARGET).elf -x $(DEBUG_DIR)/start
-
+gdb: 
+ifeq ($(DEBUG), 1)
+	gdb-multiarch ${BUILD_DIR}/$(TARGET).elf 
+else
+	@echo " *****************Debug variable is not set to 1***************** "
+endif
 #######################################
 # dependencies
 #######################################

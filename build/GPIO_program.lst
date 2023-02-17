@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchFXPM8.s 			page 1
+ARM GAS  /tmp/ccrgFkwG.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -8,620 +8,217 @@ ARM GAS  /tmp/cchFXPM8.s 			page 1
    5              		.eabi_attribute 24, 1
    6              		.eabi_attribute 25, 1
    7              		.eabi_attribute 26, 1
-   8              		.eabi_attribute 30, 1
+   8              		.eabi_attribute 30, 2
    9              		.eabi_attribute 34, 1
   10              		.eabi_attribute 18, 4
   11              		.file	"GPIO_program.c"
   12              		.text
-  13              	.Ltext0:
-  14              		.cfi_sections	.debug_frame
-  15              		.section	.text.GPIO_enumSETPinMODE,"ax",%progbits
-  16              		.align	1
-  17              		.global	GPIO_enumSETPinMODE
-  18              		.arch armv7-m
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  22              		.fpu softvfp
-  24              	GPIO_enumSETPinMODE:
-  25              	.LVL0:
-  26              	.LFB0:
-  27              		.file 1 "MCAL/GPIO/GPIO_program.c"
-   1:MCAL/GPIO/GPIO_program.c **** #include "STD_TYPES.h"
-   2:MCAL/GPIO/GPIO_program.c **** #include "BIT_MATH.h"
-   3:MCAL/GPIO/GPIO_program.c **** #include "STM32F103C8.h"
-   4:MCAL/GPIO/GPIO_program.c **** 
-   5:MCAL/GPIO/GPIO_program.c **** #include "GPIO_interface.h"
-   6:MCAL/GPIO/GPIO_program.c **** #include "GPIO_private.h"
-   7:MCAL/GPIO/GPIO_program.c **** #include "GPIO_config.h"
-   8:MCAL/GPIO/GPIO_program.c **** 
-   9:MCAL/GPIO/GPIO_program.c **** static GPIO_REG_DEF_t * GPIO_PORT[7] = {GPIOA,GPIOB,GPIOC,GPIOD,GPIOE};
-  10:MCAL/GPIO/GPIO_program.c **** 
-  11:MCAL/GPIO/GPIO_program.c **** ERROR_enumSTATE GPIO_enumSETPinMODE( const GPIO_CONFIG_t * Copy_ptru8PIN )
-  12:MCAL/GPIO/GPIO_program.c **** {
-  28              		.loc 1 12 1 view -0
-  29              		.cfi_startproc
-  30              		@ args = 0, pretend = 0, frame = 0
-  31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		@ link register save eliminated.
-  13:MCAL/GPIO/GPIO_program.c **** 
-  14:MCAL/GPIO/GPIO_program.c **** 	ERROR_enumSTATE LOC_u8State = STD_TYPES_OK;
-  33              		.loc 1 14 2 view .LVU1
-  15:MCAL/GPIO/GPIO_program.c **** 	u8 LOC_u8CopyMode ;
-  34              		.loc 1 15 2 view .LVU2
-  16:MCAL/GPIO/GPIO_program.c **** 	u8 LOc_u8CopyPin_num;
-  35              		.loc 1 16 2 view .LVU3
-  17:MCAL/GPIO/GPIO_program.c **** 	u8 LOC_u8CopyPort_ID;
-  36              		.loc 1 17 2 view .LVU4
-  18:MCAL/GPIO/GPIO_program.c **** 
-  19:MCAL/GPIO/GPIO_program.c **** 	if(Copy_ptru8PIN != NULL){
-  37              		.loc 1 19 2 view .LVU5
-  38              		.loc 1 19 4 is_stmt 0 view .LVU6
-  39 0000 0028     		cmp	r0, #0
-ARM GAS  /tmp/cchFXPM8.s 			page 2
+  13              		.section	.text.GPIO_enumSETPinMODE,"ax",%progbits
+  14              		.align	1
+  15              		.p2align 2,,3
+  16              		.global	GPIO_enumSETPinMODE
+  17              		.arch armv7-m
+  18              		.syntax unified
+  19              		.thumb
+  20              		.thumb_func
+  21              		.fpu softvfp
+  23              	GPIO_enumSETPinMODE:
+  24              		@ args = 0, pretend = 0, frame = 0
+  25              		@ frame_needed = 0, uses_anonymous_args = 0
+  26              		@ link register save eliminated.
+  27 0000 10B3     		cbz	r0, .L11
+  28 0002 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
+  29 0004 022A     		cmp	r2, #2
+  30 0006 1DD8     		bhi	.L9
+  31 0008 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
+  32 000a 0F2B     		cmp	r3, #15
+  33 000c 1AD8     		bhi	.L9
+  34 000e 10B4     		push	{r4}
+  35 0010 8178     		ldrb	r1, [r0, #2]	@ zero_extendqisi2
+  36 0012 1829     		cmp	r1, #24
+  37 0014 28D0     		beq	.L15
+  38 0016 0829     		cmp	r1, #8
+  39 0018 2ED0     		beq	.L5
+  40 001a 1B48     		ldr	r0, .L16
+  41 001c 50F82200 		ldr	r0, [r0, r2, lsl #2]
+  42              	.L4:
+  43 0020 072B     		cmp	r3, #7
+  44 0022 4FF00F04 		mov	r4, #15
+  45 0026 10D8     		bhi	.L6
+  46 0028 9A00     		lsls	r2, r3, #2
+  47 002a 0368     		ldr	r3, [r0]
+  48 002c 9440     		lsls	r4, r4, r2
+  49 002e 23EA0403 		bic	r3, r3, r4
+  50 0032 0360     		str	r3, [r0]
+  51 0034 0468     		ldr	r4, [r0]
+  52 0036 01FA02F3 		lsl	r3, r1, r2
+  53 003a 2343     		orrs	r3, r3, r4
+  54 003c 0360     		str	r3, [r0]
+  55 003e 0120     		movs	r0, #1
+  56              	.L2:
+  57 0040 10BC     		pop	{r4}
+  58 0042 7047     		bx	lr
+ARM GAS  /tmp/ccrgFkwG.s 			page 2
 
 
-  40 0002 42D0     		beq	.L6
-  41 0004 0346     		mov	r3, r0
-  20:MCAL/GPIO/GPIO_program.c **** 
-  21:MCAL/GPIO/GPIO_program.c **** 		LOC_u8CopyMode = Copy_ptru8PIN->PIN_MODE;
-  42              		.loc 1 21 3 is_stmt 1 view .LVU7
-  43              		.loc 1 21 18 is_stmt 0 view .LVU8
-  44 0006 8078     		ldrb	r0, [r0, #2]	@ zero_extendqisi2
-  45              	.LVL1:
-  22:MCAL/GPIO/GPIO_program.c **** 		LOc_u8CopyPin_num = Copy_ptru8PIN->PIN_NUM;
-  46              		.loc 1 22 3 is_stmt 1 view .LVU9
-  47              		.loc 1 22 21 is_stmt 0 view .LVU10
-  48 0008 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
-  49              	.LVL2:
-  23:MCAL/GPIO/GPIO_program.c **** 		LOC_u8CopyPort_ID =Copy_ptru8PIN->PORT_ID;
-  50              		.loc 1 23 3 is_stmt 1 view .LVU11
-  51              		.loc 1 23 21 is_stmt 0 view .LVU12
-  52 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-  53              	.LVL3:
-  24:MCAL/GPIO/GPIO_program.c **** 
-  25:MCAL/GPIO/GPIO_program.c **** 		if(  LOC_u8CopyPort_ID <= GPIOC_PORT )
-  54              		.loc 1 25 3 is_stmt 1 view .LVU13
-  55              		.loc 1 25 5 is_stmt 0 view .LVU14
-  56 000c 022B     		cmp	r3, #2
-  57 000e 3ED8     		bhi	.L7
-  26:MCAL/GPIO/GPIO_program.c **** 		{
-  27:MCAL/GPIO/GPIO_program.c **** 			if( LOc_u8CopyPin_num<=PIN_15 )
-  58              		.loc 1 27 4 is_stmt 1 view .LVU15
-  59              		.loc 1 27 6 is_stmt 0 view .LVU16
-  60 0010 0F2A     		cmp	r2, #15
-  61 0012 3ED8     		bhi	.L8
-  12:MCAL/GPIO/GPIO_program.c **** 
-  62              		.loc 1 12 1 view .LVU17
-  63 0014 10B4     		push	{r4}
-  64              	.LCFI0:
-  65              		.cfi_def_cfa_offset 4
-  66              		.cfi_offset 4, -4
-  28:MCAL/GPIO/GPIO_program.c **** 			{
-  29:MCAL/GPIO/GPIO_program.c **** 				if( LOC_u8CopyMode ==  INPUT_PULL_UP )
-  67              		.loc 1 29 5 is_stmt 1 view .LVU18
-  68              		.loc 1 29 7 is_stmt 0 view .LVU19
-  69 0016 1828     		cmp	r0, #24
-  70 0018 15D0     		beq	.L13
-  30:MCAL/GPIO/GPIO_program.c **** 				{
-  31:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->BSRR = (1<<LOc_u8CopyPin_num);
-  32:MCAL/GPIO/GPIO_program.c **** 					LOC_u8CopyMode = 0b1000;
-  33:MCAL/GPIO/GPIO_program.c **** 
-  34:MCAL/GPIO/GPIO_program.c **** 				}else if( LOC_u8CopyMode ==  INPUT_PULL_DOWN )
-  71              		.loc 1 34 11 is_stmt 1 view .LVU20
-  72              		.loc 1 34 13 is_stmt 0 view .LVU21
-  73 001a 0828     		cmp	r0, #8
-  74 001c 1BD0     		beq	.L14
-  75              	.LVL4:
-  76              	.L4:
-  35:MCAL/GPIO/GPIO_program.c **** 				{
-  36:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->BRR = (1<<LOc_u8CopyPin_num);
-  37:MCAL/GPIO/GPIO_program.c **** 				}
-  38:MCAL/GPIO/GPIO_program.c **** 
-ARM GAS  /tmp/cchFXPM8.s 			page 3
+  59              	.L9:
+  60 0044 0020     		movs	r0, #0
+  61 0046 7047     		bx	lr
+  62              	.L11:
+  63 0048 7047     		bx	lr
+  64              	.L6:
+  65 004a 083B     		subs	r3, r3, #8
+  66 004c DBB2     		uxtb	r3, r3
+  67 004e 4268     		ldr	r2, [r0, #4]
+  68 0050 9B00     		lsls	r3, r3, #2
+  69 0052 9C40     		lsls	r4, r4, r3
+  70 0054 22EA0402 		bic	r2, r2, r4
+  71 0058 4260     		str	r2, [r0, #4]
+  72 005a 4268     		ldr	r2, [r0, #4]
+  73 005c 01FA03F3 		lsl	r3, r1, r3
+  74 0060 1343     		orrs	r3, r3, r2
+  75 0062 4360     		str	r3, [r0, #4]
+  76 0064 0120     		movs	r0, #1
+  77 0066 EBE7     		b	.L2
+  78              	.L15:
+  79 0068 0124     		movs	r4, #1
+  80 006a 0749     		ldr	r1, .L16
+  81 006c 9C40     		lsls	r4, r4, r3
+  82 006e 51F82200 		ldr	r0, [r1, r2, lsl #2]
+  83 0072 0821     		movs	r1, #8
+  84 0074 0461     		str	r4, [r0, #16]
+  85 0076 D3E7     		b	.L4
+  86              	.L5:
+  87 0078 0124     		movs	r4, #1
+  88 007a 0348     		ldr	r0, .L16
+  89 007c 9C40     		lsls	r4, r4, r3
+  90 007e 50F82200 		ldr	r0, [r0, r2, lsl #2]
+  91 0082 4461     		str	r4, [r0, #20]
+  92 0084 CCE7     		b	.L4
+  93              	.L17:
+  94 0086 00BF     		.align	2
+  95              	.L16:
+  96 0088 00000000 		.word	.LANCHOR0
+  98              		.section	.text.GPIO_enumSETPinValue,"ax",%progbits
+  99              		.align	1
+ 100              		.p2align 2,,3
+ 101              		.global	GPIO_enumSETPinValue
+ 102              		.syntax unified
+ 103              		.thumb
+ 104              		.thumb_func
+ 105              		.fpu softvfp
+ 107              	GPIO_enumSETPinValue:
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		@ link register save eliminated.
+ 111 0000 90B1     		cbz	r0, .L21
+ 112 0002 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 113 0004 022B     		cmp	r3, #2
+ 114 0006 0DD8     		bhi	.L23
+ 115 0008 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+ 116 000a 0F2A     		cmp	r2, #15
+ 117 000c 0AD8     		bhi	.L23
+ARM GAS  /tmp/ccrgFkwG.s 			page 3
 
 
-  39:MCAL/GPIO/GPIO_program.c **** 				if( LOc_u8CopyPin_num<=PIN_7 )
-  77              		.loc 1 39 5 is_stmt 1 view .LVU22
-  78              		.loc 1 39 7 is_stmt 0 view .LVU23
-  79 001e 072A     		cmp	r2, #7
-  80 0020 20D8     		bhi	.L5
-  40:MCAL/GPIO/GPIO_program.c **** 				{
-  41:MCAL/GPIO/GPIO_program.c **** 					(GPIO_PORT[LOC_u8CopyPort_ID]->CRL) &=  (~(0b1111<<(LOc_u8CopyPin_num * 4) ) );
-  81              		.loc 1 41 6 is_stmt 1 view .LVU24
-  82              		.loc 1 41 16 is_stmt 0 view .LVU25
-  83 0022 1D49     		ldr	r1, .L15
-  84 0024 51F82330 		ldr	r3, [r1, r3, lsl #2]
-  85              	.LVL5:
-  86              		.loc 1 41 42 view .LVU26
-  87 0028 1C68     		ldr	r4, [r3]
-  88              		.loc 1 41 76 view .LVU27
-  89 002a 9100     		lsls	r1, r2, #2
-  90              		.loc 1 41 55 view .LVU28
-  91 002c 0F22     		movs	r2, #15
-  92              	.LVL6:
-  93              		.loc 1 41 55 view .LVU29
-  94 002e 8A40     		lsls	r2, r2, r1
-  95              		.loc 1 41 42 view .LVU30
-  96 0030 24EA0202 		bic	r2, r4, r2
-  97 0034 1A60     		str	r2, [r3]
-  42:MCAL/GPIO/GPIO_program.c **** 					(GPIO_PORT[LOC_u8CopyPort_ID]->CRL) |=  ( LOC_u8CopyMode << ( LOc_u8CopyPin_num * 4 ) );
-  98              		.loc 1 42 6 is_stmt 1 view .LVU31
-  99              		.loc 1 42 42 is_stmt 0 view .LVU32
- 100 0036 1C68     		ldr	r4, [r3]
- 101              		.loc 1 42 63 view .LVU33
- 102 0038 00FA01F2 		lsl	r2, r0, r1
- 103              		.loc 1 42 42 view .LVU34
- 104 003c 2243     		orrs	r2, r2, r4
- 105 003e 1A60     		str	r2, [r3]
-  14:MCAL/GPIO/GPIO_program.c **** 	u8 LOC_u8CopyMode ;
- 106              		.loc 1 14 18 view .LVU35
- 107 0040 0120     		movs	r0, #1
- 108              	.LVL7:
- 109              	.L2:
-  43:MCAL/GPIO/GPIO_program.c **** 
-  44:MCAL/GPIO/GPIO_program.c **** 				}else if( LOc_u8CopyPin_num>=PIN_8 )
-  45:MCAL/GPIO/GPIO_program.c **** 				{
-  46:MCAL/GPIO/GPIO_program.c **** 					LOc_u8CopyPin_num-=8;
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH &=  (~(0b1111<< (LOc_u8CopyPin_num * 4) ) ) ;
-  48:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
-  49:MCAL/GPIO/GPIO_program.c **** 				}
-  50:MCAL/GPIO/GPIO_program.c **** 
-  51:MCAL/GPIO/GPIO_program.c **** 			}else{LOC_u8State = STD_TYPES_NOK;}
-  52:MCAL/GPIO/GPIO_program.c **** 
-  53:MCAL/GPIO/GPIO_program.c **** 		}else{ LOC_u8State = STD_TYPES_NOK; }
-  54:MCAL/GPIO/GPIO_program.c **** 
-  55:MCAL/GPIO/GPIO_program.c **** 	}else{ LOC_u8State = STD_TYPES_NOK; }
-  56:MCAL/GPIO/GPIO_program.c **** 
-  57:MCAL/GPIO/GPIO_program.c **** 	return LOC_u8State;
- 110              		.loc 1 57 2 is_stmt 1 view .LVU36
-  58:MCAL/GPIO/GPIO_program.c **** }
- 111              		.loc 1 58 1 is_stmt 0 view .LVU37
- 112 0042 10BC     		pop	{r4}
-ARM GAS  /tmp/cchFXPM8.s 			page 4
+ 118 000e 0129     		cmp	r1, #1
+ 119 0010 0CD0     		beq	.L25
+ 120 0012 0120     		movs	r0, #1
+ 121 0014 91B9     		cbnz	r1, .L24
+ 122 0016 0A49     		ldr	r1, .L26
+ 123 0018 00FA02F2 		lsl	r2, r0, r2
+ 124 001c 51F82330 		ldr	r3, [r1, r3, lsl #2]
+ 125 0020 5A61     		str	r2, [r3, #20]
+ 126 0022 7047     		bx	lr
+ 127              	.L23:
+ 128 0024 0020     		movs	r0, #0
+ 129 0026 7047     		bx	lr
+ 130              	.L21:
+ 131 0028 0120     		movs	r0, #1
+ 132 002a 7047     		bx	lr
+ 133              	.L25:
+ 134 002c 0448     		ldr	r0, .L26
+ 135 002e 01FA02F2 		lsl	r2, r1, r2
+ 136 0032 50F82330 		ldr	r3, [r0, r3, lsl #2]
+ 137 0036 0846     		mov	r0, r1
+ 138 0038 1A61     		str	r2, [r3, #16]
+ 139 003a 7047     		bx	lr
+ 140              	.L24:
+ 141 003c 7047     		bx	lr
+ 142              	.L27:
+ 143 003e 00BF     		.align	2
+ 144              	.L26:
+ 145 0040 00000000 		.word	.LANCHOR0
+ 147              		.section	.text.GPIO_enumGETPinValue,"ax",%progbits
+ 148              		.align	1
+ 149              		.p2align 2,,3
+ 150              		.global	GPIO_enumGETPinValue
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 154              		.fpu softvfp
+ 156              	GPIO_enumGETPinValue:
+ 157              		@ args = 0, pretend = 0, frame = 0
+ 158              		@ frame_needed = 0, uses_anonymous_args = 0
+ 159              		@ link register save eliminated.
+ 160 0000 88B1     		cbz	r0, .L31
+ 161 0002 81B1     		cbz	r1, .L31
+ 162 0004 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 163 0006 022B     		cmp	r3, #2
+ 164 0008 0FD8     		bhi	.L33
+ 165 000a 4278     		ldrb	r2, [r0, #1]	@ zero_extendqisi2
+ 166 000c 0F2A     		cmp	r2, #15
+ 167 000e 0CD8     		bhi	.L33
+ 168 0010 0120     		movs	r0, #1
+ 169 0012 10B4     		push	{r4}
+ 170 0014 064C     		ldr	r4, .L38
+ 171 0016 54F82330 		ldr	r3, [r4, r3, lsl #2]
+ 172 001a 10BC     		pop	{r4}
+ 173 001c 9B68     		ldr	r3, [r3, #8]
+ 174 001e D340     		lsrs	r3, r3, r2
+ 175 0020 0340     		ands	r3, r3, r0
+ 176 0022 0B70     		strb	r3, [r1]
+ARM GAS  /tmp/ccrgFkwG.s 			page 4
 
 
- 113              	.LCFI1:
- 114              		.cfi_remember_state
- 115              		.cfi_restore 4
- 116              		.cfi_def_cfa_offset 0
- 117 0044 7047     		bx	lr
- 118              	.LVL8:
- 119              	.L13:
- 120              	.LCFI2:
- 121              		.cfi_restore_state
-  31:MCAL/GPIO/GPIO_program.c **** 					LOC_u8CopyMode = 0b1000;
- 122              		.loc 1 31 6 is_stmt 1 view .LVU38
-  31:MCAL/GPIO/GPIO_program.c **** 					LOC_u8CopyMode = 0b1000;
- 123              		.loc 1 31 15 is_stmt 0 view .LVU39
- 124 0046 1449     		ldr	r1, .L15
- 125 0048 51F82300 		ldr	r0, [r1, r3, lsl #2]
- 126              	.LVL9:
-  31:MCAL/GPIO/GPIO_program.c **** 					LOC_u8CopyMode = 0b1000;
- 127              		.loc 1 31 45 view .LVU40
- 128 004c 0121     		movs	r1, #1
- 129 004e 9140     		lsls	r1, r1, r2
-  31:MCAL/GPIO/GPIO_program.c **** 					LOC_u8CopyMode = 0b1000;
- 130              		.loc 1 31 41 view .LVU41
- 131 0050 0161     		str	r1, [r0, #16]
- 132              	.LVL10:
-  32:MCAL/GPIO/GPIO_program.c **** 
- 133              		.loc 1 32 6 is_stmt 1 view .LVU42
-  32:MCAL/GPIO/GPIO_program.c **** 
- 134              		.loc 1 32 21 is_stmt 0 view .LVU43
- 135 0052 0820     		movs	r0, #8
- 136 0054 E3E7     		b	.L4
- 137              	.LVL11:
- 138              	.L14:
-  36:MCAL/GPIO/GPIO_program.c **** 				}
- 139              		.loc 1 36 6 is_stmt 1 view .LVU44
-  36:MCAL/GPIO/GPIO_program.c **** 				}
- 140              		.loc 1 36 15 is_stmt 0 view .LVU45
- 141 0056 1049     		ldr	r1, .L15
- 142 0058 51F82340 		ldr	r4, [r1, r3, lsl #2]
-  36:MCAL/GPIO/GPIO_program.c **** 				}
- 143              		.loc 1 36 44 view .LVU46
- 144 005c 0121     		movs	r1, #1
- 145 005e 9140     		lsls	r1, r1, r2
-  36:MCAL/GPIO/GPIO_program.c **** 				}
- 146              		.loc 1 36 40 view .LVU47
- 147 0060 6161     		str	r1, [r4, #20]
- 148 0062 DCE7     		b	.L4
- 149              	.L5:
-  44:MCAL/GPIO/GPIO_program.c **** 				{
- 150              		.loc 1 44 11 is_stmt 1 view .LVU48
-  46:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH &=  (~(0b1111<< (LOc_u8CopyPin_num * 4) ) ) ;
- 151              		.loc 1 46 6 view .LVU49
-  46:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH &=  (~(0b1111<< (LOc_u8CopyPin_num * 4) ) ) ;
- 152              		.loc 1 46 23 is_stmt 0 view .LVU50
- 153 0064 083A     		subs	r2, r2, #8
- 154              	.LVL12:
-  46:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH &=  (~(0b1111<< (LOc_u8CopyPin_num * 4) ) ) ;
- 155              		.loc 1 46 23 view .LVU51
-ARM GAS  /tmp/cchFXPM8.s 			page 5
-
-
- 156 0066 D2B2     		uxtb	r2, r2
- 157              	.LVL13:
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
- 158              		.loc 1 47 6 is_stmt 1 view .LVU52
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
- 159              		.loc 1 47 15 is_stmt 0 view .LVU53
- 160 0068 0B49     		ldr	r1, .L15
- 161 006a 51F82330 		ldr	r3, [r1, r3, lsl #2]
- 162              	.LVL14:
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
- 163              		.loc 1 47 40 view .LVU54
- 164 006e 5968     		ldr	r1, [r3, #4]
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
- 165              		.loc 1 47 75 view .LVU55
- 166 0070 9200     		lsls	r2, r2, #2
- 167              	.LVL15:
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
- 168              		.loc 1 47 53 view .LVU56
- 169 0072 0F24     		movs	r4, #15
- 170 0074 9440     		lsls	r4, r4, r2
-  47:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[LOC_u8CopyPort_ID]->CRH |=  ( LOC_u8CopyMode << (  LOc_u8CopyPin_num * 4) );
- 171              		.loc 1 47 40 view .LVU57
- 172 0076 21EA0401 		bic	r1, r1, r4
- 173 007a 5960     		str	r1, [r3, #4]
-  48:MCAL/GPIO/GPIO_program.c **** 				}
- 174              		.loc 1 48 6 is_stmt 1 view .LVU58
-  48:MCAL/GPIO/GPIO_program.c **** 				}
- 175              		.loc 1 48 40 is_stmt 0 view .LVU59
- 176 007c 5968     		ldr	r1, [r3, #4]
-  48:MCAL/GPIO/GPIO_program.c **** 				}
- 177              		.loc 1 48 61 view .LVU60
- 178 007e 00FA02F2 		lsl	r2, r0, r2
-  48:MCAL/GPIO/GPIO_program.c **** 				}
- 179              		.loc 1 48 40 view .LVU61
- 180 0082 0A43     		orrs	r2, r2, r1
- 181 0084 5A60     		str	r2, [r3, #4]
-  14:MCAL/GPIO/GPIO_program.c **** 	u8 LOC_u8CopyMode ;
- 182              		.loc 1 14 18 view .LVU62
- 183 0086 0120     		movs	r0, #1
- 184              	.LVL16:
-  14:MCAL/GPIO/GPIO_program.c **** 	u8 LOC_u8CopyMode ;
- 185              		.loc 1 14 18 view .LVU63
- 186 0088 DBE7     		b	.L2
- 187              	.LVL17:
- 188              	.L6:
- 189              	.LCFI3:
- 190              		.cfi_def_cfa_offset 0
- 191              		.cfi_restore 4
-  55:MCAL/GPIO/GPIO_program.c **** 
- 192              		.loc 1 55 21 view .LVU64
- 193 008a 0020     		movs	r0, #0
- 194              	.LVL18:
-  55:MCAL/GPIO/GPIO_program.c **** 
- 195              		.loc 1 55 21 view .LVU65
- 196 008c 7047     		bx	lr
- 197              	.LVL19:
- 198              	.L7:
-ARM GAS  /tmp/cchFXPM8.s 			page 6
-
-
-  53:MCAL/GPIO/GPIO_program.c **** 
- 199              		.loc 1 53 22 view .LVU66
- 200 008e 0020     		movs	r0, #0
- 201              	.LVL20:
-  53:MCAL/GPIO/GPIO_program.c **** 
- 202              		.loc 1 53 22 view .LVU67
- 203 0090 7047     		bx	lr
- 204              	.LVL21:
- 205              	.L8:
-  51:MCAL/GPIO/GPIO_program.c **** 
- 206              		.loc 1 51 22 view .LVU68
- 207 0092 0020     		movs	r0, #0
- 208              	.LVL22:
-  57:MCAL/GPIO/GPIO_program.c **** }
- 209              		.loc 1 57 2 is_stmt 1 view .LVU69
- 210              		.loc 1 58 1 is_stmt 0 view .LVU70
- 211 0094 7047     		bx	lr
- 212              	.L16:
- 213 0096 00BF     		.align	2
- 214              	.L15:
- 215 0098 00000000 		.word	.LANCHOR0
- 216              		.cfi_endproc
- 217              	.LFE0:
- 219              		.section	.text.GPIO_enumSETPinValue,"ax",%progbits
- 220              		.align	1
- 221              		.global	GPIO_enumSETPinValue
- 222              		.syntax unified
- 223              		.thumb
- 224              		.thumb_func
- 225              		.fpu softvfp
- 227              	GPIO_enumSETPinValue:
- 228              	.LVL23:
- 229              	.LFB1:
-  59:MCAL/GPIO/GPIO_program.c **** 
-  60:MCAL/GPIO/GPIO_program.c **** 
-  61:MCAL/GPIO/GPIO_program.c **** ERROR_enumSTATE GPIO_enumSETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 Pin_u8Value )
-  62:MCAL/GPIO/GPIO_program.c **** {
- 230              		.loc 1 62 1 is_stmt 1 view -0
- 231              		.cfi_startproc
- 232              		@ args = 0, pretend = 0, frame = 0
- 233              		@ frame_needed = 0, uses_anonymous_args = 0
- 234              		@ link register save eliminated.
-  63:MCAL/GPIO/GPIO_program.c **** 	ERROR_enumSTATE LOC_u8State = STD_TYPES_OK;
- 235              		.loc 1 63 2 view .LVU72
-  64:MCAL/GPIO/GPIO_program.c **** 
-  65:MCAL/GPIO/GPIO_program.c **** 	if( Copy_ptru8PIN !=NULL){
- 236              		.loc 1 65 2 view .LVU73
- 237              		.loc 1 65 4 is_stmt 0 view .LVU74
- 238 0000 C8B1     		cbz	r0, .L20
-  66:MCAL/GPIO/GPIO_program.c **** 
-  67:MCAL/GPIO/GPIO_program.c **** 		if( Copy_ptru8PIN->PORT_ID<=GPIOC_PORT )
- 239              		.loc 1 67 3 is_stmt 1 view .LVU75
- 240              		.loc 1 67 20 is_stmt 0 view .LVU76
- 241 0002 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
- 242              		.loc 1 67 5 view .LVU77
- 243 0004 022A     		cmp	r2, #2
- 244 0006 18D8     		bhi	.L21
-ARM GAS  /tmp/cchFXPM8.s 			page 7
-
-
-  68:MCAL/GPIO/GPIO_program.c **** 		{
-  69:MCAL/GPIO/GPIO_program.c **** 			if( Copy_ptru8PIN->PIN_NUM<=PIN_15 )
- 245              		.loc 1 69 4 is_stmt 1 view .LVU78
- 246              		.loc 1 69 21 is_stmt 0 view .LVU79
- 247 0008 4378     		ldrb	r3, [r0, #1]	@ zero_extendqisi2
- 248              		.loc 1 69 6 view .LVU80
- 249 000a 0F2B     		cmp	r3, #15
- 250 000c 17D8     		bhi	.L22
-  70:MCAL/GPIO/GPIO_program.c **** 			{
-  71:MCAL/GPIO/GPIO_program.c **** 				if( Pin_u8Value == GPIO_HIGH )
- 251              		.loc 1 71 5 is_stmt 1 view .LVU81
- 252              		.loc 1 71 7 is_stmt 0 view .LVU82
- 253 000e 0129     		cmp	r1, #1
- 254 0010 08D0     		beq	.L24
-  72:MCAL/GPIO/GPIO_program.c **** 				{
-  73:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[Copy_ptru8PIN->PORT_ID]->BSRR = (1<<Copy_ptru8PIN->PIN_NUM);
-  74:MCAL/GPIO/GPIO_program.c **** 
-  75:MCAL/GPIO/GPIO_program.c **** 				}else if (Pin_u8Value == GPIO_LOW )
- 255              		.loc 1 75 11 is_stmt 1 view .LVU83
- 256              		.loc 1 75 14 is_stmt 0 view .LVU84
- 257 0012 B1B9     		cbnz	r1, .L23
-  76:MCAL/GPIO/GPIO_program.c **** 				{
-  77:MCAL/GPIO/GPIO_program.c **** 					GPIO_PORT[Copy_ptru8PIN->PORT_ID]->BRR = (1<<Copy_ptru8PIN->PIN_NUM);
- 258              		.loc 1 77 6 is_stmt 1 view .LVU85
- 259              		.loc 1 77 15 is_stmt 0 view .LVU86
- 260 0014 0C49     		ldr	r1, .L25
- 261              	.LVL24:
- 262              		.loc 1 77 15 view .LVU87
- 263 0016 51F82220 		ldr	r2, [r1, r2, lsl #2]
- 264              		.loc 1 77 49 view .LVU88
- 265 001a 0120     		movs	r0, #1
- 266              	.LVL25:
- 267              		.loc 1 77 49 view .LVU89
- 268 001c 00FA03F3 		lsl	r3, r0, r3
- 269              		.loc 1 77 45 view .LVU90
- 270 0020 5361     		str	r3, [r2, #20]
- 271 0022 7047     		bx	lr
- 272              	.LVL26:
- 273              	.L24:
-  73:MCAL/GPIO/GPIO_program.c **** 
- 274              		.loc 1 73 6 is_stmt 1 view .LVU91
-  73:MCAL/GPIO/GPIO_program.c **** 
- 275              		.loc 1 73 15 is_stmt 0 view .LVU92
- 276 0024 0848     		ldr	r0, .L25
- 277              	.LVL27:
-  73:MCAL/GPIO/GPIO_program.c **** 
- 278              		.loc 1 73 15 view .LVU93
- 279 0026 50F82200 		ldr	r0, [r0, r2, lsl #2]
-  73:MCAL/GPIO/GPIO_program.c **** 
- 280              		.loc 1 73 50 view .LVU94
- 281 002a 0122     		movs	r2, #1
- 282 002c 02FA03F3 		lsl	r3, r2, r3
-  73:MCAL/GPIO/GPIO_program.c **** 
- 283              		.loc 1 73 46 view .LVU95
- 284 0030 0361     		str	r3, [r0, #16]
-  63:MCAL/GPIO/GPIO_program.c **** 
- 285              		.loc 1 63 18 view .LVU96
-ARM GAS  /tmp/cchFXPM8.s 			page 8
-
-
- 286 0032 0846     		mov	r0, r1
- 287 0034 7047     		bx	lr
- 288              	.LVL28:
- 289              	.L20:
-  63:MCAL/GPIO/GPIO_program.c **** 
- 290              		.loc 1 63 18 view .LVU97
- 291 0036 0120     		movs	r0, #1
- 292              	.LVL29:
-  63:MCAL/GPIO/GPIO_program.c **** 
- 293              		.loc 1 63 18 view .LVU98
- 294 0038 7047     		bx	lr
- 295              	.LVL30:
- 296              	.L21:
-  78:MCAL/GPIO/GPIO_program.c **** 				}
-  79:MCAL/GPIO/GPIO_program.c **** 			}else{ LOC_u8State = STD_TYPES_NOK; }
-  80:MCAL/GPIO/GPIO_program.c **** 
-  81:MCAL/GPIO/GPIO_program.c **** 		}else{ LOC_u8State = STD_TYPES_NOK; }
- 297              		.loc 1 81 22 view .LVU99
- 298 003a 0020     		movs	r0, #0
- 299              	.LVL31:
- 300              		.loc 1 81 22 view .LVU100
- 301 003c 7047     		bx	lr
- 302              	.LVL32:
- 303              	.L22:
-  79:MCAL/GPIO/GPIO_program.c **** 
- 304              		.loc 1 79 23 view .LVU101
- 305 003e 0020     		movs	r0, #0
- 306              	.LVL33:
-  79:MCAL/GPIO/GPIO_program.c **** 
- 307              		.loc 1 79 23 view .LVU102
- 308 0040 7047     		bx	lr
- 309              	.LVL34:
- 310              	.L23:
-  63:MCAL/GPIO/GPIO_program.c **** 
- 311              		.loc 1 63 18 view .LVU103
- 312 0042 0120     		movs	r0, #1
- 313              	.LVL35:
-  82:MCAL/GPIO/GPIO_program.c **** 	}
-  83:MCAL/GPIO/GPIO_program.c **** 	return LOC_u8State;
- 314              		.loc 1 83 2 is_stmt 1 view .LVU104
-  84:MCAL/GPIO/GPIO_program.c **** }
- 315              		.loc 1 84 1 is_stmt 0 view .LVU105
- 316 0044 7047     		bx	lr
- 317              	.L26:
- 318 0046 00BF     		.align	2
- 319              	.L25:
- 320 0048 00000000 		.word	.LANCHOR0
- 321              		.cfi_endproc
- 322              	.LFE1:
- 324              		.section	.text.GPIO_enumGETPinValue,"ax",%progbits
- 325              		.align	1
- 326              		.global	GPIO_enumGETPinValue
- 327              		.syntax unified
- 328              		.thumb
- 329              		.thumb_func
- 330              		.fpu softvfp
- 332              	GPIO_enumGETPinValue:
-ARM GAS  /tmp/cchFXPM8.s 			page 9
-
-
- 333              	.LVL36:
- 334              	.LFB2:
-  85:MCAL/GPIO/GPIO_program.c **** 
-  86:MCAL/GPIO/GPIO_program.c **** 
-  87:MCAL/GPIO/GPIO_program.c **** ERROR_enumSTATE GPIO_enumGETPinValue( const GPIO_CONFIG_t * Copy_ptru8PIN  , u8 *Pin_ptru8Value )
-  88:MCAL/GPIO/GPIO_program.c **** {
- 335              		.loc 1 88 1 is_stmt 1 view -0
- 336              		.cfi_startproc
- 337              		@ args = 0, pretend = 0, frame = 0
- 338              		@ frame_needed = 0, uses_anonymous_args = 0
- 339              		@ link register save eliminated.
-  89:MCAL/GPIO/GPIO_program.c **** 
-  90:MCAL/GPIO/GPIO_program.c **** 	ERROR_enumSTATE LOC_u8State = STD_TYPES_OK;
- 340              		.loc 1 90 2 view .LVU107
-  91:MCAL/GPIO/GPIO_program.c **** 
-  92:MCAL/GPIO/GPIO_program.c **** 	if( Copy_ptru8PIN !=NULL )
- 341              		.loc 1 92 2 view .LVU108
- 342              		.loc 1 92 4 is_stmt 0 view .LVU109
- 343 0000 80B1     		cbz	r0, .L29
-  93:MCAL/GPIO/GPIO_program.c **** 	{
-  94:MCAL/GPIO/GPIO_program.c **** 		if( Pin_ptru8Value != NULL)
- 344              		.loc 1 94 3 is_stmt 1 view .LVU110
- 345              		.loc 1 94 5 is_stmt 0 view .LVU111
- 346 0002 89B1     		cbz	r1, .L30
-  95:MCAL/GPIO/GPIO_program.c **** 		{
-  96:MCAL/GPIO/GPIO_program.c **** 			if( Copy_ptru8PIN->PORT_ID<=GPIOC_PORT )
- 347              		.loc 1 96 4 is_stmt 1 view .LVU112
- 348              		.loc 1 96 21 is_stmt 0 view .LVU113
- 349 0004 0278     		ldrb	r2, [r0]	@ zero_extendqisi2
- 350              		.loc 1 96 6 view .LVU114
- 351 0006 022A     		cmp	r2, #2
- 352 0008 10D8     		bhi	.L31
-  97:MCAL/GPIO/GPIO_program.c **** 			{
-  98:MCAL/GPIO/GPIO_program.c **** 				if( Copy_ptru8PIN->PIN_NUM<=PIN_15 )
- 353              		.loc 1 98 5 is_stmt 1 view .LVU115
- 354              		.loc 1 98 22 is_stmt 0 view .LVU116
- 355 000a 4078     		ldrb	r0, [r0, #1]	@ zero_extendqisi2
- 356              	.LVL37:
- 357              		.loc 1 98 7 view .LVU117
- 358 000c 0F28     		cmp	r0, #15
- 359 000e 0FD8     		bhi	.L32
-  99:MCAL/GPIO/GPIO_program.c **** 				{
- 100:MCAL/GPIO/GPIO_program.c **** 					*Pin_ptru8Value = GET_BIT( GPIO_PORT[Copy_ptru8PIN->PORT_ID]->IDR , Copy_ptru8PIN->PIN_NUM );
- 360              		.loc 1 100 6 is_stmt 1 view .LVU118
- 361              		.loc 1 100 24 is_stmt 0 view .LVU119
- 362 0010 084B     		ldr	r3, .L33
- 363 0012 53F82230 		ldr	r3, [r3, r2, lsl #2]
- 364 0016 9B68     		ldr	r3, [r3, #8]
- 365 0018 C340     		lsrs	r3, r3, r0
- 366 001a 03F00103 		and	r3, r3, #1
- 367              		.loc 1 100 22 view .LVU120
- 368 001e 0B70     		strb	r3, [r1]
-  90:MCAL/GPIO/GPIO_program.c **** 
- 369              		.loc 1 90 18 view .LVU121
- 370 0020 0120     		movs	r0, #1
- 371 0022 7047     		bx	lr
- 372              	.LVL38:
-ARM GAS  /tmp/cchFXPM8.s 			page 10
-
-
- 373              	.L29:
-  90:MCAL/GPIO/GPIO_program.c **** 
- 374              		.loc 1 90 18 view .LVU122
- 375 0024 0120     		movs	r0, #1
- 376              	.LVL39:
-  90:MCAL/GPIO/GPIO_program.c **** 
- 377              		.loc 1 90 18 view .LVU123
- 378 0026 7047     		bx	lr
- 379              	.LVL40:
- 380              	.L30:
-  90:MCAL/GPIO/GPIO_program.c **** 
- 381              		.loc 1 90 18 view .LVU124
- 382 0028 0120     		movs	r0, #1
- 383              	.LVL41:
-  90:MCAL/GPIO/GPIO_program.c **** 
- 384              		.loc 1 90 18 view .LVU125
- 385 002a 7047     		bx	lr
- 386              	.LVL42:
- 387              	.L31:
- 101:MCAL/GPIO/GPIO_program.c **** 
- 102:MCAL/GPIO/GPIO_program.c **** 				}else{ LOC_u8State = STD_TYPES_NOK; }
- 103:MCAL/GPIO/GPIO_program.c **** 
- 104:MCAL/GPIO/GPIO_program.c **** 			}else{ LOC_u8State = STD_TYPES_NOK; }
- 388              		.loc 1 104 23 view .LVU126
- 389 002c 0020     		movs	r0, #0
- 390              	.LVL43:
- 391              		.loc 1 104 23 view .LVU127
- 392 002e 7047     		bx	lr
- 393              	.L32:
- 102:MCAL/GPIO/GPIO_program.c **** 
- 394              		.loc 1 102 24 view .LVU128
- 395 0030 0020     		movs	r0, #0
- 396              	.LVL44:
- 105:MCAL/GPIO/GPIO_program.c **** 		}
- 106:MCAL/GPIO/GPIO_program.c **** 	}
- 107:MCAL/GPIO/GPIO_program.c **** 
- 108:MCAL/GPIO/GPIO_program.c **** 	return LOC_u8State;
- 397              		.loc 1 108 2 is_stmt 1 view .LVU129
- 109:MCAL/GPIO/GPIO_program.c **** }
- 398              		.loc 1 109 1 is_stmt 0 view .LVU130
- 399 0032 7047     		bx	lr
- 400              	.L34:
- 401              		.align	2
- 402              	.L33:
- 403 0034 00000000 		.word	.LANCHOR0
- 404              		.cfi_endproc
- 405              	.LFE2:
- 407              		.section	.rodata.GPIO_PORT,"a"
- 408              		.align	2
- 409              		.set	.LANCHOR0,. + 0
- 412              	GPIO_PORT:
- 413 0000 00080140 		.word	1073809408
- 414 0004 000C0140 		.word	1073810432
- 415 0008 00100140 		.word	1073811456
- 416 000c 00140140 		.word	1073812480
- 417 0010 00180140 		.word	1073813504
- 418 0014 00000000 		.space	8
-ARM GAS  /tmp/cchFXPM8.s 			page 11
-
-
- 418      00000000 
- 419              		.text
- 420              	.Letext0:
- 421              		.file 2 "LIB/STD_TYPES.h"
- 422              		.file 3 "LIB/STM32F103C8.h"
- 423              		.file 4 "MCAL/GPIO/GPIO_interface.h"
-ARM GAS  /tmp/cchFXPM8.s 			page 12
+ 177 0024 7047     		bx	lr
+ 178              	.L31:
+ 179 0026 0120     		movs	r0, #1
+ 180 0028 7047     		bx	lr
+ 181              	.L33:
+ 182 002a 0020     		movs	r0, #0
+ 183 002c 7047     		bx	lr
+ 184              	.L39:
+ 185 002e 00BF     		.align	2
+ 186              	.L38:
+ 187 0030 00000000 		.word	.LANCHOR0
+ 189              		.section	.rodata.GPIO_PORT,"a"
+ 190              		.align	2
+ 191              		.set	.LANCHOR0,. + 0
+ 194              	GPIO_PORT:
+ 195 0000 00080140 		.word	1073809408
+ 196 0004 000C0140 		.word	1073810432
+ 197 0008 00100140 		.word	1073811456
+ 198 000c 00140140 		.word	1073812480
+ 199 0010 00180140 		.word	1073813504
+ 200 0014 00000000 		.space	8
+ 200      00000000 
+ 201              		.ident	"GCC: (15:9-2019-q4-0ubuntu1) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]"
+ARM GAS  /tmp/ccrgFkwG.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 GPIO_program.c
-     /tmp/cchFXPM8.s:16     .text.GPIO_enumSETPinMODE:0000000000000000 $t
-     /tmp/cchFXPM8.s:24     .text.GPIO_enumSETPinMODE:0000000000000000 GPIO_enumSETPinMODE
-     /tmp/cchFXPM8.s:215    .text.GPIO_enumSETPinMODE:0000000000000098 $d
-     /tmp/cchFXPM8.s:220    .text.GPIO_enumSETPinValue:0000000000000000 $t
-     /tmp/cchFXPM8.s:227    .text.GPIO_enumSETPinValue:0000000000000000 GPIO_enumSETPinValue
-     /tmp/cchFXPM8.s:320    .text.GPIO_enumSETPinValue:0000000000000048 $d
-     /tmp/cchFXPM8.s:325    .text.GPIO_enumGETPinValue:0000000000000000 $t
-     /tmp/cchFXPM8.s:332    .text.GPIO_enumGETPinValue:0000000000000000 GPIO_enumGETPinValue
-     /tmp/cchFXPM8.s:403    .text.GPIO_enumGETPinValue:0000000000000034 $d
-     /tmp/cchFXPM8.s:408    .rodata.GPIO_PORT:0000000000000000 $d
-     /tmp/cchFXPM8.s:412    .rodata.GPIO_PORT:0000000000000000 GPIO_PORT
+     /tmp/ccrgFkwG.s:14     .text.GPIO_enumSETPinMODE:0000000000000000 $t
+     /tmp/ccrgFkwG.s:23     .text.GPIO_enumSETPinMODE:0000000000000000 GPIO_enumSETPinMODE
+     /tmp/ccrgFkwG.s:96     .text.GPIO_enumSETPinMODE:0000000000000088 $d
+     /tmp/ccrgFkwG.s:99     .text.GPIO_enumSETPinValue:0000000000000000 $t
+     /tmp/ccrgFkwG.s:107    .text.GPIO_enumSETPinValue:0000000000000000 GPIO_enumSETPinValue
+     /tmp/ccrgFkwG.s:145    .text.GPIO_enumSETPinValue:0000000000000040 $d
+     /tmp/ccrgFkwG.s:148    .text.GPIO_enumGETPinValue:0000000000000000 $t
+     /tmp/ccrgFkwG.s:156    .text.GPIO_enumGETPinValue:0000000000000000 GPIO_enumGETPinValue
+     /tmp/ccrgFkwG.s:187    .text.GPIO_enumGETPinValue:0000000000000030 $d
+     /tmp/ccrgFkwG.s:190    .rodata.GPIO_PORT:0000000000000000 $d
+     /tmp/ccrgFkwG.s:194    .rodata.GPIO_PORT:0000000000000000 GPIO_PORT
 
 NO UNDEFINED SYMBOLS
