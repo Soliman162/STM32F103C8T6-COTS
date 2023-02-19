@@ -26,24 +26,35 @@ void Stepper_voidInit(void)
 void stepper_Rotate_CW(u8 Copy_StepMode, u16 degree )
 {
     u16 Port_Value =  0;
-    GPIO_enumGETPort_OUTPUT_Value(STEPPER_MOTOR_PORT, &Port_Value);
+    u16 degree_u16counter = 0;
 
-    for( u8 i=0;i<Copy_StepMode;i++ )
+    GPIO_enumGETPort_OUTPUT_Value(STEPPER_MOTOR_PORT, &Port_Value);
+    while(degree_u16counter<degree)
     {
-        GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value | (Stepper_movment_Mode[Copy_StepMode-4][i]<<COIL_START_PIN) ) );
-        STK_voidSetBusyWait(MAX_DELAY*1000);
-        GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value & ~(0b1111<<COIL_START_PIN) ) );
+        for( u8 i=0;i<Copy_StepMode;i--)
+        {
+            GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value | (Stepper_movment_Mode[Copy_StepMode-4][i]<<COIL_START_PIN) ) );
+            STK_voidSetBusyWait(MAX_DELAY*1000);
+            GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value & ~(0b1111<<COIL_START_PIN) ) );
+            degree_u16counter +=DEGREE_PER_STEP;
+        }
     }
 }
 void stepper_Rotate_CCW(u8 Copy_StepMode, u16 degree )
 {
     u16 Port_Value =  0;
-    GPIO_enumGETPort_OUTPUT_Value(STEPPER_MOTOR_PORT, &Port_Value);
+    u16 degree_u16counter = 0;
 
-    for( u8 i=Copy_StepMode;i>=0;i-- )
+    GPIO_enumGETPort_OUTPUT_Value(STEPPER_MOTOR_PORT, &Port_Value);
+    while(degree_u16counter<degree)
     {
-        GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value | (Stepper_movment_Mode[Copy_StepMode-4][i]<<COIL_START_PIN) ) );
-        STK_voidSetBusyWait(MAX_DELAY*1000);
-        GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value & ~(0b1111<<COIL_START_PIN) ) );
+        for( u8 i=Copy_StepMode;i>=0;i-- )
+        {
+            GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value | (Stepper_movment_Mode[Copy_StepMode-4][i]<<COIL_START_PIN) ) );
+            STK_voidSetBusyWait(MAX_DELAY*1000);
+            GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value & ~(0b1111<<COIL_START_PIN) ) );
+            degree_u16counter +=DEGREE_PER_STEP;
+        }
     }
+
 }

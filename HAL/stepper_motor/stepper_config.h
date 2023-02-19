@@ -16,8 +16,8 @@
  * FROM 0 --> 15
  * 4 pins of the motor
  */
-#define COIL_START_PIN      (PIN)0
-#define COIL_END_PIN        (PIN)4
+#define COIL_START_PIN      PIN_0
+#define COIL_END_PIN        PIN_4
 
 /**
  * @brief 
@@ -30,5 +30,11 @@
  * max delay between 2 step in (ms)
  */
 #define MAX_DELAY   10
+
+/**
+ * @brief 
+ * degree per step
+ */
+#define DEGREE_PER_STEP     2
 
 #endif
