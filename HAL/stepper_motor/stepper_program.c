@@ -61,5 +61,8 @@ void stepper_voidRotate_CCW(u8 Copy_StepMode, u16 degree )
 
 void stepper_voidStop(void)
 {
+    u16 Port_Value =  0;
+
+    GPIO_enumGETPort_OUTPUT_Value(STEPPER_MOTOR_PORT, &Port_Value);
     GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value & ~(0b1111<<COIL_START_PIN) ) );
 }
