@@ -23,7 +23,7 @@ void Stepper_voidInit(void)
     GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_value & ~(0b1111<<COIL_START_PIN) ) );
     STK_voidInit();
 }
-void stepper_Rotate_CW(u8 Copy_StepMode, u16 degree )
+void stepper_voidRotate_CW(u8 Copy_StepMode, u16 degree )
 {
     u16 Port_Value =  0;
     u16 degree_u16counter = 0;
@@ -40,7 +40,7 @@ void stepper_Rotate_CW(u8 Copy_StepMode, u16 degree )
         }
     }
 }
-void stepper_Rotate_CCW(u8 Copy_StepMode, u16 degree )
+void stepper_voidRotate_CCW(u8 Copy_StepMode, u16 degree )
 {
     u16 Port_Value =  0;
     u16 degree_u16counter = 0;
@@ -57,4 +57,9 @@ void stepper_Rotate_CCW(u8 Copy_StepMode, u16 degree )
         }
     }
 
+}
+
+void stepper_voidStop(void)
+{
+    GPIO_enumSETPORTValue( STEPPER_MOTOR_PORT  , (u16)( Port_Value & ~(0b1111<<COIL_START_PIN) ) );
 }
