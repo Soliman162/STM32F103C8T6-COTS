@@ -53,7 +53,6 @@ Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c \
 Core/Src/system_stm32f1xx.c  \
-HAL/stepper_motor/stepper_program.c
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
@@ -64,8 +63,10 @@ C_SOURCES += \
 MCAL/GPIO/GPIO_program.c \
 MCAL/SYS_Tick/SYS_Tick_program.c \
 MCAL/RCC/RCC_program.c	\
+MCAL/WDG/WDG_program.c \
 HAL/IR_inferared/IR_inferared_program.c \
-HAL/DC_motor/DC_program.c
+HAL/DC_motor/DC_program.c	\
+HAL/stepper_motor/stepper_program.c	
 
 # ASM sources
 ASM_SOURCES =  \
@@ -132,6 +133,7 @@ C_INCLUDES += \
 -IMCAL/GPIO	\
 -IMCAL/SYS_Tick 	\
 -IMCAL/RCC		\
+-IMCAL/WDG	\
 -IHAL/IR_inferared \
 -IHAL/DC_motor	\
 -IHAL/stepper_motor \
