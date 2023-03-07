@@ -31,10 +31,15 @@
  *      DIVED_BY_8 
  * 
  */
-#define PRESCALLER   DIVED_BY_1
+//#define PRESCALLER   DIVED_BY_1
 
-
-#define WWDG_TIMEOUT    21.5F
+/**
+ * @brief 
+ * 
+ * window watchdog timeout by (ms)
+ * 
+ */
+#define WWDG_TIMEOUT    65.5F
 
 
 

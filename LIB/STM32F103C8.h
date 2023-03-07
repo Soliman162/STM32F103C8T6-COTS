@@ -184,7 +184,7 @@ typedef struct{
 
 }WWDG_REG_DEF_t;
 
-#define WWDG		((WDG_REG_DEF_t *)0x40002C00)
+#define WWDG		((WWDG_REG_DEF_t *)0x40002C00)
 
 
 /*************************************************************************/

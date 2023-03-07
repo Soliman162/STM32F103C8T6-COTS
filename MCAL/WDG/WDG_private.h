@@ -13,7 +13,7 @@
 
 // 1 2 4 8
 
-#define TIMEOUT_CALC(wdgt,Tbits)   (1/CLK)*4096*wdgt*(Tbits+1)     
+#define TIMEOUT_CALC(wdgt,Tbits)   ((float)(1/CLK)*4096*wdgt*(Tbits+1))     
 
 
 static inline ERROR_enumSTATE Calc_voidPrescaller_TBits(u8 *prescaller, u8 * Tbit);

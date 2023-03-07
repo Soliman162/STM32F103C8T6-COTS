@@ -24,6 +24,7 @@
 #include "RCC_interface.h"
 #include "SysTick_interface.h"
 #include "GPIO_interface.h"
+#include "WDG_interface.h"
 
 #include "DC_interface.h"
 
@@ -119,7 +120,7 @@ int main(void)
   GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
   GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW ); */
   /* USER CODE END 2 */
-
+  WWDG_voidInit();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
