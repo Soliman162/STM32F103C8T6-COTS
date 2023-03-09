@@ -27,8 +27,8 @@
 #define ADC1_CLK    9
 #define ADC2_CLK    10
 #define TIM1_CLK    11
-#define SPI1_CLK   12
-#define TIM8_CLK   13
+#define SPI1_CLK    12
+#define TIM8_CLK    13
 #define USART1_CLK  14
 #define ADC3_CLK    15
 #define TIM9_CLK    19
@@ -45,7 +45,7 @@
 #define TIM12_CLK   6
 #define TIM13_CLK   7
 #define TIM14_CLK   8
-#define WWDG_CLK   11
+#define WWDG_CLK    11
 #define SPI2_CLK    14
 #define SPI3_CLK    15
 #define USART2_CLK  17  

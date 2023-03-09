@@ -2,6 +2,8 @@
 #include "STM32F103C8.h"
 #include "BIT_MATH.h"
 
+#include "RCC_interface.h"
+
 #include "WDG_interface.h"
 #include "WDG_private.h"
 #include "WDG_config.h"
@@ -15,6 +17,8 @@ ERROR_enumSTATE WWDG_voidInit(void)
 
     if ( Calc_voidPrescaller_TBits(&LOC_Prescaller_u8wdgt, &LOC_T_u8Bits) )
     {
+        /*enable WWDG clk*/
+        RCC_enumPeripheralCLKEnable( APB1_BUS ,WWDG_CLK);
         /*set prescaller */
         WWDG->WWDG_CFR |= LOC_Prescaller_u8wdgt<<7;
         /*enable WWDG - T6 must be set before enable WWDG - load downcounter*/
@@ -39,7 +43,7 @@ static inline ERROR_enumSTATE Calc_voidPrescaller_TBits(u8 *prescaller, u8 * Tbi
     {
         for(u8 j=0;j<=T_BIT_MAX;j++)
         {
-            reg_f32Value = TIMEOUT_CALC(i,j);
+            reg_f32Value = TIMEOUT_FORMULA(i,j);
             if( reg_f32Value<WWDG_TIMEOUT+1 && reg_f32Value>WWDG_TIMEOUT-1 )
             {
                 *Tbit = j;
