@@ -186,8 +186,47 @@ typedef struct{
 
 #define WWDG		((WWDG_REG_DEF_t *)0x40002C00)
 
-
 /*************************************************************************/
 
+/***************************************GPT_REG**************************/
+
+typedef struct{
+
+	volatile u32 CR1;
+	volatile u32 CR2;
+	volatile u32 SMCR;
+
+	volatile u32 DIER;
+	volatile u32 SR;
+	volatile u32 EGR;
+
+	volatile u32 CCMR1;
+	volatile u32 CCMR2;
+
+	volatile u32 CCER;
+	volatile u32 CNT;
+	volatile u32 PSC;
+
+	volatile u32 CCER;
+	volatile u32 CNT;
+	volatile u32 PSC;
+
+	volatile u32 ARR;
+	volatile u32 RESERVED_1;	
+	volatile u32 CCR1;
+	volatile u32 CCR2;
+	volatile u32 CCR3;
+
+	volatile u32 CCR4;
+	volatile u32 RESERVED_2;
+	volatile u32 DCR;
+	volatile u32 DMAR;
+
+}GPT_REG_DEF_t;
+
+#define GPT		((GPT_REG_DEF_t *)0x40002C00)
+
+
+/*************************************************************************/
 
 #endif
