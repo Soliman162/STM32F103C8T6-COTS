@@ -29,7 +29,8 @@ typedef struct
 
 void Timer_voidInit(GP_Timer_Config Timer_num);
 void Timer_voidStart_Count(GP_Timer_Config Timer_num,Timer_Size_t Count_value);
-void Timer_voidUpdateINT_Enable(GP_Timer_Config Timer_num);
+
+void Timer_voidUpdateINT_Enable(GP_Timer_Config Timer_num, void (*Copy_ptrISR)(void));
 void Timer_voidUpdateINT_Disable(GP_Timer_Config Timer_num);
 
 void Timer_voidStop(GP_Timer_Config Timer_num);
