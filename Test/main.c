@@ -25,6 +25,7 @@
 #include "SysTick_interface.h"
 #include "GPIO_interface.h"
 #include "WDG_interface.h"
+#include "GPT_interface.h"
 
 #include "DC_interface.h"
 
@@ -85,11 +86,13 @@ int main(void)
   Motor.Motor_Data[0] = Motor_pin[0];
   Motor.Motor_Data[1] = Motor_pin[1];
     */
-
+/* 
   DC_Motor_Config_t  Motor = {
                                 (GPIO_CONFIG_t){GPIOA_PORT,PIN_2,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ},
                                 (GPIO_CONFIG_t){GPIOA_PORT,PIN_3,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ}
-                              };
+                              }; */
+
+  GP_Timer_Config Test = {GP_TIMER_2,UP,8};
 
   /* USER CODE END 1 */
 
@@ -111,31 +114,26 @@ int main(void)
 
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
-
-  DCMotor_voidInit(&Motor);
   
-/*   GPIO_enumSETPinMODE( &LED_1 );
+  GPIO_enumSETPinMODE( &LED_1 );
   GPIO_enumSETPinMODE( &LED_2 );
 
   GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
-  GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW ); */
+  GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
   /* USER CODE END 2 */
-  WWDG_voidInit();
+  Timer_voidInit(Test);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-/*     GPIO_enumSETPinValue( &LED_1  ,GPIO_HIGH );
-    GPIO_enumSETPinValue( &LED_2  ,GPIO_HIGH ); */
-
-    DCMotor_voidRotate_CW(&Motor);
-    STK_voidSetBusyWait(1000000);
+    GPIO_enumSETPinValue( &LED_1  ,GPIO_HIGH );
+    GPIO_enumSETPinValue( &LED_2  ,GPIO_HIGH );
+    Timer_voidDelay_Us(Test,1000000);
     /* USER CODE BEGIN 3 */
-/*     GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
-    GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW ); */
-    DCMotor_voidRotate_CCW(&Motor);
-    STK_voidSetBusyWait(1000000);
+    GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
+    GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
+    Timer_voidDelay_Us(Test,1000000);
   }
   /* USER CODE END 3 */
 

@@ -207,10 +207,6 @@ typedef struct{
 	volatile u32 CNT;
 	volatile u32 PSC;
 
-	volatile u32 CCER;
-	volatile u32 CNT;
-	volatile u32 PSC;
-
 	volatile u32 ARR;
 	volatile u32 RESERVED_1;	
 	volatile u32 CCR1;
@@ -222,10 +218,12 @@ typedef struct{
 	volatile u32 DCR;
 	volatile u32 DMAR;
 
-}GPT_REG_DEF_t;
+}GPT_2_5_REG_DEF_t;
 
-#define GPT		((GPT_REG_DEF_t *)0x40002C00)
-
+#define GPT_2		((GPT_2_5_REG_DEF_t *)0x40000000)
+#define GPT_3		((GPT_2_5_REG_DEF_t *)0x40000400)
+#define GPT_4		((GPT_2_5_REG_DEF_t *)0x40000800)
+#define GPT_5		((GPT_2_5_REG_DEF_t *)0x40000C00)
 
 /*************************************************************************/
 
