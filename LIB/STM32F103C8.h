@@ -223,7 +223,7 @@ typedef struct{
 #define GPT_2		((GPT_2_5_REG_DEF_t *)0x40000000)
 #define GPT_3		((GPT_2_5_REG_DEF_t *)0x40000400)
 #define GPT_4		((GPT_2_5_REG_DEF_t *)0x40000800)
-#define GPT_5		((GPT_2_5_REG_DEF_t *)0x40000C00)
+//#define GPT_5		((GPT_2_5_REG_DEF_t *)0x40000C00)
 
 /*************************************************************************/
 

@@ -1,9 +1,3 @@
-/*******************************************************************************/
-/******************* Name : Ahmed Elsayed **************************************/
-/******************* Date : 6/8/2021      **************************************/
-/******************* Version : 1.0v       **************************************/ 
-/******************* SWC : STD_TYPES.h *****************************************/ 
-/*******************************************************************************/
 #ifndef STD_H
 #define STD_H
 
@@ -17,6 +11,8 @@ typedef signed long int s32;
 typedef signed long long int s64;
 typedef float f32;
 typedef double f64;
+
+typedef u16 Timer_Size_t;
 
 typedef enum{
 
@@ -56,7 +52,8 @@ typedef enum{
 	
 }ERROR_enumSTATE;
 
-#define NULL 	((void *)0)
+//#define _delay_us(Copy_microsec)    Timer_voidDelay_Us(GLOB_Timer_4,Copy_microsec)
 
+#define NULL 	((void *)0)
 
 #endif

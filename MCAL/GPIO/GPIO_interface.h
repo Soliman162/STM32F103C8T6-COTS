@@ -44,10 +44,15 @@ ERROR_enumSTATE GPIO_enumGETPinValue( const  GPIO_CONFIG_t * Copy_ptu8PIN  , u8 
 
 ERROR_enumSTATE GPIO_enumSETPORTMode( PORT port_indx  , u8 Port_u8Mode );
 
+ERROR_enumSTATE GPIO_enumSETPORTValue_HIGH( PORT port_indx  , u8 Port_u16Value );
+ERROR_enumSTATE GPIO_enumSETPORTValue_LOW( PORT port_indx  , u8 Port_u16Value );
+
+ERROR_enumSTATE GPIO_enumSETPORTMode_HIGH( PORT port_indx  , u8 Port_u8Mode );
+ERROR_enumSTATE GPIO_enumSETPORTMode_LOW( PORT port_indx  , u8 Port_u8Mode );
+
 ERROR_enumSTATE GPIO_enumGETPort_OUTPUT_Value( PORT port_indx , u16 *Port_ptru8Value );
 ERROR_enumSTATE GPIO_enumGETPort_INPUT_Value( PORT port_indx , u16 *Port_ptru8Value );
 ERROR_enumSTATE GPIO_enumSETPORTValue( PORT port_indx  , u16 Port_u16Value );
 
-//ERROR_enumSTATE GPIO_enumSET_GOB_Mode( PORT port_indx  , u8 Port_u8Mode, u8 start_pin, u8 End_pin);
 
 #endif

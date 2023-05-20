@@ -9,7 +9,7 @@
 #include "GPT_config.h"
 
 static void (*GPT_Timer_ISR[3])(void) = {NULL};
-static GPT_2_5_REG_DEF_t *Timer_2_5[4] = {GPT_2,GPT_3,GPT_4,GPT_5};
+static GPT_2_5_REG_DEF_t *Timer_2_5[4] = {GPT_2,GPT_3,GPT_4};
 
 void Timer_voidInit(GP_Timer_Config Timer_num)
 {
@@ -65,6 +65,7 @@ void Timer_voidUpdateINT_Enable(GP_Timer_Config Timer_num, void (*Copy_ptrISR)(v
 }
 void Timer_voidUpdateINT_Disable(GP_Timer_Config Timer_num)
 {
+   GPT_Timer_ISR[Timer_num.Timer] = NULL;
    CLR_BIT(Timer_2_5[Timer_num.Timer]->DIER,0);
 }
 

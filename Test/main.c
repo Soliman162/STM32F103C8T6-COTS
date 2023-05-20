@@ -92,8 +92,6 @@ int main(void)
                                 (GPIO_CONFIG_t){GPIOA_PORT,PIN_3,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ}
                               }; */
 
-  GP_Timer_Config Test = {GP_TIMER_2,UP,8};
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -121,7 +119,7 @@ int main(void)
   GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
   GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
   /* USER CODE END 2 */
-  Timer_voidInit(Test);
+  //Timer_voidInit(Test);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -129,11 +127,12 @@ int main(void)
     /* USER CODE END WHILE */
     GPIO_enumSETPinValue( &LED_1  ,GPIO_HIGH );
     GPIO_enumSETPinValue( &LED_2  ,GPIO_HIGH );
-    Timer_voidDelay_Us(Test,1000000);
+    //_delay_us(1000000);
     /* USER CODE BEGIN 3 */
     GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
     GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
-    Timer_voidDelay_Us(Test,1000000);
+    //_delay_us(1000000);
+
   }
   /* USER CODE END 3 */
 
@@ -176,7 +175,7 @@ void SystemClock_Config(void)
   }
   /*init clk with my config*/
   RCC_voidCLKInit();
-  STK_voidInit();
+  //Timer_voidInit(GLOB_Timer_4);
   
   RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
   RCC_enumPeripheralCLKEnable(APB2_BUS, IOPC_CLK);

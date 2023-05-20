@@ -3,7 +3,7 @@
 #include "STM32F103C8.h"
 
 #include "GPIO_interface.h"
-#include "SysTick_interface.h"
+#include "GPT_interface.h"
 
 #include "CLCD_interface.h"
 #include "CLCD_private.h"
@@ -12,15 +12,21 @@
 GPIO_CONFIG_t CLCD_strData_Pins[CLCD_U8DATA_PIN_NUM] ;
 GPIO_CONFIG_t CLCD_strControl_Pins[CLCD_U8CONTROL_PIN_NUM] ;
 
+static GP_Timer_Config CLCD_timer = {GP_TIMER_4,UP,8};
+
 void CLCD_voidInit(void){
 
-    for( u8 LOC_u8Pin_Iterator = 0;LOC_u8Pin_Iterator<CLCD_U8DATA_PIN_NUM;LOC_u8Pin_Iterator++)
+	Timer_voidInit(CLCD_timer);
+
+/*     for( u8 LOC_u8Pin_Iterator = 0;LOC_u8Pin_Iterator<CLCD_U8DATA_PIN_NUM;LOC_u8Pin_Iterator++)
     {
     	CLCD_strData_Pins[LOC_u8Pin_Iterator].PORT_ID  = CLCD_DATA_PORT;
     	CLCD_strData_Pins[LOC_u8Pin_Iterator].PIN_NUM  = LOC_u8Pin_Iterator;
     	CLCD_strData_Pins[LOC_u8Pin_Iterator].PIN_MODE = GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ;
         GPIO_enumSETPinMODE( &CLCD_strData_Pins[LOC_u8Pin_Iterator]);
-    }
+    } */
+
+	GPIO_enumSETPORTMode_LOW(CLCD_DATA_PORT,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ);
 
     for( u8 LOC_u8Pin_Iterator = CLCD_CONTROL_PIN_RS;LOC_u8Pin_Iterator<=CLCD_CONTROL_PIN_EN;LOC_u8Pin_Iterator++)
     {
@@ -30,19 +36,19 @@ void CLCD_voidInit(void){
         GPIO_enumSETPinMODE( &CLCD_strControl_Pins[LOC_u8Pin_Iterator-CLCD_CONTROL_PIN_RS]);
     }
 
-    STK_voidSetBusyWait(5000);
+    Timer_voidDelay_Us(CLCD_timer,5000);
 	//FUNCTION SET COMMEND
 	CLCD_voidSendCommand(0b00111000);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 	//DISPLAY ON / OFF
 	CLCD_voidSendCommand(0b00001110);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 	//DISPLAY CLEAR
 	CLCD_voidSendCommand(0b00000001);
-    STK_voidSetBusyWait(3000);
+    Timer_voidDelay_Us(CLCD_timer,3000);
 	//DISPLAY ENTRY MODE
 	CLCD_voidSendCommand(0b00000010);
-    STK_voidSetBusyWait(3000);
+    Timer_voidDelay_Us(CLCD_timer,3000);
 
 }
 void CLCD_voidSend_Data(u8 Copy_u8Data){
@@ -55,10 +61,10 @@ void CLCD_voidSend_Data(u8 Copy_u8Data){
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[RW_PIN_INDEX], GPIO_LOW );
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[RS_PIN_INDEX], GPIO_HIGH);
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[EN_PIN_INDEX], GPIO_HIGH);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[EN_PIN_INDEX], GPIO_LOW);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 
 }
 void CLCD_voidSendCommand(u8 Copy_u8Command){
@@ -71,9 +77,9 @@ void CLCD_voidSendCommand(u8 Copy_u8Command){
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[RS_PIN_INDEX], GPIO_LOW);
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[EN_PIN_INDEX], GPIO_HIGH);
 
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
     GPIO_enumSETPinValue(&CLCD_strControl_Pins[EN_PIN_INDEX], GPIO_LOW);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 }
 void CLCD_voidSend_String(u8 *Copy_u8PtrString){
 
@@ -115,7 +121,6 @@ void CLCD_voidSetPosition (u8 Copy_u8Row , u8 Copy_u8Col){
 	}
 }
 
-
 void Send_voidExtraString   (u8 Copy_u8Row , u8 Copy_u8Col  ){
 
 	//go to CGRAM
@@ -137,11 +142,11 @@ void Send_voidExtraString   (u8 Copy_u8Row , u8 Copy_u8Col  ){
 void Clear_voidCLCD(void){
 
 	CLCD_voidSendCommand(0b00000001);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 }
 
 void Display_voidOff_On(void){
 
 	CLCD_voidSendCommand(0b00001000);
-    STK_voidSetBusyWait(1000);
+    Timer_voidDelay_Us(CLCD_timer,1000);
 }

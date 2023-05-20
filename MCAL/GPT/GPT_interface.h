@@ -1,14 +1,11 @@
 #ifndef GPT_INTERFACE_H
 #define GPT_INTERFACE_H
 
-#include "GPT_private.h"
-
 typedef enum 
 {
     GP_TIMER_2=0,
     GP_TIMER_3,
-    GP_TIMER_4,
-    GP_TIMER_5
+    GP_TIMER_4
 
 }GP_TIMER;
  
@@ -35,7 +32,5 @@ void Timer_voidUpdateINT_Disable(GP_Timer_Config Timer_num);
 
 void Timer_voidStop(GP_Timer_Config Timer_num);
 void Timer_voidDelay_Us(GP_Timer_Config Timer_num,u32 Count_value);
-
-
 
 #endif

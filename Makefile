@@ -67,6 +67,7 @@ MCAL/WDG/WDG_program.c \
 MCAL/GPT/GPT_program.c	\
 HAL/IR_inferared/IR_inferared_program.c \
 HAL/DC_motor/DC_program.c	\
+HAL/CLCD/CLCD_program.c \
 HAL/stepper_motor/stepper_program.c	
 
 # ASM sources
@@ -131,6 +132,7 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Include
 
 C_INCLUDES += \
+-ILIB \
 -IMCAL/GPIO	\
 -IMCAL/SYS_Tick 	\
 -IMCAL/RCC		\
@@ -139,7 +141,8 @@ C_INCLUDES += \
 -IHAL/IR_inferared \
 -IHAL/DC_motor	\
 -IHAL/stepper_motor \
--ILIB 
+-IHAL/CLCD 
+
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections

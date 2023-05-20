@@ -1,7 +1,7 @@
 #ifndef GPT_PRIVATE_H
 #define GPT_PRIVATE_H
 
-typedef u16 Timer_Size_t;
+//GP_Timer_Config GLOB_Timer_4 = {GP_TIMER_4,UP,8};
 
 #define MAX_COUNTER_VALUE       0xFFFF//65536//2^16
 
