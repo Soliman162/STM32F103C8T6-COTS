@@ -20,50 +20,40 @@
 #include "main.h"
 
 #include "STD_TYPES.h"
+#include "STM32F103C8.h"
+
+#include "FreeRTOSConfig.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
 
 #include "RCC_interface.h"
-#include "SysTick_interface.h"
 #include "GPIO_interface.h"
-#include "WDG_interface.h"
-#include "GPT_interface.h"
 
+#include "stepper_interface.h"
 #include "DC_interface.h"
+#include "IR_inferared_interface.h"
+#include "CLCD_interface.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 
-/* USER CODE END PFP */
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
+xTaskHandle test_handel = NULL;
 
-/* USER CODE END 0 */
+void vtestTask(void *pvParameters)
+{
+  GPIO_CONFIG_t LED = {GPIOA_PORT,PIN_0,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ};
+  GPIO_enumSETPinMODE(&LED);
+  for(;;)
+  {
+    GPIO_enumSETPinValue(&LED,GPIO_HIGH);
+    vTaskDelay(500);
+    GPIO_enumSETPinValue(&LED,GPIO_LOW);
+    vTaskDelay(500);
+  }
+}
 
 /**
   * @brief  The application entry point.
@@ -71,72 +61,23 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
-  GPIO_CONFIG_t LED_1 = {GPIOA_PORT, PIN_0, GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ};
-  GPIO_CONFIG_t LED_2 = {GPIOA_PORT, PIN_1, GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ};
+  xTaskCreate( vtestTask,
+               "test",
+               configMINIMAL_STACK_SIZE,
+               ( void * ) NULL,
+               2,  /* In effect ( tskIDLE_PRIORITY | portPRIVILEGE_BIT ), but tskIDLE_PRIORITY is zero. */
+               &test_handel );
 
-  /*  GPIO_CONFIG_t Motor_pin[2] = {
-                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_2,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ},
-                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_3,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ}
-                              }; 
-
-  DC_Motor_Config_t  Motor ;
-
-  Motor.Motor_Data[0] = Motor_pin[0];
-  Motor.Motor_Data[1] = Motor_pin[1];
-    */
-/* 
-  DC_Motor_Config_t  Motor = {
-                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_2,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ},
-                                (GPIO_CONFIG_t){GPIOA_PORT,PIN_3,GENERAL_PURPOSE_OUTPUT_PUSH_PULL_10MHZ}
-                              }; */
-
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
-  /* USER CODE BEGIN 2 */
-  
-  GPIO_enumSETPinMODE( &LED_1 );
-  GPIO_enumSETPinMODE( &LED_2 );
-
-  GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
-  GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
-  /* USER CODE END 2 */
-  //Timer_voidInit(Test);
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
-    GPIO_enumSETPinValue( &LED_1  ,GPIO_HIGH );
-    GPIO_enumSETPinValue( &LED_2  ,GPIO_HIGH );
-    //_delay_us(1000000);
-    /* USER CODE BEGIN 3 */
-    GPIO_enumSETPinValue( &LED_1  ,GPIO_LOW );
-    GPIO_enumSETPinValue( &LED_2  ,GPIO_LOW );
-    //_delay_us(1000000);
-
-  }
-  /* USER CODE END 3 */
+  vTaskStartScheduler();
+  for(;;)
 
   return 0;
+}
+
+void vApplicationTickHook(void)
+{
+  
 }
 
 /**
@@ -151,14 +92,14 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
-  }
+  } 
 
   /** Initializes the CPU, AHB and APB buses clocks
   */
@@ -172,13 +113,17 @@ void SystemClock_Config(void)
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
-  }
-  /*init clk with my config*/
-  RCC_voidCLKInit();
-  //Timer_voidInit(GLOB_Timer_4);
+  } 
+
+ RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
+
+      /*init clk with my config*/
+/*   RCC_voidCLKInit();
   
   RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
   RCC_enumPeripheralCLKEnable(APB2_BUS, IOPC_CLK);
+  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPB_CLK); */
+
 }
 
 /* USER CODE BEGIN 4 */

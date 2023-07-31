@@ -15,13 +15,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2017-2021 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -61,6 +60,9 @@ defined in linker script */
   .type Reset_Handler, %function
 Reset_Handler:
 
+/* Call the clock system initialization function.*/
+    bl  SystemInit
+
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
   ldr r1, =_edata
@@ -92,8 +94,6 @@ LoopFillZerobss:
   cmp r2, r4
   bcc FillZerobss
 
-/* Call the clock system intitialization function.*/
-    bl  SystemInit
 /* Call static constructors */
     bl __libc_init_array
 /* Call the application's entry point.*/
@@ -139,11 +139,11 @@ g_pfnVectors:
   .word 0
   .word 0
   .word 0
-  .word SVC_Handler
+  .word vPortSVCHandler
   .word DebugMon_Handler
   .word 0
-  .word PendSV_Handler
-  .word SysTick_Handler
+  .word xPortPendSVHandler
+  .word xPortSysTickHandler
   .word WWDG_IRQHandler
   .word PVD_IRQHandler
   .word TAMPER_IRQHandler
@@ -220,17 +220,17 @@ g_pfnVectors:
   .weak UsageFault_Handler
   .thumb_set UsageFault_Handler,Default_Handler
 
-  .weak SVC_Handler
-  .thumb_set SVC_Handler,Default_Handler
+  .weak vPortSVCHandler
+  .thumb_set vPortSVCHandler,Default_Handler
 
   .weak DebugMon_Handler
   .thumb_set DebugMon_Handler,Default_Handler
 
-  .weak PendSV_Handler
-  .thumb_set PendSV_Handler,Default_Handler
+  .weak xPortPendSVHandler
+  .thumb_set xPortPendSVHandler,Default_Handler
 
-  .weak SysTick_Handler
-  .thumb_set SysTick_Handler,Default_Handler
+  .weak xPortSysTickHandler
+  .thumb_set xPortSysTickHandler,Default_Handler
 
   .weak WWDG_IRQHandler
   .thumb_set WWDG_IRQHandler,Default_Handler
@@ -360,6 +360,3 @@ g_pfnVectors:
 
   .weak USBWakeUp_IRQHandler
   .thumb_set USBWakeUp_IRQHandler,Default_Handler
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-

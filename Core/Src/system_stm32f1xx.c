@@ -57,6 +57,8 @@
   */
 
 #include "stm32f1xx.h"
+#include "STD_TYPES.h"
+#include "RCC_interface.h"
 
 /**
   * @}
@@ -185,6 +187,9 @@ void SystemInit (void)
 #if defined(USER_VECT_TAB_ADDRESS)
   SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM. */
 #endif /* USER_VECT_TAB_ADDRESS */
+
+  RCC_voidCLKInit();  
+  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
 }
 
 /**

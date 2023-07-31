@@ -1,7 +1,7 @@
 #ifndef STM32F103C8_H
 #define STM32F103C8_H
 
-#include "STD_TYPES.h"
+//#include "STD_TYPES.h"
 
 /***************************************RCC_REG**************************/
 typedef struct{
@@ -224,6 +224,43 @@ typedef struct{
 #define GPT_3		((GPT_2_5_REG_DEF_t *)0x40000400)
 #define GPT_4		((GPT_2_5_REG_DEF_t *)0x40000800)
 //#define GPT_5		((GPT_2_5_REG_DEF_t *)0x40000C00)
+
+/*************************************************************************/
+
+/***************************************ADC_REG**************************/
+
+typedef struct{
+
+	volatile  u32 SR;
+
+	volatile  u32 CR1;
+	volatile  u32 CR2;
+
+	volatile  u32 SMPR1;
+	volatile  u32 SMPR2;
+
+	volatile  u32 JOFR1;
+	volatile  u32 JOFR2;
+	volatile  u32 JOFR3;
+	volatile  u32 JOFR4;
+
+	volatile  u32 HTR;
+	volatile  u32 LTR;
+
+	volatile  u32 SQRX[3];
+	//volatile  u32 SQR2;
+	//volatile  u32 SQR3;
+
+	volatile  u32 JSQR;
+
+	volatile  u32 JDR[4];
+
+	volatile  u32 DR;
+
+}ADC_REG_DEF_t;
+
+#define	ADC1	((ADC_REG_DEF_t *)0x40012400)
+#define	ADC2	((ADC_REG_DEF_t *)0x40012800)
 
 /*************************************************************************/
 

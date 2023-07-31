@@ -24,10 +24,11 @@ STL = st-flash
 # building variables
 ######################################
 # debug build?
-DEBUG = 1
+DEBUG = 0
 # optimization
 OPT = -Og
-
+#FreeRTOS
+OS = 1
 
 #######################################
 # paths
@@ -59,16 +60,38 @@ Core/Src/system_stm32f1xx.c
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c \
 #Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c \
 
+ifeq ($(OS), 1)
 C_SOURCES += \
 MCAL/GPIO/GPIO_program.c \
-MCAL/SYS_Tick/SYS_Tick_program.c \
 MCAL/RCC/RCC_program.c	\
 MCAL/WDG/WDG_program.c \
 MCAL/GPT/GPT_program.c	\
 HAL/IR_inferared/IR_inferared_program.c \
 HAL/DC_motor/DC_program.c	\
-HAL/CLCD/CLCD_program.c \
-HAL/stepper_motor/stepper_program.c	
+HAL/CLCD/CLCD_program.c 	\
+OS/src/event_groups.c \
+OS/src/heap_2.c					\
+OS/src/list.c					\
+OS/src/port.c					\
+OS/src/queue.c					\
+OS/src/stream_buffer.c		\
+OS/src/tasks.c		\
+OS/src/timers.c	
+else
+C_SOURCES += \
+MCAL/GPIO/GPIO_program.c \
+MCAL/RCC/RCC_program.c	\
+MCAL/WDG/WDG_program.c \
+MCAL/GPT/GPT_program.c	\
+HAL/IR_inferared/IR_inferared_program.c \
+HAL/DC_motor/DC_program.c	\
+HAL/CLCD/CLCD_program.c 
+MCAL/SYS_Tick/SYS_Tick_program.c 
+endif	
+
+#
+#MCAL/ADC/ADC_program.c  \
+#HAL/stepper_motor/stepper_program.c	\
 
 # ASM sources
 ASM_SOURCES =  \
@@ -133,16 +156,18 @@ C_INCLUDES =  \
 
 C_INCLUDES += \
 -ILIB \
--IMCAL/GPIO	\
--IMCAL/SYS_Tick 	\
--IMCAL/RCC		\
--IMCAL/WDG	\
--IMCAL/GPT	\
+-IMCAL/SYS_Tick	\
+-IMCAL/GPIO	 \
+-IMCAL/RCC	 \
+-IMCAL/WDG	 \
+-IMCAL/GPT	 \
 -IHAL/IR_inferared \
 -IHAL/DC_motor	\
 -IHAL/stepper_motor \
--IHAL/CLCD 
+-IHAL/CLCD \
+-IOS/inc/
 
+#-IMCAL/ADC	
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
