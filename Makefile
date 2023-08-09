@@ -24,7 +24,7 @@ STL = st-flash
 # building variables
 ######################################
 # debug build?
-DEBUG = 0
+DEBUG = 1
 # optimization
 OPT = -Og
 #FreeRTOS
@@ -69,6 +69,8 @@ MCAL/GPT/GPT_program.c	\
 HAL/IR_inferared/IR_inferared_program.c \
 HAL/DC_motor/DC_program.c	\
 HAL/CLCD/CLCD_program.c 	\
+HAL/PUMP/PUMP_program.c \
+HAL/Valve/Valve_program.c	\
 OS/src/event_groups.c \
 OS/src/heap_2.c					\
 OS/src/list.c					\
@@ -165,6 +167,8 @@ C_INCLUDES += \
 -IHAL/DC_motor	\
 -IHAL/stepper_motor \
 -IHAL/CLCD \
+-IHAL/PUMP/ \
+-IHAL/Valve/	\
 -IOS/inc/
 
 #-IMCAL/ADC	

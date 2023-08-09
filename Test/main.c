@@ -39,6 +39,14 @@
 
 void SystemClock_Config(void);
 
+#define LINE1_MOTOR_MOTOR_PORT  GPIOA_PORT
+#define LINE2_MOTOR_MOTOR_PORT  GPIOA_PORT
+
+#define LINE1_MOTOR_CW_PIN   PIN_0
+#define LINE1_MOTOR_CCW_PIN  PIN_1
+
+#define LINE2_MOTOR_CW_PIN   PIN_2
+#define LINE2_MOTOR_CCW_PIN  PIN_3
 
 xTaskHandle test_handel = NULL;
 
