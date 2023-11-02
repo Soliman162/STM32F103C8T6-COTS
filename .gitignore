@@ -1,5 +1,5 @@
 build/
-ARM_blue_Pill_COTS.code-workspace
+STM32F103C8T6-COTS.code-workspace
 .vscode/
 .gdb_history
 debug/
