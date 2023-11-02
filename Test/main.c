@@ -30,6 +30,7 @@
 
 #include "RCC_interface.h"
 #include "GPIO_interface.h"
+#include "UART_interface.h"
 
 #include "stepper_interface.h"
 #include "DC_interface.h"
@@ -69,7 +70,11 @@ void vtestTask(void *pvParameters)
   */
 int main(void)
 {
-
+  SystemClock_Config();
+  UART_voidInit();
+  UART_enumTransimite_String((u8 *)"Start app\n");
+  UART_enumTransimite_String((u8 *)"Start app\n");
+  UART_enumTransimite_String((u8 *)"Start app\n");
   xTaskCreate( vtestTask,
                "test",
                configMINIMAL_STACK_SIZE,
@@ -123,14 +128,17 @@ void SystemClock_Config(void)
     Error_Handler();
   } 
 
- RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
+ //RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
 
       /*init clk with my config*/
-/*   RCC_voidCLKInit();
+   RCC_voidCLKInit();
   
   RCC_enumPeripheralCLKEnable(APB2_BUS, IOPA_CLK);
   RCC_enumPeripheralCLKEnable(APB2_BUS, IOPC_CLK);
-  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPB_CLK); */
+  RCC_enumPeripheralCLKEnable(APB2_BUS, IOPB_CLK); 
+
+  RCC_enumPeripheralCLKEnable(APB2_BUS,USART1_CLK);
+
 
 }
 
