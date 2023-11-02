@@ -24,7 +24,7 @@ STL = st-flash
 # building variables
 ######################################
 # debug build?
-DEBUG = 1
+DEBUG = 0
 # optimization
 OPT = -Og
 #FreeRTOS
@@ -66,6 +66,7 @@ MCAL/GPIO/GPIO_program.c \
 MCAL/RCC/RCC_program.c	\
 MCAL/WDG/WDG_program.c \
 MCAL/GPT/GPT_program.c	\
+MCAL/UART/UART_program.c \
 HAL/IR_inferared/IR_inferared_program.c \
 HAL/DC_motor/DC_program.c	\
 HAL/CLCD/CLCD_program.c 	\
@@ -85,6 +86,7 @@ MCAL/GPIO/GPIO_program.c \
 MCAL/RCC/RCC_program.c	\
 MCAL/WDG/WDG_program.c \
 MCAL/GPT/GPT_program.c	\
+MCAL/UART/UART_program.c \
 HAL/IR_inferared/IR_inferared_program.c \
 HAL/DC_motor/DC_program.c	\
 HAL/CLCD/CLCD_program.c 
@@ -163,6 +165,7 @@ C_INCLUDES += \
 -IMCAL/RCC	 \
 -IMCAL/WDG	 \
 -IMCAL/GPT	 \
+-IMCAL/UART \
 -IHAL/IR_inferared \
 -IHAL/DC_motor	\
 -IHAL/stepper_motor \
@@ -240,8 +243,8 @@ clean:
 #######################################
 # flash code
 #######################################
-flash: erase
-	$(STL) write ${BUILD_DIR}/$(TARGET).bin 0x8000000 
+flash: #erase
+	$(STL) write ${BUILD_DIR}/$(TARGET).bin 0x08002804 
 
 #######################################
 # erase code
