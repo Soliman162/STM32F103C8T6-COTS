@@ -61,7 +61,7 @@ defined in linker script */
 Reset_Handler:
 
 /* Call the clock system initialization function.*/
-    bl  SystemInit
+    bl  SystemClock_Config
 
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
